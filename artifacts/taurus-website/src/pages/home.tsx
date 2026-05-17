@@ -270,8 +270,8 @@ export default function Home() {
                 </motion.div>
 
                 <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold leading-tight mb-6" style={{ color: NAVY }}>
-                  Soluzioni integrate<br />
-                  <span style={{ color: GREEN }}>per l'agroindustria moderna.</span>
+                  Soluzioni digitali<br />
+                  <span style={{ color: GREEN }}>per l'azienda, contoterzista, filiera.</span>
                 </motion.h2>
 
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-5 leading-relaxed">
