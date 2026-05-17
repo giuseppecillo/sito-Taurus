@@ -958,10 +958,10 @@ export default function Home() {
               />
               <div className="relative z-10">
                 <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white">
-                  Pronto a trasformare la tua azienda?
+                  Contattaci per conoscere e soddisfare le esigenze della tua azienda e del tuo business.
                 </h2>
                 <p className="text-xl mb-10 max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>
-                  Richiedi una demo gratuita di Farm 2.0 o parla con un nostro agronomo per capire come supportare la tua realtà.
+                  Parla con noi per capire come le nostre soluzioni possono rispondere alle necessità specifiche della tua realtà agricola, del tuo contoterzismo o della tua filiera.
                 </p>
                 <form
                   className="max-w-md mx-auto flex flex-col sm:flex-row gap-4"
