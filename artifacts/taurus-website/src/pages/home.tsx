@@ -541,6 +541,46 @@ export default function Home() {
                 </div>
               </motion.div>
             </div>
+
+            {/* Demo request box */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="mt-14 rounded-2xl border p-8 flex flex-col lg:flex-row items-center justify-between gap-6"
+              style={{ backgroundColor: `${GREEN}0e`, borderColor: `${GREEN}35` }}
+            >
+              <div className="lg:max-w-md">
+                <h3 className="text-xl font-bold mb-1" style={{ color: NAVY }}>
+                  Richiedi una demo gratuita
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Mostriamo Farm 2.0 VRT in diretta sulla tua azienda. Lascia la tua email e ti contatteremo entro 24 ore.
+                </p>
+              </div>
+              <form
+                className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <input
+                  type="email"
+                  placeholder="La tua email aziendale"
+                  className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus:outline-none focus:ring-2"
+                  style={{ focusRingColor: GREEN } as React.CSSProperties}
+                  data-testid="input-demo-email-inline"
+                />
+                <Button
+                  type="submit"
+                  className="text-white rounded-xl px-6 py-2.5 h-auto text-sm font-medium whitespace-nowrap"
+                  style={{ backgroundColor: GREEN }}
+                  data-testid="btn-demo-inline"
+                >
+                  Richiedi Demo
+                </Button>
+              </form>
+            </motion.div>
+
           </div>
         </section>
 
