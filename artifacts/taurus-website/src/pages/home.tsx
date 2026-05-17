@@ -6,11 +6,7 @@ import {
   Leaf,
   Tractor,
   Satellite,
-  CloudRain,
-  Wifi,
-  ShieldCheck,
   CheckCircle2,
-  ChevronRight,
   LayoutDashboard,
   Cloud,
   Bug,
@@ -132,8 +128,7 @@ export default function Home() {
             { href: "#farm-vrt",  label: "Farm 2.0" },
             { href: "#showcase",  label: "Funzionalità" },
             { href: "#malattie",  label: "Malattie" },
-            { href: "#solutions", label: "Soluzioni" },
-            { href: "#iot",       label: "IoT" }
+            { href: "#solutions", label: "Soluzioni" }
           ].map(({ href, label }) => (
             <a
               key={href}
@@ -353,20 +348,14 @@ export default function Home() {
                   className="absolute inset-0 rounded-3xl blur-2xl opacity-15"
                   style={{ backgroundColor: GREEN }}
                 />
-                <div className="relative rounded-3xl overflow-hidden border border-border shadow-xl bg-white">
-                  {/* fake browser chrome matching app colors */}
-                  <div className="h-10 flex items-center px-4 gap-2" style={{ backgroundColor: GREEN }}>
-                    <img src="/taurus-logo.png" alt="" className="h-6 w-auto" />
-                    <span className="text-white text-sm font-semibold ml-1">Farm 2.0 VRT</span>
-                    <span className="text-white/60 text-xs ml-2">Powered by TAURUS AgriTech Solutions</span>
-                  </div>
+                <div className="relative rounded-3xl overflow-hidden border border-border shadow-xl">
                   <video
                     src="/farm-vrt-demo.mp4"
                     autoPlay
                     muted
                     loop
                     playsInline
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover block"
                     data-testid="video-farm-demo"
                   />
                 </div>
@@ -766,63 +755,6 @@ export default function Home() {
                   <p className="text-muted-foreground">{desc}</p>
                 </motion.div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── IoT ECOSYSTEM ─── */}
-        <section id="iot" className="py-24 border-y border-border" style={{ backgroundColor: `${GREEN}08` }}>
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: CloudRain,   label: "Stazioni Meteo",    color: TEAL,  offset: true },
-                  { icon: Wifi,        label: "Sensori Suolo",     color: BLUE,  offset: false },
-                  { icon: Tractor,     label: "Tracking Macchine", color: GREEN, offset: true },
-                  { icon: ShieldCheck, label: "Telemetria CAN",    color: BLUE,  offset: false }
-                ].map(({ icon: Icon, label, color, offset }, i) => (
-                  <motion.div
-                    key={label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className={`p-6 rounded-2xl bg-white border border-border shadow-sm ${offset ? "mt-10" : ""}`}
-                  >
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: `${color}15` }}>
-                      <Icon className="w-5 h-5" style={{ color }} />
-                    </div>
-                    <h4 className="font-semibold text-sm" style={{ color: NAVY }}>{label}</h4>
-                  </motion.div>
-                ))}
-              </div>
-
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerContainer}
-              >
-                <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-6" style={{ color: NAVY }}>
-                  Ecosistema Connesso
-                </motion.h2>
-                <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8">
-                  Taurus non è solo software. Integra l'hardware esistente o espandi la tua rete con i nostri sensori. Stazioni meteo, GPS e sensori aftermarket comunicano in tempo reale con Farm 2.0.
-                </motion.p>
-                <motion.ul variants={staggerContainer} className="space-y-3">
-                  {[
-                    "Modelli previsionali basati su micro-clima locale",
-                    "Ottimizzazione dei turni di irrigazione",
-                    "Tracciabilità delle operazioni meccaniche",
-                    "Integrazione dati da flotte miste"
-                  ].map((item, i) => (
-                    <motion.li key={i} variants={fadeUp} className="flex items-center gap-3">
-                      <ChevronRight className="w-5 h-5 shrink-0" style={{ color: GREEN }} />
-                      <span className="text-foreground/80">{item}</span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </motion.div>
             </div>
           </div>
         </section>
