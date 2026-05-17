@@ -109,6 +109,7 @@ const crops = [
 
 export default function Home() {
   const [activeFeature, setActiveFeature] = useState(0);
+  const [activeScreenshot, setActiveScreenshot] = useState(0);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -466,24 +467,48 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="relative"
               >
+                {/* Tab bar */}
+                <div className="flex gap-2 mb-4 flex-wrap">
+                  {[
+                    { label: "Mappe VRT", color: TEAL },
+                    { label: "Monitoraggio Malattie", color: RED_ },
+                    { label: "Previsioni Meteo", color: BLUE }
+                  ].map((tab, i) => (
+                    <button
+                      key={tab.label}
+                      onClick={() => setActiveScreenshot(i)}
+                      className="px-4 py-1.5 rounded-full text-sm font-medium transition-all border"
+                      style={
+                        activeScreenshot === i
+                          ? { backgroundColor: tab.color, color: "white", borderColor: tab.color }
+                          : { backgroundColor: "transparent", color: tab.color, borderColor: `${tab.color}60` }
+                      }
+                      data-testid={`tab-screenshot-${i}`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
                 <div
-                  className="absolute inset-0 rounded-3xl blur-2xl opacity-15"
-                  style={{ backgroundColor: GREEN }}
+                  className="absolute inset-0 rounded-3xl blur-2xl opacity-10 pointer-events-none"
+                  style={{ backgroundColor: GREEN, top: "2.5rem" }}
                 />
-                <div className="relative rounded-3xl overflow-hidden border border-border shadow-xl">
-                  {/* Negative margin-top clips the browser chrome (tabs, address bar, bookmarks)
-                      that appears at the top of the screen recording. overflow-hidden on the
-                      parent ensures the clipped area is never visible. */}
-                  <video
-                    src="/farm-vrt-demo.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full block"
-                    style={{ marginTop: "-13%", display: "block" }}
-                    data-testid="video-farm-demo"
-                  />
+                <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl">
+                  {[
+                    { src: "/app-vrt-maps.png",  alt: "Schermata VRT 2.0 e Mappe — mappa di prescrizione a zone omogenee" },
+                    { src: "/app-malattie.png",  alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni" },
+                    { src: "/app-meteo.png",     alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento" }
+                  ].map((img, i) => (
+                    <img
+                      key={i}
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full h-auto block transition-opacity duration-300"
+                      style={{ display: activeScreenshot === i ? "block" : "none" }}
+                      data-testid={`screenshot-${i}`}
+                    />
+                  ))}
                 </div>
               </motion.div>
             </div>
