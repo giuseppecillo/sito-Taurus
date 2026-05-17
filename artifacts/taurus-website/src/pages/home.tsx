@@ -893,7 +893,7 @@ export default function Home() {
         </section>
 
         {/* ─── REMOTE SENSING & DRONES ─── */}
-        <section id="solutions" className="py-24 bg-white border-t border-border">
+        <section id="solutions" className="py-12 bg-white border-t border-border">
           <div className="container mx-auto px-6 lg:px-12">
             <motion.div
               initial="hidden"
