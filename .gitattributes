@@ -1,0 +1,2 @@
+artifacts/taurus-website/public/farm-vrt-demo.mp4 filter=lfs diff=lfs merge=lfs -text
+attached_assets/Farm_2.0_VRT_-_TAURUS_AgriTech_Solutions_-_Google_Chrome_2026-_1779003449455.mp4 filter=lfs diff=lfs merge=lfs -text
