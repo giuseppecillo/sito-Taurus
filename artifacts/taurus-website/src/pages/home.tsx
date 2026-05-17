@@ -495,10 +495,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 min-h-[540px]">
             <div className="relative h-[320px] lg:h-auto overflow-hidden">
               <img
-                src="/img-farmer-smartphone.jpg"
-                alt="Agricoltore in campo con smartphone che monitora la salute della coltura"
+                src="/img-tractor-sprayer.png"
+                alt="Trattore con barra irroratrice che effettua trattamento fitosanitario in campo"
                 className="w-full h-full object-cover object-center"
-                data-testid="img-farmer-smartphone"
+                data-testid="img-tractor-sprayer"
               />
               <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(to right, transparent, white)" }} />
               <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(to top, white 30%, transparent)" }} />

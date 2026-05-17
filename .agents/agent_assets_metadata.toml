@@ -12,6 +12,12 @@ uri = "file://artifacts/taurus-website/public/img-agronomist-tablet.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "2mgJz_huoAtNmtUzAEu2-"
+uri = "file://artifacts/taurus-website/public/img-tractor-sprayer.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "2GEubUqZzaPpFl631iTUW"
 uri = "file://attached_assets/stock_images/agronomist-disease-monitor.jpg"
