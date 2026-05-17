@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, 
   Map, 
@@ -9,7 +10,12 @@ import {
   Wifi, 
   ShieldCheck, 
   CheckCircle2,
-  ChevronRight
+  ChevronRight,
+  LayoutDashboard,
+  Cloud,
+  Bug,
+  FileBarChart2,
+  Layers
 } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -24,13 +30,66 @@ const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
+    transition: { staggerChildren: 0.1 }
   }
 };
 
+const appFeatures = [
+  {
+    id: "appezzamenti",
+    icon: LayoutDashboard,
+    label: "Gestione Appezzamenti",
+    title: "I tuoi campi, sempre sotto controllo",
+    description: "Visualizza e gestisci tutti i tuoi appezzamenti in un'unica dashboard. Carica file o disegna i poligoni direttamente sulla mappa. Monitora superficie totale, coltura, tipo suolo e date di semina per ogni campo.",
+    image: "/farm-screen-1.png",
+    color: "#2d9b4e",
+    badge: "22 appezzamenti · 66.7 ha"
+  },
+  {
+    id: "meteo",
+    icon: Cloud,
+    label: "Previsioni Meteo",
+    title: "Dati agrometeorologici in tempo reale",
+    description: "Previsioni meteo specifiche per il centroide di ogni appezzamento. Temperatura, umidità, precipitazioni e vento per i prossimi 7 giorni. Analisi bagnatura fogliare per anticipare le condizioni favorevoli allo sviluppo di malattie fungine.",
+    image: "/farm-screen-2.png",
+    color: "#0ea5e9",
+    badge: "7 giorni di previsione · Aggiornamento live"
+  },
+  {
+    id: "malattie",
+    icon: Bug,
+    label: "Monitoraggio Malattie",
+    title: "Previeni prima che sia troppo tardi",
+    description: "Monitoraggio e previsione del rischio fitosanitario basato su dati meteo e modelli patologici. Traccia il rischio nel tempo per Grano, Vite, Tabacco e Pomodoro. Verifica l'efficacia e la durata di protezione dei trattamenti fitosanitari applicati.",
+    image: "/farm-screen-3.png",
+    color: "#f59e0b",
+    badge: "Peronospora · Fusariosi · Alternaria"
+  },
+  {
+    id: "prescrizione",
+    icon: FileBarChart2,
+    label: "Mappa di Prescrizione",
+    title: "VRT: la giusta dose nel posto giusto",
+    description: "Calcola mappe di prescrizione a rateo variabile con clustering K-means su dati NDVI. Identifica zone omogenee Alto / Medio / Basso per ottimizzare fertilizzazione e semina. Esporta in formato GeoTIFF o SHP, compatibile con terminali GNSS Topcon e Trimble.",
+    image: "/farm-screen-4.png",
+    color: "#22c55e",
+    badge: "GeoTIFF · SHP · Topcon · Trimble"
+  },
+  {
+    id: "mappe",
+    icon: Layers,
+    label: "VRT 2.0 Mappe",
+    title: "Visibilità millimetrica sul vigore vegetativo",
+    description: "Visualizza indici NDVI e mappe di classificazione direttamente sull'immagine satellitare del campo. Interroga ogni pixel per conoscere DN value e classe di appartenenza. Attiva il tracciamento GPS in tempo reale per navigare in campo con la mappa aperta.",
+    image: "/farm-screen-5.png",
+    color: "#14b8a6",
+    badge: "NDVI · Sentinel-2 · GPS attivo"
+  }
+];
+
 export default function Home() {
+  const [activeFeature, setActiveFeature] = useState(0);
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-white">
       
@@ -46,6 +105,7 @@ export default function Home() {
         </Link>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="#farm-vrt" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-product">Farm 2.0</a>
+          <a href="#showcase" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-showcase">Funzionalità</a>
           <a href="#solutions" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-solutions">Soluzioni</a>
           <a href="#iot" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-iot">Ecosistema IoT</a>
         </div>
@@ -96,7 +156,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Farm 2.0 VRT Section */}
+        {/* Farm 2.0 VRT Intro Section */}
         <section id="farm-vrt" className="py-24 bg-card border-y border-border relative overflow-hidden">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -106,6 +166,10 @@ export default function Home() {
                 viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainer}
               >
+                <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2d9b4e]/20 border border-[#2d9b4e]/40 text-[#4ade80] text-sm font-medium mb-5">
+                  <Leaf className="w-4 h-4" />
+                  <span>Piattaforma di Consulenza Avanzata</span>
+                </motion.div>
                 <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-6">
                   Farm 2.0 VRT
                 </motion.h2>
@@ -116,9 +180,9 @@ export default function Home() {
                 <motion.div variants={staggerContainer} className="space-y-6">
                   {[
                     { title: "Mappatura Intelligente", desc: "Aggiungi appezzamenti caricando file o disegnandoli direttamente su mappa." },
-                    { title: "Mappe di Prescrizione", desc: "Genera mappe per zone omogenee, compatibili con i principali formati GNSS (Topcon, Trimble)." },
+                    { title: "Mappe di Prescrizione VRT", desc: "Genera mappe per zone omogenee, compatibili con i principali formati GNSS (Topcon, Trimble)." },
                     { title: "Previsione Malattie", desc: "Monitora lo stress colturale e previeni malattie in Grano, Vite, Tabacco e Pomodoro." },
-                    { title: "Verifica Copertura", desc: "Traccia il rischio nel tempo e verifica la durata protettiva degli agrofarmaci applicati." }
+                    { title: "Verifica Copertura Fitofarmaco", desc: "Traccia il rischio nel tempo e verifica la durata protettiva degli agrofarmaci applicati." }
                   ].map((feature, i) => (
                     <motion.div key={i} variants={fadeUp} className="flex gap-4">
                       <div className="w-12 h-12 rounded-full bg-primary/40 flex items-center justify-center shrink-0 border border-primary">
@@ -146,6 +210,7 @@ export default function Home() {
                     <div className="w-3 h-3 rounded-full bg-destructive/80" />
                     <div className="w-3 h-3 rounded-full bg-secondary/80" />
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                    <span className="ml-2 text-xs text-muted-foreground font-mono">Farm 2.0 VRT — Demo</span>
                   </div>
                   <video 
                     src="/farm-vrt-demo.mp4" 
@@ -162,8 +227,141 @@ export default function Home() {
           </div>
         </section>
 
+        {/* App Screenshot Showcase Section */}
+        <section id="showcase" className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-[#0f2318]/60 to-background pointer-events-none" />
+          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="text-center max-w-3xl mx-auto mb-14"
+            >
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0ea5e9]/15 border border-[#0ea5e9]/30 text-[#38bdf8] text-sm font-medium mb-5">
+                <Layers className="w-4 h-4" />
+                <span>Esplora l'interfaccia</span>
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-5">
+                Tutto ciò che ti serve, in un'unica piattaforma
+              </motion.h2>
+              <motion.p variants={fadeUp} className="text-lg text-muted-foreground">
+                Dalla gestione degli appezzamenti alla previsione delle malattie, passando per le mappe di prescrizione NDVI. Farm 2.0 VRT copre ogni aspetto dell'agricoltura di precisione.
+              </motion.p>
+            </motion.div>
+
+            {/* Feature Tabs */}
+            <div className="flex flex-wrap justify-center gap-2 mb-10">
+              {appFeatures.map((feature, i) => {
+                const Icon = feature.icon;
+                const isActive = activeFeature === i;
+                return (
+                  <button
+                    key={feature.id}
+                    onClick={() => setActiveFeature(i)}
+                    data-testid={`btn-feature-tab-${feature.id}`}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border"
+                    style={{
+                      backgroundColor: isActive ? `${feature.color}22` : "transparent",
+                      borderColor: isActive ? feature.color : "rgba(255,255,255,0.1)",
+                      color: isActive ? feature.color : "rgba(255,255,255,0.6)"
+                    }}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {feature.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Screenshot + Description */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeFeature}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="grid lg:grid-cols-5 gap-8 items-center"
+              >
+                {/* Text side */}
+                <div className="lg:col-span-2 space-y-5">
+                  <div
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium border"
+                    style={{
+                      backgroundColor: `${appFeatures[activeFeature].color}18`,
+                      borderColor: `${appFeatures[activeFeature].color}40`,
+                      color: appFeatures[activeFeature].color
+                    }}
+                  >
+                    {appFeatures[activeFeature].badge}
+                  </div>
+                  
+                  <h3 className="text-2xl lg:text-3xl font-bold leading-snug">
+                    {appFeatures[activeFeature].title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground text-base leading-relaxed">
+                    {appFeatures[activeFeature].description}
+                  </p>
+
+                  <div className="flex items-center gap-2 pt-2">
+                    <div
+                      className="h-1 w-12 rounded-full"
+                      style={{ backgroundColor: appFeatures[activeFeature].color }}
+                    />
+                    <div className="h-1 w-4 rounded-full bg-white/10" />
+                    <div className="h-1 w-4 rounded-full bg-white/10" />
+                  </div>
+
+                  {/* Step dots */}
+                  <div className="flex gap-3 pt-2">
+                    {appFeatures.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveFeature(i)}
+                        data-testid={`btn-feature-dot-${i}`}
+                        className="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                        style={{
+                          backgroundColor: activeFeature === i ? appFeatures[i].color : "rgba(255,255,255,0.2)",
+                          transform: activeFeature === i ? "scale(1.3)" : "scale(1)"
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Screenshot side */}
+                <div className="lg:col-span-3 relative">
+                  <div
+                    className="absolute inset-0 rounded-2xl blur-3xl opacity-20"
+                    style={{ backgroundColor: appFeatures[activeFeature].color }}
+                  />
+                  <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#f8f9fa]">
+                    {/* Fake browser chrome */}
+                    <div className="h-9 bg-[#1a2332] border-b border-white/10 flex items-center px-4 gap-2 shrink-0">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
+                      <div className="ml-3 flex-1 h-5 bg-white/5 rounded px-3 flex items-center">
+                        <span className="text-[10px] text-white/30 font-mono">app.farm20vrt.it</span>
+                      </div>
+                    </div>
+                    <img
+                      src={appFeatures[activeFeature].image}
+                      alt={appFeatures[activeFeature].label}
+                      className="w-full h-auto object-cover object-top"
+                      data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+
         {/* Remote Sensing & Drones */}
-        <section id="solutions" className="py-24 relative">
+        <section id="solutions" className="py-24 relative border-t border-border">
           <div className="container mx-auto px-6 lg:px-12">
             <motion.div 
               initial="hidden"
