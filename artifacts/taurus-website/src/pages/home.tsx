@@ -471,6 +471,7 @@ export default function Home() {
                 <div className="flex gap-2 mb-4 flex-wrap">
                   {[
                     { label: "Mappe VRT", color: TEAL },
+                    { label: "Mappa di Prescrizione", color: GREEN },
                     { label: "Monitoraggio Malattie", color: RED_ },
                     { label: "Previsioni Meteo", color: BLUE }
                   ].map((tab, i) => (
@@ -496,9 +497,10 @@ export default function Home() {
                 />
                 <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl">
                   {[
-                    { src: "/app-vrt-maps.png",  alt: "Schermata VRT 2.0 e Mappe — mappa di prescrizione a zone omogenee" },
-                    { src: "/app-malattie.png",  alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni" },
-                    { src: "/app-meteo.png",     alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento" }
+                    { src: "/app-vrt-maps.png",     alt: "Schermata VRT 2.0 e Mappe — mappa di prescrizione a zone omogenee" },
+                    { src: "/app-prescrizione.png", alt: "Schermata Calcola Mappa di Prescrizione VRT — clusterizzazione K-means NDVI con dosi kg/ha" },
+                    { src: "/app-malattie.png",     alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni" },
+                    { src: "/app-meteo.png",        alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento" }
                   ].map((img, i) => (
                     <img
                       key={i}
