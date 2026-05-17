@@ -459,10 +459,10 @@ export default function Home() {
                 variants={staggerContainer}
               >
                 <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: NAVY }}>
-                  Una piattaforma.<br />Ogni aspetto del campo.
+                  Una piattaforma.<br />Tecnologie per l'agricoltura di precisione nel tuo campo.
                 </motion.h2>
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8">
-                  Fertilizzazione, semina e difesa delle colture in un'unica interfaccia progettata per l'agricoltura professionale.
+                  Fertilizzazione, semina e difesa delle colture in un'unica interfaccia progettata per l'agricoltura professionale di precisione.
                 </motion.p>
                 <motion.div variants={staggerContainer} className="space-y-5">
                   {[
