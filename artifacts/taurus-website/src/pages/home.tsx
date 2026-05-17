@@ -126,6 +126,7 @@ export default function Home() {
         </Link>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           {[
+            { href: "#chi-siamo",  label: "Chi siamo" },
             { href: "#farm-vrt",  label: "Farm 2.0" },
             { href: "#showcase",  label: "Funzionalità" },
             { href: "#malattie",  label: "Malattie" },
@@ -175,16 +176,16 @@ export default function Home() {
                 style={{ backgroundColor: `${GREEN}22`, borderColor: `${GREEN}55`, color: "#4ade80" }}
               >
                 <Leaf className="w-4 h-4" />
-                <span>Il futuro della terra, oggi.</span>
+                <span>Taurus AgriTech Solutions</span>
               </motion.div>
 
               <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight text-white">
-                L'Agricoltura di Precisione <br />
-                <span style={{ color: "#4ade80" }}>per chi vuole di più.</span>
+                Soluzioni integrate<br />
+                <span style={{ color: "#4ade80" }}>per l'agroindustria.</span>
               </motion.h1>
 
               <motion.p variants={fadeUp} className="text-lg lg:text-xl mb-10 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
-                Software multisorgente che integra dati satellitari, sensori IoT e modelli agronomici avanzati. Il controllo totale della tua azienda agricola, dal campo al cloud.
+                Sviluppiamo soluzioni software integrate e auto-consolidate per l'agroindustria. Le nostre competenze ottimizzano produttività, scalabilità e tracciabilità per un'agricoltura sempre più consapevole, smart e orientata al risultato di business.
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
@@ -194,8 +195,8 @@ export default function Home() {
                   style={{ backgroundColor: GREEN, boxShadow: `0 0 24px ${GREEN}55` }}
                   asChild
                 >
-                  <a href="#farm-vrt" data-testid="btn-hero-discover">
-                    Scopri Farm 2.0 <ArrowRight className="w-5 h-5 ml-2" />
+                  <a href="#chi-siamo" data-testid="btn-hero-discover">
+                    Scopri chi siamo <ArrowRight className="w-5 h-5 ml-2" />
                   </a>
                 </Button>
                 <Button
@@ -248,7 +249,7 @@ export default function Home() {
         </section>
 
         {/* ─── CHI SIAMO ─── */}
-        <section className="py-24 bg-white border-b border-border">
+        <section id="chi-siamo" className="py-24 bg-white border-b border-border">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
 
@@ -368,6 +369,32 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
+
+        {/* ─── FARM 2.0 PRODUCT INTRO BRIDGE ─── */}
+        <div className="bg-white py-16 border-b border-border">
+          <div className="container mx-auto px-6 lg:px-12 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-5 border"
+                style={{ backgroundColor: `${GREEN}12`, borderColor: `${GREEN}40`, color: GREEN }}
+              >
+                <Leaf className="w-4 h-4" />
+                <span>Il nostro prodotto</span>
+              </div>
+              <h2 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: NAVY }}>
+                Farm 2.0 VRT
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                La piattaforma di gestione aziendale agricola sviluppata da Taurus AgriTech Solutions. Mappe di prescrizione, monitoraggio malattie, previsioni meteo e telerilevamento — in un'unica interfaccia integrata.
+              </p>
+            </motion.div>
+          </div>
+        </div>
 
         {/* ─── TRACTOR / TABLET CINEMATIC BANNER ─── */}
         <section id="farm-vrt" className="relative h-[520px] lg:h-[620px] overflow-hidden flex items-center">
