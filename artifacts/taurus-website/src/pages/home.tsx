@@ -522,10 +522,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 min-h-[540px]">
             <div className="relative h-[320px] lg:h-auto overflow-hidden">
               <img
-                src="/img-tractor-sprayer.png"
-                alt="Trattore con barra irroratrice che effettua trattamento fitosanitario in campo"
+                src="/img-atomizzatore-vigneto.png"
+                alt="Trattore con atomizzatore nel vigneto durante il trattamento fitosanitario"
                 className="w-full h-full object-cover object-center"
-                data-testid="img-tractor-sprayer"
+                data-testid="img-atomizzatore-vigneto"
               />
               <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(to right, transparent, white)" }} />
               <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(to top, white 30%, transparent)" }} />
@@ -928,18 +928,6 @@ export default function Home() {
                 alt="Trattore con atomizzatore nel vigneto durante il trattamento fitosanitario — Taurus AgriTech Solutions"
                 className="w-full h-[380px] lg:h-[460px] object-cover object-center"
               />
-              <div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(to top, rgba(15,30,20,0.72) 0%, transparent 55%)" }}
-              />
-              <div className="absolute bottom-0 left-0 right-0 px-8 pb-8">
-                <p className="text-white/90 text-sm font-medium uppercase tracking-widest mb-1" style={{ color: `${GREEN}` }}>
-                  Dalla mappa al trattore
-                </p>
-                <p className="text-white text-xl lg:text-2xl font-bold max-w-2xl leading-snug">
-                  Le previsioni di rischio calcolate da Farm 2.0 VRT guidano ogni intervento fitosanitario — con l'atomizzatore nel vigneto come in campo aperto.
-                </p>
-              </div>
             </motion.div>
 
           </div>
