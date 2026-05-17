@@ -878,7 +878,7 @@ export default function Home() {
                 Soluzioni innovative di remote sensing satellitare e da drone per un monitoraggio millimetrico del vigore vegetativo e dello stress idrico.
               </p>
             </motion.div>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
                   icon: Satellite, color: TEAL,
@@ -889,6 +889,11 @@ export default function Home() {
                   icon: Map, color: BLUE,
                   title: "Voli Drone",
                   desc: "I dati telerilevati da drone — termici, RGB e multispettrali — alimentano applicazioni sito-specifiche lungo tutto il ciclo colturale: dal monitoraggio dello stato vegetativo e dell'uniformità del campo, fino alla generazione di mappe VRT per concimazioni, trattamenti e semine a dose variabile."
+                },
+                {
+                  icon: Cloud, color: AMBER,
+                  title: "Dati Meteo per il Rischio Malattia",
+                  desc: "Temperatura, umidità relativa e bagnatura fogliare vengono acquisite per ogni appezzamento e trasmesse in tempo reale agli algoritmi di calcolo del rischio patologico. I modelli epidemiologici integrati — Peronospora, Oidio, Botrite, Septoria e altri — elaborano questi parametri per produrre previsioni di rischio a 7 giorni, permettendo di programmare i trattamenti fitosanitari con precisione e di ridurre i costi di difesa."
                 }
               ].map(({ icon: Icon, color, title, desc }, i) => (
                 <motion.div
