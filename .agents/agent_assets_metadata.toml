@@ -1,0 +1,37 @@
+uploads = []
+
+[[generated]]
+id = "ALZhs2tCSrsZX3zgUxA87"
+uri = "file://artifacts/taurus-website/public/img-iot-connect.png"
+type = "image"
+title = "generated_image"
+
+[[outputs]]
+id = "2GEubUqZzaPpFl631iTUW"
+uri = "file://attached_assets/stock_images/agronomist-disease-monitor.jpg"
+type = "image"
+title = "agronomist technician laptop tablet disease monitoring wheat vineyard crop protection"
+
+[[outputs]]
+id = "0ZoJ1N5tYz8k-xZkJJPiO"
+uri = "file://attached_assets/stock_images/farmer-smartphone-field.jpg"
+type = "image"
+title = "farmer agronomist smartphone field crop health monitoring precision agriculture remote sensing"
+
+[[outputs]]
+id = "QcJ_X9iaORakrWzCLdvxE"
+uri = "file://attached_assets/stock_images/crop-disease-closeup.jpg"
+type = "image"
+title = "close up plant leaf disease detection tomato wheat vine tobacco crop protection agriculture"
+
+[[outputs]]
+id = "9Ift-TNaRhbfMQiHIJrGQ"
+uri = "file://attached_assets/stock_images/aerial-field-precision.jpg"
+type = "image"
+title = "precision agriculture satellite drone aerial field map zones variable rate technology Italy"
+
+[[outputs]]
+id = "hLFgaVfQ84tV5Q-MajhqO"
+uri = "file://attached_assets/stock_images/tractor-tablet.jpg"
+type = "image"
+title = "farmer driving tractor field looking tablet computer GPS navigation agriculture"

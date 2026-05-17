@@ -1,21 +1,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  ArrowRight, 
-  Map, 
-  Leaf, 
-  Tractor, 
-  Satellite, 
-  CloudRain, 
-  Wifi, 
-  ShieldCheck, 
+import {
+  ArrowRight,
+  Map,
+  Leaf,
+  Tractor,
+  Satellite,
+  CloudRain,
+  Wifi,
+  ShieldCheck,
   CheckCircle2,
   ChevronRight,
   LayoutDashboard,
   Cloud,
   Bug,
   FileBarChart2,
-  Layers
+  Layers,
+  Smartphone,
+  Radio,
+  Thermometer,
+  Droplets
 } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -28,10 +32,7 @@ const fadeUp = {
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
 };
 
 const appFeatures = [
@@ -87,18 +88,25 @@ const appFeatures = [
   }
 ];
 
+const crops = [
+  { name: "Grano", icon: "🌾", risk: 72, color: "#f59e0b", tag: "Fusariosi della spiga" },
+  { name: "Vite", icon: "🍇", risk: 38, color: "#8b5cf6", tag: "Peronospora della vite" },
+  { name: "Tabacco", icon: "🌿", risk: 55, color: "#22c55e", tag: "Peronospora tabacina" },
+  { name: "Pomodoro", icon: "🍅", risk: 61, color: "#ef4444", tag: "Peronospora del pomodoro" }
+];
+
 export default function Home() {
   const [activeFeature, setActiveFeature] = useState(0);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-accent selection:text-white">
-      
+
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 lg:px-12 backdrop-blur-md bg-background/80 border-b border-border">
         <Link href="/" className="flex items-center gap-3 group">
-          <img 
-            src="/taurus-logo.png" 
-            alt="Taurus AgriTech Solutions" 
+          <img
+            src="/taurus-logo.png"
+            alt="Taurus AgriTech Solutions"
             className="h-10 w-auto group-hover:opacity-90 transition-opacity"
             data-testid="img-navbar-logo"
           />
@@ -106,8 +114,9 @@ export default function Home() {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           <a href="#farm-vrt" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-product">Farm 2.0</a>
           <a href="#showcase" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-showcase">Funzionalità</a>
+          <a href="#malattie" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-malattie">Malattie</a>
           <a href="#solutions" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-solutions">Soluzioni</a>
-          <a href="#iot" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-iot">Ecosistema IoT</a>
+          <a href="#iot" className="text-foreground/80 hover:text-accent transition-colors" data-testid="link-nav-iot">IoT</a>
         </div>
         <Button className="bg-accent hover:bg-accent/90 text-white font-medium rounded-full px-6" asChild>
           <a href="#contact" data-testid="btn-nav-demo">Richiedi Demo</a>
@@ -115,16 +124,16 @@ export default function Home() {
       </nav>
 
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        {/* ─── HERO ─── */}
+        <section className="relative pt-32 pb-0 lg:pt-44 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-background to-background z-10" />
             <div className="absolute right-0 top-0 w-[800px] h-[800px] bg-accent/10 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/4" />
             <div className="absolute left-0 bottom-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/4" />
           </div>
-          
-          <div className="container relative z-10 mx-auto px-6 lg:px-12">
-            <motion.div 
+
+          <div className="container relative z-10 mx-auto px-6 lg:px-12 pb-20">
+            <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
@@ -134,16 +143,16 @@ export default function Home() {
                 <Leaf className="w-4 h-4" />
                 <span>Il futuro della terra, oggi.</span>
               </motion.div>
-              
+
               <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 text-balance leading-tight">
-                L'Agricoltura di Precisione <br/>
+                L'Agricoltura di Precisione <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-secondary">per chi vuole di più.</span>
               </motion.h1>
-              
+
               <motion.p variants={fadeUp} className="text-lg lg:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
                 Software multisorgente che integra dati satellitari, sensori IoT e modelli agronomici avanzati. Il controllo totale della tua azienda agricola, dal campo al cloud.
               </motion.p>
-              
+
               <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-white rounded-full px-8 h-14 text-base font-medium shadow-[0_0_20px_rgba(0,190,190,0.3)]" asChild>
                   <a href="#farm-vrt" data-testid="btn-hero-discover">Scopri Farm 2.0 <ArrowRight className="w-5 h-5 ml-2" /></a>
@@ -154,35 +163,109 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </div>
+
+          {/* Aerial field hero image strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="relative w-full h-[340px] lg:h-[460px] overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60 z-10" />
+            <img
+              src="/img-aerial-field.jpg"
+              alt="Campi agricoli di precisione visti dall'alto"
+              className="w-full h-full object-cover object-center"
+              data-testid="img-hero-aerial"
+            />
+            {/* Floating stat badges */}
+            <div className="absolute bottom-10 left-8 z-20 hidden lg:flex gap-4">
+              {[
+                { label: "Appezzamenti gestiti", val: "22" },
+                { label: "Superficie monitorata", val: "66.7 ha" },
+                { label: "Rischio calcolato ogni", val: "24h" }
+              ].map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 + i * 0.15 }}
+                  className="bg-background/80 backdrop-blur border border-border/60 rounded-xl px-5 py-3"
+                >
+                  <div className="text-2xl font-bold text-accent">{s.val}</div>
+                  <div className="text-xs text-muted-foreground">{s.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </section>
 
-        {/* Farm 2.0 VRT Intro Section */}
-        <section id="farm-vrt" className="py-24 bg-card border-y border-border relative overflow-hidden">
+        {/* ─── TRACTOR / TABLET CINEMATIC BANNER ─── */}
+        <section id="farm-vrt" className="relative h-[520px] lg:h-[640px] overflow-hidden flex items-center">
+          <div className="absolute inset-0">
+            <img
+              src="/img-tractor-tablet.jpg"
+              alt="Trattorista che utilizza Farm 2.0 VRT su tablet in campo"
+              className="w-full h-full object-cover object-center"
+              data-testid="img-tractor-banner"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+          </div>
+
+          <div className="container relative z-10 mx-auto px-6 lg:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="max-w-xl"
+            >
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2d9b4e]/25 border border-[#2d9b4e]/50 text-[#4ade80] text-sm font-medium mb-5">
+                <Tractor className="w-4 h-4" />
+                <span>Prescrizione a bordo trattore</span>
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="text-4xl lg:text-6xl font-bold leading-tight mb-5">
+                Farm 2.0 VRT.<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4ade80] to-accent">Guida il campo,<br />non l'istinto.</span>
+              </motion.h2>
+              <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                Il trattorista ha la mappa di prescrizione sul tablet, il terminale GNSS riceve la dose variabile in automatico. Meno sprechi, più produzione, zero margine di errore.
+              </motion.p>
+              <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+                {["Topcon", "Trimble", "GeoTIFF", "SHP"].map((tag) => (
+                  <span key={tag} className="px-3 py-1 text-xs font-mono font-semibold rounded-full bg-[#2d9b4e]/20 border border-[#2d9b4e]/40 text-[#4ade80]">
+                    {tag}
+                  </span>
+                ))}
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ─── FARM 2.0 FEATURES LIST + VIDEO ─── */}
+        <section className="py-24 bg-card border-y border-border relative overflow-hidden">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <motion.div 
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainer}
               >
-                <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2d9b4e]/20 border border-[#2d9b4e]/40 text-[#4ade80] text-sm font-medium mb-5">
-                  <Leaf className="w-4 h-4" />
-                  <span>Piattaforma di Consulenza Avanzata</span>
-                </motion.div>
                 <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-6">
-                  Farm 2.0 VRT
+                  Una piattaforma.<br />Ogni aspetto del campo.
                 </motion.h2>
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8">
-                  Il cuore pulsante di Taurus AgriTech. Una piattaforma completa per la gestione dell'agricoltura di precisione: fertilizzazione, semina e difesa delle colture in un'unica interfaccia.
+                  Fertilizzazione, semina e difesa delle colture in un'unica interfaccia progettata per l'agricoltura professionale.
                 </motion.p>
-
                 <motion.div variants={staggerContainer} className="space-y-6">
                   {[
-                    { title: "Mappatura Intelligente", desc: "Aggiungi appezzamenti caricando file o disegnandoli direttamente su mappa." },
-                    { title: "Mappe di Prescrizione VRT", desc: "Genera mappe per zone omogenee, compatibili con i principali formati GNSS (Topcon, Trimble)." },
+                    { title: "Mappatura Intelligente", desc: "Aggiungi appezzamenti caricando file o disegnandoli direttamente su mappa satellitare." },
+                    { title: "Mappe di Prescrizione VRT", desc: "Genera mappe per zone omogenee NDVI, compatibili con Topcon e Trimble." },
                     { title: "Previsione Malattie", desc: "Monitora lo stress colturale e previeni malattie in Grano, Vite, Tabacco e Pomodoro." },
-                    { title: "Verifica Copertura Fitofarmaco", desc: "Traccia il rischio nel tempo e verifica la durata protettiva degli agrofarmaci applicati." }
+                    { title: "Verifica Copertura Fitofarmaco", desc: "Traccia il rischio nel tempo e la durata protettiva degli agrofarmaci applicati." }
                   ].map((feature, i) => (
                     <motion.div key={i} variants={fadeUp} className="flex gap-4">
                       <div className="w-12 h-12 rounded-full bg-primary/40 flex items-center justify-center shrink-0 border border-primary">
@@ -197,7 +280,7 @@ export default function Home() {
                 </motion.div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -212,12 +295,12 @@ export default function Home() {
                     <div className="w-3 h-3 rounded-full bg-green-500/80" />
                     <span className="ml-2 text-xs text-muted-foreground font-mono">Farm 2.0 VRT — Demo</span>
                   </div>
-                  <video 
-                    src="/farm-vrt-demo.mp4" 
-                    autoPlay 
-                    muted 
-                    loop 
-                    playsInline 
+                  <video
+                    src="/farm-vrt-demo.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                     className="w-full h-auto object-cover"
                     data-testid="video-farm-demo"
                   />
@@ -227,11 +310,228 @@ export default function Home() {
           </div>
         </section>
 
-        {/* App Screenshot Showcase Section */}
-        <section id="showcase" className="py-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-[#0f2318]/60 to-background pointer-events-none" />
-          <div className="container mx-auto px-6 lg:px-12 relative z-10">
-            <motion.div 
+        {/* ─── CONNECTIVITY / SMARTPHONE IN FIELD ─── */}
+        <section className="relative overflow-hidden py-0">
+          <div className="grid lg:grid-cols-2 min-h-[560px]">
+            {/* Image left */}
+            <div className="relative h-[320px] lg:h-auto overflow-hidden">
+              <img
+                src="/img-farmer-smartphone.jpg"
+                alt="Agricoltore in campo con smartphone che monitora la salute della coltura"
+                className="w-full h-full object-cover object-center"
+                data-testid="img-farmer-smartphone"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/80 hidden lg:block" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent lg:hidden" />
+            </div>
+
+            {/* Text right */}
+            <div className="relative bg-background flex items-center px-8 lg:px-16 py-16">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerContainer}
+                className="max-w-lg"
+              >
+                <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0ea5e9]/15 border border-[#0ea5e9]/40 text-[#38bdf8] text-sm font-medium mb-5">
+                  <Smartphone className="w-4 h-4" />
+                  <span>Sempre connesso, ovunque sei</span>
+                </motion.div>
+                <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold leading-tight mb-5">
+                  La salute della pianta<br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-accent">nel palmo della mano.</span>
+                </motion.h2>
+                <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Consulta indici NDVI, rischio malattie e previsioni meteo direttamente dallo smartphone, sia in campo che da casa o ufficio. Taurus ti porta i dati ovunque tu sia, in tempo reale.
+                </motion.p>
+                <motion.div variants={staggerContainer} className="grid grid-cols-2 gap-4">
+                  {[
+                    { icon: Satellite, label: "Dati satellitari live" },
+                    { icon: Radio, label: "Sensori IoT connessi" },
+                    { icon: Thermometer, label: "Meteo per appezzamento" },
+                    { icon: Droplets, label: "Stress idrico previsto" }
+                  ].map(({ icon: Icon, label }, i) => (
+                    <motion.div
+                      key={i}
+                      variants={fadeUp}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border"
+                    >
+                      <Icon className="w-5 h-5 text-[#38bdf8] shrink-0" />
+                      <span className="text-sm font-medium">{label}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── IOT CONNECTIVITY AI IMAGE BANNER ─── */}
+        <section className="relative h-[360px] lg:h-[440px] overflow-hidden flex items-center justify-center">
+          <img
+            src="/img-iot-connect.png"
+            alt="Rete IoT che connette satellite, drone e sensori alla piattaforma Taurus"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            data-testid="img-iot-connect"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative z-10 text-center px-6 max-w-3xl"
+          >
+            <p className="text-accent/80 text-sm font-mono tracking-widest uppercase mb-3">Ecosistema integrato</p>
+            <h2 className="text-3xl lg:text-5xl font-bold text-white drop-shadow-lg">
+              Satellite, Drone, IoT.<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#4ade80]">Un'unica visione.</span>
+            </h2>
+          </motion.div>
+        </section>
+
+        {/* ─── DISEASE MODULE SECTION ─── */}
+        <section id="malattie" className="py-24 relative overflow-hidden">
+          <div className="container mx-auto px-6 lg:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="text-center max-w-3xl mx-auto mb-16"
+            >
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f59e0b]/15 border border-[#f59e0b]/40 text-[#fbbf24] text-sm font-medium mb-5">
+                <Bug className="w-4 h-4" />
+                <span>Modulo Malattie</span>
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-5">
+                Il tecnico che non dorme mai.
+              </motion.h2>
+              <motion.p variants={fadeUp} className="text-lg text-muted-foreground">
+                Modelli agronomici validati calcolano il rischio fitosanitario ogni 24 ore per ogni appezzamento. Intervieni nel momento giusto, con il prodotto giusto, alla dose giusta.
+              </motion.p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-2 gap-10 items-start mb-16">
+              {/* Agronomist image */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="relative rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="/img-agronomist.jpg"
+                  alt="Tecnico agronomo che analizza il rischio malattie con l'applicazione Farm 2.0 VRT"
+                  className="w-full h-[420px] object-cover object-center"
+                  data-testid="img-agronomist-disease"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <p className="text-sm text-accent font-mono mb-1">Previsioni Rischio — 7 Giorni</p>
+                  <div className="flex gap-3">
+                    <div className="flex-1 bg-background/70 backdrop-blur rounded-xl p-3 border border-border/50">
+                      <div className="text-2xl font-bold text-[#f59e0b]">32%</div>
+                      <div className="text-xs text-muted-foreground">Rischio Protetto</div>
+                    </div>
+                    <div className="flex-1 bg-background/70 backdrop-blur rounded-xl p-3 border border-border/50">
+                      <div className="text-2xl font-bold text-destructive">38%</div>
+                      <div className="text-xs text-muted-foreground">Rischio Massimo</div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Crop disease cards */}
+              <div className="space-y-4">
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={staggerContainer}
+                  className="grid grid-cols-1 gap-4"
+                >
+                  {crops.map((crop, i) => (
+                    <motion.div
+                      key={crop.name}
+                      variants={fadeUp}
+                      className="flex items-center gap-5 p-5 rounded-2xl bg-card border border-border hover:border-opacity-80 transition-all"
+                      style={{ borderColor: `${crop.color}30` }}
+                      data-testid={`card-crop-${crop.name.toLowerCase()}`}
+                    >
+                      <div
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0"
+                        style={{ backgroundColor: `${crop.color}18` }}
+                      >
+                        {crop.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <h4 className="font-bold text-lg">{crop.name}</h4>
+                          <span className="text-sm font-mono font-bold" style={{ color: crop.color }}>{crop.risk}%</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground mb-2">{crop.tag}</p>
+                        <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${crop.risk}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: i * 0.1, ease: "easeOut" }}
+                            className="h-full rounded-full"
+                            style={{ backgroundColor: crop.color }}
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="p-4 rounded-xl bg-[#f59e0b]/10 border border-[#f59e0b]/30 text-sm text-[#fbbf24]"
+                >
+                  Verifica anche la durata di protezione del fitofarmaco applicato e ricevi l'allerta quando la finestra protettiva sta per scadere.
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Crop disease visual strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative rounded-3xl overflow-hidden h-[260px] lg:h-[340px]"
+            >
+              <img
+                src="/img-crop-disease.jpg"
+                alt="Dettaglio foglia con sintomi di malattia fungina monitorata da Taurus"
+                className="w-full h-full object-cover object-center"
+                data-testid="img-crop-disease-closeup"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/30 to-transparent" />
+              <div className="absolute inset-0 flex items-center px-8 lg:px-16">
+                <div className="max-w-lg">
+                  <p className="text-[#fbbf24] text-sm font-mono mb-2 tracking-wide uppercase">Rilevamento precoce</p>
+                  <h3 className="text-2xl lg:text-4xl font-bold text-white leading-tight">
+                    Intercetta il patogeno<br />prima che si veda ad occhio nudo.
+                  </h3>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ─── APP SCREENSHOT SHOWCASE ─── */}
+        <section id="showcase" className="py-24 bg-card border-y border-border relative overflow-hidden">
+          <div className="container mx-auto px-6 lg:px-12">
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -243,10 +543,10 @@ export default function Home() {
                 <span>Esplora l'interfaccia</span>
               </motion.div>
               <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-5">
-                Tutto ciò che ti serve, in un'unica piattaforma
+                Tutto ciò che ti serve,<br />in un'unica piattaforma.
               </motion.h2>
               <motion.p variants={fadeUp} className="text-lg text-muted-foreground">
-                Dalla gestione degli appezzamenti alla previsione delle malattie, passando per le mappe di prescrizione NDVI. Farm 2.0 VRT copre ogni aspetto dell'agricoltura di precisione.
+                Dalla gestione degli appezzamenti alla previsione delle malattie, passando per le mappe VRT. Farm 2.0 copre ogni aspetto dell'agricoltura di precisione.
               </motion.p>
             </motion.div>
 
@@ -274,7 +574,6 @@ export default function Home() {
               })}
             </div>
 
-            {/* Screenshot + Description */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeFeature}
@@ -284,7 +583,6 @@ export default function Home() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="grid lg:grid-cols-5 gap-8 items-center"
               >
-                {/* Text side */}
                 <div className="lg:col-span-2 space-y-5">
                   <div
                     className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium border"
@@ -296,25 +594,12 @@ export default function Home() {
                   >
                     {appFeatures[activeFeature].badge}
                   </div>
-                  
                   <h3 className="text-2xl lg:text-3xl font-bold leading-snug">
                     {appFeatures[activeFeature].title}
                   </h3>
-                  
                   <p className="text-muted-foreground text-base leading-relaxed">
                     {appFeatures[activeFeature].description}
                   </p>
-
-                  <div className="flex items-center gap-2 pt-2">
-                    <div
-                      className="h-1 w-12 rounded-full"
-                      style={{ backgroundColor: appFeatures[activeFeature].color }}
-                    />
-                    <div className="h-1 w-4 rounded-full bg-white/10" />
-                    <div className="h-1 w-4 rounded-full bg-white/10" />
-                  </div>
-
-                  {/* Step dots */}
                   <div className="flex gap-3 pt-2">
                     {appFeatures.map((_, i) => (
                       <button
@@ -331,14 +616,12 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Screenshot side */}
                 <div className="lg:col-span-3 relative">
                   <div
                     className="absolute inset-0 rounded-2xl blur-3xl opacity-20"
                     style={{ backgroundColor: appFeatures[activeFeature].color }}
                   />
-                  <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#f8f9fa]">
-                    {/* Fake browser chrome */}
+                  <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                     <div className="h-9 bg-[#1a2332] border-b border-white/10 flex items-center px-4 gap-2 shrink-0">
                       <div className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
                       <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
@@ -360,10 +643,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Remote Sensing & Drones */}
+        {/* ─── REMOTE SENSING & DRONES ─── */}
         <section id="solutions" className="py-24 relative border-t border-border">
           <div className="container mx-auto px-6 lg:px-12">
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -377,7 +660,7 @@ export default function Home() {
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -389,8 +672,8 @@ export default function Home() {
                   Indici multispettrali aggiornati costantemente per analizzare la biomassa, ottimizzare le concimazioni e rilevare anomalie in campo aperto senza muovere un trattore.
                 </p>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -407,37 +690,35 @@ export default function Home() {
           </div>
         </section>
 
-        {/* IoT Ecosystem */}
+        {/* ─── IOT ECOSYSTEM ─── */}
         <section id="iot" className="py-24 bg-primary/10 border-y border-primary/20 relative overflow-hidden">
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-accent/10 rounded-full" />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-accent/20 rounded-full" />
-          
+
           <div className="container mx-auto px-6 lg:px-12 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4 pt-12">
-                  <div className="p-6 rounded-2xl bg-card border border-border shadow-lg">
-                    <CloudRain className="w-8 h-8 text-accent mb-4" />
-                    <h4 className="font-semibold">Stazioni Meteo</h4>
-                  </div>
-                  <div className="p-6 rounded-2xl bg-card border border-border shadow-lg">
-                    <Wifi className="w-8 h-8 text-secondary mb-4" />
-                    <h4 className="font-semibold">Sensori Suolo</h4>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="p-6 rounded-2xl bg-card border border-border shadow-lg">
-                    <Tractor className="w-8 h-8 text-accent mb-4" />
-                    <h4 className="font-semibold">Tracking Macchine</h4>
-                  </div>
-                  <div className="p-6 rounded-2xl bg-card border border-border shadow-lg">
-                    <ShieldCheck className="w-8 h-8 text-green-500 mb-4" />
-                    <h4 className="font-semibold">Telemetria CAN</h4>
-                  </div>
-                </div>
+                {[
+                  { icon: CloudRain, label: "Stazioni Meteo", color: "text-accent" },
+                  { icon: Wifi, label: "Sensori Suolo", color: "text-secondary" },
+                  { icon: Tractor, label: "Tracking Macchine", color: "text-accent" },
+                  { icon: ShieldCheck, label: "Telemetria CAN", color: "text-green-500" }
+                ].map(({ icon: Icon, label, color }, i) => (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className={`p-6 rounded-2xl bg-card border border-border shadow-lg ${i % 2 === 0 ? "mt-10" : ""}`}
+                  >
+                    <Icon className={`w-8 h-8 ${color} mb-4`} />
+                    <h4 className="font-semibold">{label}</h4>
+                  </motion.div>
+                ))}
               </div>
-              
-              <motion.div 
+
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -455,7 +736,7 @@ export default function Home() {
                     "Integrazione dati da flotte miste"
                   ].map((item, i) => (
                     <motion.li key={i} variants={fadeUp} className="flex items-center gap-3">
-                      <ChevronRight className="w-5 h-5 text-secondary" />
+                      <ChevronRight className="w-5 h-5 text-secondary shrink-0" />
                       <span>{item}</span>
                     </motion.li>
                   ))}
@@ -465,22 +746,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact CTA */}
+        {/* ─── CONTACT CTA ─── */}
         <section id="contact" className="py-32 relative">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="max-w-4xl mx-auto bg-card border border-border rounded-[2.5rem] p-10 lg:p-16 text-center relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent" />
-              
               <div className="relative z-10">
                 <h2 className="text-3xl lg:text-5xl font-bold mb-6">Pronto a trasformare la tua azienda?</h2>
                 <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
                   Richiedi una demo gratuita di Farm 2.0 o parla con un nostro agronomo per capire come possiamo supportare la tua realtà.
                 </p>
-                
                 <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
-                  <Input 
-                    type="email" 
-                    placeholder="La tua email" 
+                  <Input
+                    type="email"
+                    placeholder="La tua email"
                     className="h-14 bg-background border-border text-base rounded-full px-6"
                     data-testid="input-email-cta"
                   />
