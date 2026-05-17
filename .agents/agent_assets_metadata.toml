@@ -6,6 +6,12 @@ uri = "file://artifacts/taurus-website/public/img-iot-connect.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "A3JdBWSY_Qvxjg0B82EPk"
+uri = "file://artifacts/taurus-website/public/img-agronomist-tablet.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "2GEubUqZzaPpFl631iTUW"
 uri = "file://attached_assets/stock_images/agronomist-disease-monitor.jpg"
@@ -35,3 +41,21 @@ id = "hLFgaVfQ84tV5Q-MajhqO"
 uri = "file://attached_assets/stock_images/tractor-tablet.jpg"
 type = "image"
 title = "farmer driving tractor field looking tablet computer GPS navigation agriculture"
+
+[[outputs]]
+id = "SqZHl6orhHoJtEu9a-JSm"
+uri = "file://attached_assets/stock_images/agronomist-tablet-field_1.jpg"
+type = "image"
+title = "agronomist farmer field monitoring tablet precision agriculture crop inspection technology"
+
+[[outputs]]
+id = "QhGCU0uISrA8fraT5AklB"
+uri = "file://attached_assets/stock_images/agronomist-tablet-field_2.jpg"
+type = "image"
+title = "agronomist farmer field monitoring tablet precision agriculture crop inspection technology"
+
+[[outputs]]
+id = "GTdHkQwzlrsEJLNT8E2N2"
+uri = "file://attached_assets/stock_images/agronomist-tablet-field_3.jpg"
+type = "image"
+title = "agronomist farmer field monitoring tablet precision agriculture crop inspection technology"

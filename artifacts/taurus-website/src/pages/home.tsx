@@ -483,8 +483,8 @@ export default function Home() {
                 className="relative rounded-3xl overflow-hidden shadow-xl border border-border"
               >
                 <img
-                  src="/img-agronomist.jpg"
-                  alt="Tecnico agronomo che analizza il rischio malattie con Farm 2.0 VRT"
+                  src="/img-agronomist-tablet.png"
+                  alt="Tecnico agronomo che monitora la coltura in campo con tablet e Farm 2.0 VRT"
                   className="w-full h-[420px] object-cover object-center"
                   data-testid="img-agronomist-disease"
                 />
