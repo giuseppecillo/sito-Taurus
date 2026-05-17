@@ -863,7 +863,7 @@ export default function Home() {
                 {
                   icon: Map, color: BLUE,
                   title: "Voli Drone",
-                  desc: "Rilievi termici e multispettrali ad altissima risoluzione. Identificazione precisa di focolai di malattia e stress idrico per colture ad alto reddito."
+                  desc: "I dati telerilevati da drone — termici, RGB e multispettrali — alimentano applicazioni sito-specifiche lungo tutto il ciclo colturale: dal monitoraggio dello stato vegetativo e dell'uniformità del campo, fino alla generazione di mappe VRT per concimazioni, trattamenti e semine a dose variabile."
                 }
               ].map(({ icon: Icon, color, title, desc }, i) => (
                 <motion.div
