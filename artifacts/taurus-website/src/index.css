@@ -28,10 +28,6 @@
   --color-secondary-foreground: hsl(var(--secondary-foreground));
   --color-secondary-border: var(--secondary-border);
 
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-muted-border: var(--muted-border);
-
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
   --color-accent-border: var(--accent-border);
@@ -50,70 +46,92 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* ─── Light theme — colours extracted from Farm 2.0 VRT UI ─── */
+/* Primary green  #2d9b4e → hsl(142 54% 40%)                    */
+/* Blue (cards)   #3b82f6 → hsl(217 91% 60%)                    */
+/* Teal (maps)    #0d9488 → hsl(174 77% 31%)                     */
+/* Dark navy      #1e293b → hsl(215 32% 18%)                    */
+/* Hero dark bg   #0f1e14 → keeps the field/nature feel          */
+
 :root {
-  --background: 146 51% 10%;
-  --foreground: 0 0% 98%;
+  /* Base surfaces */
+  --background: 0 0% 100%;
+  --foreground: 215 32% 18%;
 
-  --card: 146 45% 12%;
-  --card-foreground: 0 0% 98%;
-  --card-border: 146 40% 18%;
+  /* Cards */
+  --card: 0 0% 100%;
+  --card-foreground: 215 32% 18%;
+  --card-border: 142 25% 88%;
 
-  --popover: 146 45% 12%;
-  --popover-foreground: 0 0% 98%;
-  --popover-border: 146 40% 18%;
+  /* Popovers */
+  --popover: 0 0% 100%;
+  --popover-foreground: 215 32% 18%;
+  --popover-border: 142 25% 88%;
 
-  --primary: 146 51% 21%;
-  --primary-foreground: 0 0% 98%;
+  /* Primary — Farm 2.0 VRT green #2d9b4e */
+  --primary: 142 54% 40%;
+  --primary-foreground: 0 0% 100%;
+  --primary-border: hsl(142 54% 40% / 0.3);
 
-  --secondary: 45 100% 50%;
-  --secondary-foreground: 220 20% 10%;
+  /* Secondary — app data-card blue #3b82f6 */
+  --secondary: 217 91% 60%;
+  --secondary-foreground: 0 0% 100%;
+  --secondary-border: hsl(217 91% 60% / 0.3);
 
-  --accent: 180 100% 35%;
+  /* Accent — prescription-map teal #0d9488 */
+  --accent: 174 77% 31%;
   --accent-foreground: 0 0% 100%;
+  --accent-border: hsl(174 77% 31% / 0.3);
 
-  --muted: 146 30% 15%;
-  --muted-foreground: 146 20% 70%;
+  /* Muted surfaces */
+  --muted: 142 20% 95%;
+  --muted-foreground: 215 20% 48%;
+  --muted-border: hsl(142 20% 88%);
 
-  --border: 146 40% 18%;
-  --input: 146 40% 18%;
-  --ring: 180 100% 35%;
-  
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  /* Chrome */
+  --border: 142 20% 88%;
+  --input: 142 20% 88%;
+  --ring: 142 54% 40%;
+
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --destructive-border: hsl(0 84% 60% / 0.3);
 
   --radius: 0.5rem;
 }
 
+/* Dark variant kept for completeness — navy matching the app sidebar */
 .dark {
-  --background: 146 51% 10%;
-  --foreground: 0 0% 98%;
+  --background: 215 38% 10%;
+  --foreground: 0 0% 97%;
 
-  --card: 146 45% 12%;
-  --card-foreground: 0 0% 98%;
-  --card-border: 146 40% 18%;
+  --card: 215 35% 13%;
+  --card-foreground: 0 0% 97%;
+  --card-border: 215 30% 20%;
 
-  --popover: 146 45% 12%;
-  --popover-foreground: 0 0% 98%;
-  --popover-border: 146 40% 18%;
+  --popover: 215 35% 13%;
+  --popover-foreground: 0 0% 97%;
+  --popover-border: 215 30% 20%;
 
-  --primary: 146 51% 21%;
-  --primary-foreground: 0 0% 98%;
+  --primary: 142 54% 40%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 45 100% 50%;
-  --secondary-foreground: 220 20% 10%;
+  --secondary: 217 91% 60%;
+  --secondary-foreground: 0 0% 100%;
 
-  --accent: 180 100% 35%;
+  --accent: 174 77% 31%;
   --accent-foreground: 0 0% 100%;
 
-  --muted: 146 30% 15%;
-  --muted-foreground: 146 20% 70%;
+  --muted: 215 28% 18%;
+  --muted-foreground: 215 20% 65%;
 
-  --border: 146 40% 18%;
-  --input: 146 40% 18%;
-  --ring: 180 100% 35%;
+  --border: 215 30% 20%;
+  --input: 215 30% 20%;
+  --ring: 142 54% 40%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
 }
 
 @layer base {
