@@ -24,6 +24,12 @@ uri = "file://artifacts/taurus-website/public/img-atomizzatore-vigneto.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "RR24E0gjLxtKGaS-ugD6-"
+uri = "file://artifacts/taurus-website/public/img-tractor-app-botte.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "2GEubUqZzaPpFl631iTUW"
 uri = "file://attached_assets/stock_images/agronomist-disease-monitor.jpg"

@@ -549,10 +549,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 min-h-[540px]">
             <div className="relative h-[320px] lg:h-auto overflow-hidden">
               <img
-                src="/img-atomizzatore-vigneto.png"
-                alt="Trattore con atomizzatore nel vigneto durante il trattamento fitosanitario"
+                src="/img-tractor-app-botte.png"
+                alt="Agricoltore in cabina di trattore con botte e barre utilizza l'app Farm 2.0 VRT su tablet"
                 className="w-full h-full object-cover object-center"
-                data-testid="img-atomizzatore-vigneto"
+                data-testid="img-tractor-app-botte"
               />
               <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(to right, transparent, white)" }} />
               <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(to top, white 30%, transparent)" }} />
@@ -941,21 +941,6 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Vineyard tractor image */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-16 relative rounded-3xl overflow-hidden shadow-lg"
-            >
-              <img
-                src="/img-atomizzatore-vigneto.png"
-                alt="Trattore con atomizzatore nel vigneto durante il trattamento fitosanitario — Taurus AgriTech Solutions"
-                className="w-full h-[380px] lg:h-[460px] object-cover object-center"
-              />
-            </motion.div>
 
           </div>
         </section>
