@@ -246,6 +246,128 @@ export default function Home() {
           </motion.div>
         </section>
 
+        {/* ─── CHI SIAMO ─── */}
+        <section className="py-24 bg-white border-b border-border">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+              {/* Left — company intro */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerContainer}
+              >
+                <motion.div
+                  variants={fadeUp}
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-6 border"
+                  style={{ backgroundColor: `${GREEN}12`, borderColor: `${GREEN}35`, color: GREEN }}
+                >
+                  <Leaf className="w-4 h-4" />
+                  <span>Chi siamo</span>
+                </motion.div>
+
+                <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold leading-tight mb-6" style={{ color: NAVY }}>
+                  Soluzioni integrate<br />
+                  <span style={{ color: GREEN }}>per l'agroindustria moderna.</span>
+                </motion.h2>
+
+                <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-5 leading-relaxed">
+                  Taurus AgriTech Solutions nasce per rispondere alle esigenze reali dell'agroindustria: sviluppiamo soluzioni software <strong className="text-foreground font-semibold">integrate e auto-consolidate</strong> che aggregano dati da fonti multiple, li elaborano con modelli agronomici validati e li restituiscono in forma immediatamente operativa.
+                </motion.p>
+
+                <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Non vendiamo strumenti isolati. Costruiamo ecosistemi digitali che accompagnano l'imprenditore agricolo — e il suo tecnico — in ogni fase del ciclo colturale, dal monitoraggio del campo alla decisione in cabina.
+                </motion.p>
+
+                <motion.div variants={fadeUp}>
+                  <Button
+                    size="lg"
+                    className="text-white rounded-full px-8 h-12 font-medium"
+                    style={{ backgroundColor: GREEN }}
+                    asChild
+                  >
+                    <a href="#contact" data-testid="btn-about-demo">Parla con noi</a>
+                  </Button>
+                </motion.div>
+              </motion.div>
+
+              {/* Right — pillars grid */}
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerContainer}
+                className="grid grid-cols-2 gap-4"
+              >
+                {[
+                  {
+                    color: GREEN,
+                    icon: "📈",
+                    title: "Produttività",
+                    desc: "Ottimizza risorse, input e tempistiche operative su ogni appezzamento."
+                  },
+                  {
+                    color: BLUE,
+                    icon: "🔗",
+                    title: "Scalabilità",
+                    desc: "Da una singola azienda a reti di consulenza multi-cliente, senza compromessi."
+                  },
+                  {
+                    color: TEAL,
+                    icon: "🔍",
+                    title: "Tracciabilità",
+                    desc: "Ogni operazione registrata, ogni trattamento documentato. Conformità garantita."
+                  },
+                  {
+                    color: AMBER,
+                    icon: "🌱",
+                    title: "Sostenibilità",
+                    desc: "Agricoltura consapevole: meno sprechi, meno chimica, più valore per ettaro."
+                  }
+                ].map((p, i) => (
+                  <motion.div
+                    key={p.title}
+                    variants={fadeUp}
+                    className="p-6 rounded-2xl bg-muted border border-border hover:shadow-md transition-shadow"
+                    data-testid={`card-pillar-${p.title.toLowerCase()}`}
+                  >
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"
+                      style={{ backgroundColor: `${p.color}15` }}
+                    >
+                      {p.icon}
+                    </div>
+                    <h3 className="font-bold text-base mb-2" style={{ color: NAVY }}>{p.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Bottom stats bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-border"
+            >
+              {[
+                { val: "Multi-sorgente", label: "Integrazione dati", color: GREEN },
+                { val: "Validati", label: "Modelli agronomici", color: TEAL },
+                { val: "End-to-end", label: "Copertura del ciclo colturale", color: BLUE },
+                { val: "Business-ready", label: "Orientato al risultato", color: AMBER }
+              ].map((s, i) => (
+                <div key={i} className="bg-white px-6 py-6 flex flex-col gap-1">
+                  <span className="text-xl font-bold" style={{ color: s.color }}>{s.val}</span>
+                  <span className="text-sm text-muted-foreground">{s.label}</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
         {/* ─── TRACTOR / TABLET CINEMATIC BANNER ─── */}
         <section id="farm-vrt" className="relative h-[520px] lg:h-[620px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
