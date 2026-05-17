@@ -912,6 +912,34 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Vineyard tractor image */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="mt-16 relative rounded-3xl overflow-hidden shadow-lg"
+            >
+              <img
+                src="/img-atomizzatore-vigneto.png"
+                alt="Trattore con atomizzatore nel vigneto durante il trattamento fitosanitario — Taurus AgriTech Solutions"
+                className="w-full h-[380px] lg:h-[460px] object-cover object-center"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(15,30,20,0.72) 0%, transparent 55%)" }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-8 pb-8">
+                <p className="text-white/90 text-sm font-medium uppercase tracking-widest mb-1" style={{ color: `${GREEN}` }}>
+                  Dalla mappa al trattore
+                </p>
+                <p className="text-white text-xl lg:text-2xl font-bold max-w-2xl leading-snug">
+                  Le previsioni di rischio calcolate da Farm 2.0 VRT guidano ogni intervento fitosanitario — con l'atomizzatore nel vigneto come in campo aperto.
+                </p>
+              </div>
+            </motion.div>
+
           </div>
         </section>
 
