@@ -471,13 +471,17 @@ export default function Home() {
                   style={{ backgroundColor: GREEN }}
                 />
                 <div className="relative rounded-3xl overflow-hidden border border-border shadow-xl">
+                  {/* Negative margin-top clips the browser chrome (tabs, address bar, bookmarks)
+                      that appears at the top of the screen recording. overflow-hidden on the
+                      parent ensures the clipped area is never visible. */}
                   <video
                     src="/farm-vrt-demo.mp4"
                     autoPlay
                     muted
                     loop
                     playsInline
-                    className="w-full h-auto object-cover block"
+                    className="w-full block"
+                    style={{ marginTop: "-13%", display: "block" }}
                     data-testid="video-farm-demo"
                   />
                 </div>
