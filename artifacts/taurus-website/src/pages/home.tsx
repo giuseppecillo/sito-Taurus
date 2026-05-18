@@ -1045,8 +1045,8 @@ export default function Home() {
               <div className="lg:col-span-2 flex flex-col gap-3">
                 <div className="rounded-3xl overflow-hidden relative shadow-lg border border-border flex-1">
                   <img
-                    src="/img-drone-field-severity.png"
-                    alt="Agronomo in campo che inserisce parametri biofisici e di severità dell'avversità sullo smartphone"
+                    src="/img-drone-tablet-hotspot.png"
+                    alt="Agricoltore in campo con drone in volo e tablet che mostra mappa di variabilità"
                     className="w-full h-full object-cover"
                     style={{ minHeight: 220 }}
                   />
