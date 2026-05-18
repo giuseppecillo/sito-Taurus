@@ -8,6 +8,8 @@ interface LazyImageProps {
   style?: React.CSSProperties;
   loading?: "lazy" | "eager";
   dark?: boolean;
+  width?: number;
+  height?: number;
   "data-testid"?: string;
 }
 
@@ -19,6 +21,8 @@ export function LazyImage({
   style,
   loading = "lazy",
   dark = false,
+  width,
+  height,
   "data-testid": testId,
 }: LazyImageProps) {
   const [loaded, setLoaded] = useState(false);
@@ -45,6 +49,8 @@ export function LazyImage({
           opacity: loaded ? 1 : 0,
         }}
         loading={loading}
+        width={width}
+        height={height}
         onLoad={() => setLoaded(true)}
         data-testid={testId}
       />
