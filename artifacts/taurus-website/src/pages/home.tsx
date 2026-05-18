@@ -664,12 +664,13 @@ export default function Home() {
                   loading="lazy"
                   style={{ minHeight: 400 }}
                 />
-                {/* Cover "Farm 2.0 VRT" text baked into the tablet screen in the drone image */}
+                {/* Cover "Farm 2.0 VRT" text baked into the tablet header bar in the drone image */}
+                {/* Image is 1408×768; text at approx x=868–1092, y=175–225 → left≈61.6%, top≈22.8%, w≈15.9%, h≈6.5% */}
                 <div
-                  className="absolute z-10 flex items-center justify-center rounded-sm"
-                  style={{ left: "55.5%", top: "26%", width: "14%", height: "5.5%", backgroundColor: "#1a2433" }}
+                  className="absolute z-10 flex items-center justify-center"
+                  style={{ left: "61.5%", top: "22.5%", width: "16%", height: "6.5%", backgroundColor: "#6ab840" }}
                 >
-                  <span className="text-white font-semibold" style={{ fontSize: "clamp(7px, 1vw, 13px)", whiteSpace: "nowrap" }}>Taurus Ag Solution</span>
+                  <span className="text-white font-bold" style={{ fontSize: "clamp(6px, 0.85vw, 13px)", whiteSpace: "nowrap" }}>Taurus Ag Solution</span>
                 </div>
                 {/* Drone badge */}
                 <div className="absolute top-4 right-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-white" style={{ backgroundColor: BLUE }}>
