@@ -1034,7 +1034,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
               <img src="/taurus-logo.png" alt="Taurus Logo" className="h-8 w-auto opacity-70" />
-              <span className="font-medium text-sm" style={{ color: NAVY }}>TAURUS AgriTech Solutions</span>
+              <span className="font-medium text-sm" style={{ color: NAVY }}>Taurus Agriculture Solution</span>
             </div>
             <div className="text-muted-foreground text-sm">
               &copy; {new Date().getFullYear()} Taurus Agriculture Solution. Tutti i diritti riservati.
