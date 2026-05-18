@@ -610,7 +610,7 @@ export default function Home() {
                         <div className="w-2.5 h-2.5 rounded-full bg-green-300/80" />
                       </div>
                       <div className="ml-2 flex-1 h-5 rounded px-3 flex items-center" style={{ backgroundColor: "rgba(255,255,255,0.15)" }}>
-                        <span className="text-[10px] text-white/60 font-mono">app.farm20vrt.it — {appFeatures[activeFeature].label}</span>
+                        <span className="text-[10px] text-white/60 font-mono">Taurus Ag Solution — {appFeatures[activeFeature].label}</span>
                       </div>
                     </div>
                     <div className="relative">
