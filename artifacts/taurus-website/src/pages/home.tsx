@@ -642,36 +642,24 @@ export default function Home() {
               })}
             </div>
 
-            {/* Drone workflow card */}
+            {/* Drone workflow image */}
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mt-16">
-              <div className="rounded-3xl overflow-hidden relative shadow-xl border border-border flex flex-col" style={{ background: "#0f1e14", minHeight: 340 }}>
+              <div className="rounded-3xl overflow-hidden relative shadow-xl border border-border" style={{ minHeight: 400 }}>
+                <img
+                  src="/img-drone-tablet-hotspot.png"
+                  alt="Agricoltore in campo con drone in volo e tablet che mostra mappa di variabilità"
+                  className="w-full h-full object-cover"
+                  style={{ minHeight: 400 }}
+                />
                 {/* Drone badge */}
                 <div className="absolute top-4 right-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-white" style={{ backgroundColor: BLUE }}>
                   <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
                   {t.remoteSensing.droneBadge}
                 </div>
-
-                {/* GPS notification banner */}
-                <div className="flex items-center gap-3 px-4 py-2.5 text-white text-xs font-semibold" style={{ backgroundColor: GREEN }}>
-                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                  <span>{t.remoteSensing.gpsReached} <strong>{t.remoteSensing.hotspot}</strong> &nbsp;✓</span>
-                </div>
-
-                {/* App screenshot */}
-                <div className="relative flex-1 overflow-hidden">
-                  <img src="/app-vrt-map-real.png" alt="Schermata reale dell'app con mappa di variabilità NDVI" className="w-full h-full object-cover object-left-top" style={{ minHeight: 240 }} />
-                  <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute" style={{ left: "28%", top: "42%", width: 38, height: 38, border: "2.5px solid #fff", borderRadius: "50%", boxShadow: "0 0 0 2px #ef4444, 0 0 12px #ef444488" }} />
-                    <div className="absolute" style={{ left: "36%", top: "60%", width: 42, height: 42, border: "2.5px solid #fff", borderRadius: "50%", boxShadow: "0 0 0 2px #ef4444, 0 0 16px #ef444499" }}>
-                      <div className="absolute" style={{ left: "50%", top: "50%", transform: "translate(-50%,-60%)", width: 10, height: 10, backgroundColor: BLUE, borderRadius: "50%", border: "2px solid white", boxShadow: "0 0 6px #3b82f6" }} />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Caption */}
-                <div className="p-4" style={{ background: "rgba(15,30,20,0.95)" }}>
-                  <p className="text-white font-semibold text-sm mb-0.5">{t.remoteSensing.mapCaption}</p>
-                  <p className="text-white/60 text-xs">{t.remoteSensing.mapDesc}</p>
+                {/* Caption overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6" style={{ background: "linear-gradient(to top, rgba(15,30,20,0.92) 0%, transparent 100%)" }}>
+                  <p className="text-white font-semibold text-sm mb-1">{t.remoteSensing.mapCaption}</p>
+                  <p className="text-white/65 text-xs">{t.remoteSensing.mapDesc}</p>
                 </div>
               </div>
             </motion.div>

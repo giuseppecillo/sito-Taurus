@@ -34,7 +34,8 @@ _Describe the high-level user-facing capabilities of this app once they exist._
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- The software application is called **"Taurus 2.0 VRT"**. "Taurus Agriculture Solution" is the company name only. Never use "Taurus Agriculture Solution" as the app name in UI copy.
+- Website language: Italian primary, with English and Spanish via live language switcher.
 
 ## Gotchas
 

@@ -44,12 +44,12 @@ export const translations = {
     },
     productBridge: {
       badge: "Il nostro prodotto",
-      h2: "Taurus Agriculture Solution",
-      p: "La piattaforma di gestione aziendale agricola sviluppata da Taurus Agriculture Solution. Mappe di prescrizione, monitoraggio malattie, previsioni meteo e telerilevamento — in un'unica interfaccia integrata.",
+      h2: "Taurus 2.0 VRT",
+      p: "La piattaforma di gestione aziendale agricola sviluppata da Taurus Agriculture Solution. Mappe di prescrizione, monitoraggio malattie, previsioni meteo e telerilevamento — in un'unica interfaccia integrata. Con il modulo VRT puoi applicare mappe di prescrizione direttamente in campo, visualizzare le prescrizioni sul terminale di bordo ed essere guidato passo dopo passo nella gestione di ogni attività colturale.",
     },
     tractorBanner: {
       badge: "Prescrizione a bordo trattore",
-      h2Line1: "Taurus Agriculture Solution.",
+      h2Line1: "Taurus 2.0 VRT.",
       h2Line2: "Guida il campo,",
       h2Line3: "non l'istinto.",
       p: "Il trattorista ha la mappa di prescrizione sul tablet, il terminale GNSS riceve la dose variabile in automatico. Meno sprechi, più produzione, zero margine di errore.",
@@ -67,7 +67,7 @@ export const translations = {
       tabs: ["Mappe VRT", "Mappa di Prescrizione", "Monitoraggio Malattie", "Previsioni Meteo"],
       demoBox: {
         h3: "Richiedi una demo gratuita",
-        p: "Mostriamo Taurus Agriculture Solution in diretta sulla tua azienda. Lascia la tua email e ti contatteremo entro 24 ore.",
+        p: "Mostriamo Taurus 2.0 VRT in diretta sulla tua azienda. Lascia la tua email e ti contatteremo entro 24 ore.",
         placeholder: "La tua email aziendale",
         btn: "Richiedi Demo",
       },
@@ -114,7 +114,7 @@ export const translations = {
       gpsReached: "Posizione GPS Raggiunta —",
       hotspot: "Hotspot #2",
       mapCaption: "Mappa di variabilità reale + navigazione GPS in campo",
-      mapDesc: "Il drone acquisisce dati multispettrali; l'app Farm 2.0 VRT individua gli hotspot di bassa vigoria e guida l'operatore via GPS fino alla posizione esatta in campo.",
+      mapDesc: "Il drone acquisisce dati multispettrali; Taurus 2.0 VRT individua gli hotspot di bassa vigoria e guida l'operatore via GPS fino alla posizione esatta in campo.",
     },
     contact: {
       h2: "Contattaci per conoscere e soddisfare le esigenze della tua azienda e del tuo business.",
@@ -183,12 +183,12 @@ export const translations = {
     },
     productBridge: {
       badge: "Our product",
-      h2: "Taurus Agriculture Solution",
-      p: "The farm management platform developed by Taurus Agriculture Solution. Prescription maps, disease monitoring, weather forecasts and remote sensing — in a single integrated interface.",
+      h2: "Taurus 2.0 VRT",
+      p: "The farm management platform developed by Taurus Agriculture Solution. Prescription maps, disease monitoring, weather forecasts and remote sensing — in a single integrated interface. With the VRT module you can apply prescription maps directly in the field, visualise prescriptions on the on-board terminal and be guided step by step through every crop management activity.",
     },
     tractorBanner: {
       badge: "Prescription on the tractor",
-      h2Line1: "Taurus Agriculture Solution.",
+      h2Line1: "Taurus 2.0 VRT.",
       h2Line2: "Guide the field,",
       h2Line3: "not your instinct.",
       p: "The tractor driver has the prescription map on the tablet; the GNSS terminal receives the variable rate automatically. Less waste, higher yield, zero margin of error.",
@@ -206,7 +206,7 @@ export const translations = {
       tabs: ["VRT Maps", "Prescription Map", "Disease Monitoring", "Weather Forecasts"],
       demoBox: {
         h3: "Request a free demo",
-        p: "We show Taurus Agriculture Solution live on your farm. Leave your email and we'll contact you within 24 hours.",
+        p: "We show Taurus 2.0 VRT live on your farm. Leave your email and we'll contact you within 24 hours.",
         placeholder: "Your business email",
         btn: "Request Demo",
       },
@@ -253,7 +253,7 @@ export const translations = {
       gpsReached: "GPS Position Reached —",
       hotspot: "Hotspot #2",
       mapCaption: "Real variability map + GPS field navigation",
-      mapDesc: "The drone acquires multispectral data; the app identifies low-vigour hotspots and guides the operator via GPS to the exact position in the field.",
+      mapDesc: "The drone acquires multispectral data; Taurus 2.0 VRT identifies low-vigour hotspots and guides the operator via GPS to the exact position in the field.",
     },
     contact: {
       h2: "Contact us to discover how we can meet the needs of your farm and your business.",
@@ -322,12 +322,12 @@ export const translations = {
     },
     productBridge: {
       badge: "Nuestro producto",
-      h2: "Taurus Agriculture Solution",
-      p: "La plataforma de gestión agrícola empresarial desarrollada por Taurus Agriculture Solution. Mapas de prescripción, monitoreo de enfermedades, previsiones meteorológicas y teledetección — en una única interfaz integrada.",
+      h2: "Taurus 2.0 VRT",
+      p: "La plataforma de gestión agrícola empresarial desarrollada por Taurus Agriculture Solution. Mapas de prescripción, monitoreo de enfermedades, previsiones meteorológicas y teledetección — en una única interfaz integrada. Con el módulo VRT puedes aplicar mapas de prescripción directamente en campo, visualizar las prescripciones en el terminal de a bordo y ser guiado paso a paso en la gestión de cada actividad de cultivo.",
     },
     tractorBanner: {
       badge: "Prescripción a bordo del tractor",
-      h2Line1: "Taurus Agriculture Solution.",
+      h2Line1: "Taurus 2.0 VRT.",
       h2Line2: "Dirige el campo,",
       h2Line3: "no el instinto.",
       p: "El tractorista tiene el mapa de prescripción en la tableta; el terminal GNSS recibe la dosis variable de forma automática. Menos desperdicio, más producción, cero margen de error.",
@@ -345,7 +345,7 @@ export const translations = {
       tabs: ["Mapas VRT", "Mapa de prescripción", "Monitoreo de enfermedades", "Previsiones meteorológicas"],
       demoBox: {
         h3: "Solicita una demo gratuita",
-        p: "Te mostramos Taurus Agriculture Solution en directo en tu empresa. Deja tu email y te contactaremos en 24 horas.",
+        p: "Te mostramos Taurus 2.0 VRT en directo en tu empresa. Deja tu email y te contactaremos en 24 horas.",
         placeholder: "Tu email empresarial",
         btn: "Solicitar demo",
       },
@@ -392,7 +392,7 @@ export const translations = {
       gpsReached: "Posición GPS alcanzada —",
       hotspot: "Hotspot #2",
       mapCaption: "Mapa de variabilidad real + navegación GPS en campo",
-      mapDesc: "El dron adquiere datos multiespectrales; la app identifica los hotspots de bajo vigor y guía al operador vía GPS hasta la posición exacta en el campo.",
+      mapDesc: "El dron adquiere datos multiespectrales; Taurus 2.0 VRT identifica los hotspots de bajo vigor y guía al operador vía GPS hasta la posición exacta en el campo.",
     },
     contact: {
       h2: "Contáctanos para conocer y satisfacer las necesidades de tu empresa y tu negocio.",
