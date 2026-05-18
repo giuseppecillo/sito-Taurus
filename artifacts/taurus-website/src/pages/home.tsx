@@ -179,10 +179,17 @@ export default function Home() {
                 <span>Taurus Agriculture Solution</span>
               </motion.div>
 
-              <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight text-white">
-                Soluzioni integrate<br />
-                <span style={{ color: "#4ade80" }}>per l'agroindustria.</span>
-              </motion.h1>
+              <motion.div variants={fadeUp} className="flex items-center gap-6 mb-6">
+                <img
+                  src="/taurus-logo.png"
+                  alt="Taurus Agriculture Solution logo"
+                  className="w-44 lg:w-52 h-auto flex-shrink-0 drop-shadow-xl"
+                />
+                <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-white">
+                  Soluzioni integrate<br />
+                  <span style={{ color: "#4ade80" }}>per l'agroindustria.</span>
+                </h1>
+              </motion.div>
 
               <motion.p variants={fadeUp} className="text-lg lg:text-xl mb-10 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
                 Sviluppiamo soluzioni software integrate e auto-consolidate per l'agroindustria. Le nostre competenze ottimizzano produttività, scalabilità e tracciabilità per un'agricoltura sempre più consapevole, smart e orientata al risultato di business.
