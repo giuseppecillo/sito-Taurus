@@ -119,7 +119,7 @@ export default function Home() {
         <Link href="/" className="flex items-center gap-3 group">
           <img
             src="/taurus-logo.png"
-            alt="Taurus AgriTech Solutions"
+            alt="Taurus Agriculture Solution"
             className="h-10 w-auto group-hover:opacity-90 transition-opacity"
             data-testid="img-navbar-logo"
           />
@@ -176,7 +176,7 @@ export default function Home() {
                 style={{ backgroundColor: `${GREEN}22`, borderColor: `${GREEN}55`, color: "#4ade80" }}
               >
                 <Leaf className="w-4 h-4" />
-                <span>Taurus AgriTech Solutions</span>
+                <span>Taurus Agriculture Solution</span>
               </motion.div>
 
               <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight text-white">
@@ -275,7 +275,7 @@ export default function Home() {
                 </motion.h2>
 
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-5 leading-relaxed">
-                  Taurus AgriTech Solutions nasce per rispondere alle esigenze reali dell'agroindustria: sviluppiamo soluzioni software <strong className="text-foreground font-semibold">integrate e auto-consolidate</strong> che aggregano dati da fonti multiple, li elaborano con modelli agronomici validati e li restituiscono in forma immediatamente operativa.
+                  Taurus Agriculture Solution nasce per rispondere alle esigenze reali dell'agroindustria: sviluppiamo soluzioni software <strong className="text-foreground font-semibold">integrate e auto-consolidate</strong> che aggregano dati da fonti multiple, li elaborano con modelli agronomici validati e li restituiscono in forma immediatamente operativa.
                 </motion.p>
 
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">
@@ -390,7 +390,7 @@ export default function Home() {
                 Farm 2.0 VRT
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                La piattaforma di gestione aziendale agricola sviluppata da Taurus AgriTech Solutions. Mappe di prescrizione, monitoraggio malattie, previsioni meteo e telerilevamento — in un'unica interfaccia integrata.
+                La piattaforma di gestione aziendale agricola sviluppata da Taurus Agriculture Solution. Mappe di prescrizione, monitoraggio malattie, previsioni meteo e telerilevamento — in un'unica interfaccia integrata.
               </p>
             </motion.div>
           </div>
@@ -1037,7 +1037,7 @@ export default function Home() {
               <span className="font-medium text-sm" style={{ color: NAVY }}>TAURUS AgriTech Solutions</span>
             </div>
             <div className="text-muted-foreground text-sm">
-              &copy; {new Date().getFullYear()} Taurus AgriTech Solutions. Tutti i diritti riservati.
+              &copy; {new Date().getFullYear()} Taurus Agriculture Solution. Tutti i diritti riservati.
             </div>
           </div>
         </div>
