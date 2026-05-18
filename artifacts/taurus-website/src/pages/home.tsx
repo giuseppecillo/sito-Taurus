@@ -995,11 +995,11 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="mt-16 grid lg:grid-cols-5 gap-6 items-stretch"
+              className="mt-16"
             >
               {/* Main card – real app screenshot + GPS hotspot UI mockup */}
               <div
-                className="lg:col-span-3 rounded-3xl overflow-hidden relative shadow-xl border border-border flex flex-col"
+                className="rounded-3xl overflow-hidden relative shadow-xl border border-border flex flex-col"
                 style={{ background: "#0f1e14", minHeight: 340 }}
               >
                 {/* Drone badge */}
@@ -1041,27 +1041,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Secondary image – field severity data entry */}
-              <div className="lg:col-span-2 flex flex-col gap-3">
-                <div className="rounded-3xl overflow-hidden relative shadow-lg border border-border flex-1">
-                  <img
-                    src="/img-drone-tablet-hotspot.png"
-                    alt="Agricoltore in campo con drone in volo e tablet che mostra mappa di variabilità"
-                    className="w-full h-full object-cover"
-                    style={{ minHeight: 220 }}
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-4" style={{ background: "linear-gradient(to top, rgba(15,30,20,0.85) 0%, transparent 100%)" }}>
-                    <p className="text-white font-semibold text-sm mb-1">Rilievo in campo — parametri biofisici & severità</p>
-                    <p className="text-white/70 text-xs">L'operatore quota numericamente vigore, tipo di avversità e severità su ogni hotspot.</p>
-                  </div>
-                </div>
-                <div className="rounded-2xl p-5 border" style={{ backgroundColor: `${TEAL}10`, borderColor: `${TEAL}30` }}>
-                  <p className="text-sm font-semibold mb-1" style={{ color: TEAL }}>Dato drone + rilievo in campo</p>
-                  <p className="text-sm text-muted-foreground">
-                    La combinazione dei dati acquisiti da drone e dei rilievi in campo genera automaticamente una <strong className="text-foreground">mappa di severità dell'avversità</strong>, pronta per guidare i trattamenti a dose variabile.
-                  </p>
-                </div>
-              </div>
             </motion.div>
 
           </div>
