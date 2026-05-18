@@ -45,11 +45,11 @@ const PURPLE = "#8b5cf6";
 
 /* Static (non-translated) properties for appFeatures */
 const APP_FEATURE_STATIC = [
-  { id: "appezzamenti", icon: LayoutDashboard, image: "/farm-screen-1.png", color: GREEN },
-  { id: "meteo",        icon: Cloud,           image: "/farm-screen-2.png", color: TEAL  },
-  { id: "malattie",     icon: Bug,             image: "/farm-screen-3.png", color: AMBER },
-  { id: "prescrizione", icon: FileBarChart2,   image: "/farm-screen-4.png", color: GREEN },
-  { id: "mappe",        icon: Layers,          image: "/farm-screen-5.png", color: TEAL  },
+  { id: "appezzamenti", icon: LayoutDashboard, image: "/farm-screen-1.webp", color: GREEN },
+  { id: "meteo",        icon: Cloud,           image: "/farm-screen-2.webp", color: TEAL  },
+  { id: "malattie",     icon: Bug,             image: "/farm-screen-3.webp", color: AMBER },
+  { id: "prescrizione", icon: FileBarChart2,   image: "/farm-screen-4.webp", color: GREEN },
+  { id: "mappe",        icon: Layers,          image: "/farm-screen-5.webp", color: TEAL  },
 ];
 
 /* Static crop properties */
@@ -93,7 +93,7 @@ export default function Home() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 lg:px-12 bg-white/95 backdrop-blur border-b border-border shadow-sm">
         <Link href="/" className="flex items-center gap-3 group">
           <img
-            src="/taurus-logo.png"
+            src="/taurus-logo.webp"
             alt="Taurus Agriculture Solution"
             className="h-10 w-auto group-hover:opacity-90 transition-opacity"
             data-testid="img-navbar-logo"
@@ -190,7 +190,7 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={fadeUp} className="flex items-center gap-6 mb-6">
-                <img src="/taurus-logo.png" alt="Taurus Agriculture Solution logo" className="w-44 lg:w-52 h-auto flex-shrink-0 drop-shadow-xl" />
+                <img src="/taurus-logo.webp" alt="Taurus Agriculture Solution logo" className="w-44 lg:w-52 h-auto flex-shrink-0 drop-shadow-xl" />
                 <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-white">
                   {t.hero.h1Line1}<br />
                   <span style={{ color: "#4ade80" }}>{t.hero.h1Line2}</span>
@@ -221,7 +221,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-10" />
-            <img src="/img-aerial-field.jpg" alt="Campi agricoli di precisione visti dall'alto" className="w-full h-full object-cover object-center" data-testid="img-hero-aerial" />
+            <img src="/img-aerial-field.webp" alt="Campi agricoli di precisione visti dall'alto" className="w-full h-full object-cover object-center" data-testid="img-hero-aerial" />
             <div className="absolute bottom-8 left-8 z-20 hidden lg:flex gap-4">
               {[
                 { label: t.hero.stat1Label, val: "22" },
@@ -317,7 +317,7 @@ export default function Home() {
         {/* ─── TRACTOR BANNER ─── */}
         <section className="relative h-[520px] lg:h-[620px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
-            <img src="/img-tractor-tablet.jpg" alt="Trattorista che utilizza il software su tablet in campo" className="w-full h-full object-cover object-center" data-testid="img-tractor-banner" />
+            <img src="/img-tractor-tablet.webp" alt="Trattorista che utilizza il software su tablet in campo" className="w-full h-full object-cover object-center" data-testid="img-tractor-banner" />
             <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent" />
           </div>
@@ -385,10 +385,10 @@ export default function Home() {
                 <div className="absolute inset-0 rounded-3xl blur-2xl opacity-10 pointer-events-none" style={{ backgroundColor: GREEN, top: "2.5rem" }} />
                 <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl">
                   {[
-                    { src: "/app-vrt-maps.png",     alt: "VRT Maps screen" },
-                    { src: "/app-prescrizione.png", alt: "Prescription map screen" },
-                    { src: "/app-malattie.png",     alt: "Disease monitoring screen" },
-                    { src: "/app-meteo.png",        alt: "Weather forecasts screen" }
+                    { src: "/app-vrt-maps.webp",     alt: "Schermata VRT 2.0 e Mappe — mappa di prescrizione a zone omogenee" },
+                    { src: "/app-prescrizione.webp", alt: "Schermata Calcola Mappa di Prescrizione VRT — clusterizzazione K-means NDVI con dosi kg/ha" },
+                    { src: "/app-malattie.webp",     alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni" },
+                    { src: "/app-meteo.webp",        alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento" }
                   ].map((img, i) => (
                     <img key={i} src={img.src} alt={img.alt} className="w-full h-auto block transition-opacity duration-300" style={{ display: activeScreenshot === i ? "block" : "none" }} data-testid={`screenshot-${i}`} />
                   ))}
@@ -425,7 +425,7 @@ export default function Home() {
         <section className="relative overflow-hidden">
           <div className="grid lg:grid-cols-2 min-h-[540px]">
             <div className="relative h-[320px] lg:h-auto overflow-hidden">
-              <img src="/img-tractor-app-botte.png" alt="Agricoltore in cabina di trattore con l'app su tablet" className="w-full h-full object-cover object-center" data-testid="img-tractor-app-botte" />
+              <img src="/img-tractor-app-botte.webp" alt="Agricoltore in cabina di trattore con l'app su tablet" className="w-full h-full object-cover object-center" data-testid="img-tractor-app-botte" />
               <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(to right, transparent, white)" }} />
               <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(to top, white 30%, transparent)" }} />
             </div>
@@ -460,7 +460,7 @@ export default function Home() {
 
         {/* ─── IoT BANNER ─── */}
         <section className="relative h-[340px] lg:h-[420px] overflow-hidden flex items-center justify-center">
-          <img src="/img-iot-connect.png" alt="Rete IoT satellite drone sensori" className="absolute inset-0 w-full h-full object-cover object-center" data-testid="img-iot-connect" />
+          <img src="/img-iot-connect.webp" alt="Rete IoT satellite drone sensori" className="absolute inset-0 w-full h-full object-cover object-center" data-testid="img-iot-connect" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(15,30,20,0.65), rgba(15,30,20,0.85))" }} />
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative z-10 text-center px-6 max-w-3xl">
             <p className="text-sm font-mono tracking-widest uppercase mb-3" style={{ color: "#4ade80" }}>{t.iot.overline}</p>
@@ -485,9 +485,9 @@ export default function Home() {
 
             <div className="grid lg:grid-cols-2 gap-10 items-start mb-12">
               {/* Agronomist photo */}
-              <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative rounded-3xl overflow-hidden shadow-xl border border-border">
-                <img src="/img-agronomist-tablet.png" alt="Agronomo in campo con tablet" className="w-full h-[420px] object-cover object-center" data-testid="img-agronomist-disease" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,41,59,0.85) 0%, transparent 55%)" }} />
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative rounded-3xl overflow-hidden shadow-xl border border-border">
+              <img src="/img-agronomist-tablet.webp" alt="Agronomo in campo con tablet" className="w-full h-[420px] object-cover object-center" data-testid="img-agronomist-disease" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,41,59,0.85) 0%, transparent 55%)" }} />
                 <div className="absolute bottom-6 left-6 right-6">
                   <p className="text-sm font-mono mb-2" style={{ color: "#4ade80" }}>{t.disease.riskLabel7d}</p>
                   <div className="flex gap-3">
@@ -533,7 +533,7 @@ export default function Home() {
 
             {/* Disease banner */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative rounded-3xl overflow-hidden h-[240px] lg:h-[300px] border border-border">
-              <img src="/img-crop-disease.jpg" alt="Foglia con sintomi di malattia fungina" className="w-full h-full object-cover object-center" data-testid="img-crop-disease-closeup" />
+              <img src="/img-crop-disease.webp" alt="Foglia con sintomi di malattia fungina" className="w-full h-full object-cover object-center" data-testid="img-crop-disease-closeup" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(30,41,59,0.88) 40%, transparent)" }} />
               <div className="absolute inset-0 flex items-center px-8 lg:px-14">
                 <div className="max-w-lg">
@@ -652,7 +652,7 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mt-16">
               <div className="rounded-3xl overflow-hidden relative shadow-xl border border-border" style={{ minHeight: 400 }}>
                 <img
-                  src="/img-drone-tablet-hotspot.png"
+                  src="/img-drone-tablet-hotspot.webp"
                   alt="Agricoltore in campo con drone in volo e tablet che mostra mappa di variabilità"
                   className="w-full h-full object-cover"
                   style={{ minHeight: 400 }}
@@ -697,7 +697,7 @@ export default function Home() {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-3">
-              <img src="/taurus-logo.png" alt="Taurus Logo" className="h-8 w-auto opacity-70" />
+              <img src="/taurus-logo.webp" alt="Taurus Logo" className="h-8 w-auto opacity-70" />
               <span className="font-medium text-sm" style={{ color: NAVY }}>Taurus Agriculture Solution</span>
             </div>
             <div className="text-muted-foreground text-sm">
