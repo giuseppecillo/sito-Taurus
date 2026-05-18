@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -72,6 +72,17 @@ export default function Home() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [langOpen, setLangOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean>(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const appFeatures = t.appFeatures.map((f, i) => ({
     ...APP_FEATURE_STATIC[i],
@@ -316,6 +327,31 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+
+        {/* ─── DEMO VIDEO ─── */}
+        <section className="py-12 bg-muted border-y border-border">
+          <div className="container mx-auto px-6 lg:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+              className="rounded-2xl overflow-hidden shadow-xl border border-border bg-black"
+            >
+              <video
+                className="w-full h-auto block"
+                autoPlay={!isMobile}
+                controls={isMobile}
+                muted
+                loop
+                playsInline
+                poster="/farm-vrt-poster.jpg"
+                preload={isMobile ? "none" : "metadata"}
+                data-testid="video-farm-vrt-demo"
+              >
+                <source src="/farm-vrt-demo.webm" type="video/webm" />
+                <source src="/farm-vrt-demo-compressed.mp4" type="video/mp4" />
+              </video>
+            </motion.div>
+          </div>
+        </section>
 
         {/* ─── TRACTOR BANNER ─── */}
         <section className="relative h-[520px] lg:h-[620px] overflow-hidden flex items-center">
