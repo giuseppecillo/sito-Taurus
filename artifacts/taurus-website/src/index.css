@@ -134,6 +134,41 @@
   --destructive-foreground: 0 0% 100%;
 }
 
+@keyframes img-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.img-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #e2e8f0 0%,
+    #f1f5f9 40%,
+    #e2e8f0 80%
+  );
+  background-size: 200% 100%;
+  animation: img-shimmer 1.6s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.img-skeleton--dark {
+  background: linear-gradient(
+    90deg,
+    #1a2e1f 0%,
+    #243d2a 40%,
+    #1a2e1f 80%
+  );
+  background-size: 200% 100%;
+}
+
+.img-skeleton--hidden {
+  opacity: 0;
+}
+
 @layer base {
   * {
     @apply border-border;
