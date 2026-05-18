@@ -237,16 +237,10 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-10" />
             <LazyImage src="/img-aerial-field.webp" alt="Campi agricoli di precisione visti dall'alto" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" loading="eager" dark width={1280} height={1244} data-testid="img-hero-aerial" />
             <div className="absolute bottom-8 left-8 z-20 hidden lg:flex gap-4">
-              {[
-                { label: t.hero.stat1Label, val: "22" },
-                { label: t.hero.stat2Label, val: "66.7 ha" },
-                { label: t.hero.stat3Label, val: t.hero.stat3Val }
-              ].map((s, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 + i * 0.15 }} className="bg-white/90 backdrop-blur rounded-xl px-5 py-3 shadow-lg border border-border">
-                  <div className="text-2xl font-bold" style={{ color: GREEN }}>{s.val}</div>
-                  <div className="text-xs text-foreground/60">{s.label}</div>
-                </motion.div>
-              ))}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="bg-white/90 backdrop-blur rounded-xl px-5 py-3 shadow-lg border border-border">
+                <div className="text-2xl font-bold" style={{ color: GREEN }}>{t.hero.stat3Val}</div>
+                <div className="text-xs text-foreground/60">{t.hero.stat3Label}</div>
+              </motion.div>
             </div>
           </motion.div>
         </section>
