@@ -607,7 +607,13 @@ export default function Home() {
                         <span className="text-[10px] text-white/60 font-mono">app.farm20vrt.it — {appFeatures[activeFeature].label}</span>
                       </div>
                     </div>
-                    <img src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
+                    <div className="relative">
+                      <img src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
+                      {/* Cover the "Esegui le tue mappe di prescrizione" text panel in app-vrt-maps.png */}
+                      {activeFeature === 0 && (
+                        <div className="absolute bg-white" style={{ top: "0%", right: "0%", width: "37%", height: "100%" }} />
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
