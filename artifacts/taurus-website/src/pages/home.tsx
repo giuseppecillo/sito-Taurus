@@ -653,37 +653,6 @@ export default function Home() {
                 );
               })}
             </div>
-
-            {/* Drone workflow image */}
-            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="mt-16">
-              <div className="rounded-3xl overflow-hidden relative shadow-xl border border-border" style={{ minHeight: 400 }}>
-                <img
-                  src="/img-drone-tablet-hotspot.webp"
-                  alt="Agricoltore in campo con drone in volo e tablet che mostra mappa di variabilità"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  style={{ minHeight: 400 }}
-                />
-                {/* Cover "Farm 2.0 VRT" text baked into the tablet header bar in the drone image */}
-                {/* Image is 1408×768; text at approx x=868–1092, y=175–225 → left≈61.6%, top≈22.8%, w≈15.9%, h≈6.5% */}
-                <div
-                  className="absolute z-10 flex items-center justify-center"
-                  style={{ left: "61.5%", top: "22.5%", width: "16%", height: "6.5%", backgroundColor: "#6ab840" }}
-                >
-                  <span className="text-white font-bold" style={{ fontSize: "clamp(6px, 0.85vw, 13px)", whiteSpace: "nowrap" }}>Taurus Ag Solution</span>
-                </div>
-                {/* Drone badge */}
-                <div className="absolute top-4 right-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-white" style={{ backgroundColor: BLUE }}>
-                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-                  {t.remoteSensing.droneBadge}
-                </div>
-                {/* Caption overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6" style={{ background: "linear-gradient(to top, rgba(15,30,20,0.92) 0%, transparent 100%)" }}>
-                  <p className="text-white font-semibold text-sm mb-1">{t.remoteSensing.mapCaption}</p>
-                  <p className="text-white/65 text-xs">{t.remoteSensing.mapDesc}</p>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </section>
 
