@@ -613,7 +613,13 @@ export default function Home() {
                         <span className="text-[10px] text-white/60 font-mono">app.farm20vrt.it — {appFeatures[activeFeature].label}</span>
                       </div>
                     </div>
-                    <img src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
+                    <div className="relative">
+                      <img src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
+                      {/* Hide side-panel text in Mappa di Prescrizione (3) and VRT 2.0 Mappe (4) */}
+                      {(activeFeature === 3 || activeFeature === 4) && (
+                        <div className="absolute bg-white" style={{ top: 0, right: 0, width: "37%", height: "100%" }} />
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
