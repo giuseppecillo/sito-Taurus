@@ -127,7 +127,7 @@ export default function Home() {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
           {[
             { href: "#chi-siamo",  label: "Chi siamo" },
-            { href: "#farm-vrt",  label: "Farm 2.0" },
+            { href: "#farm-vrt",  label: "Il Prodotto" },
             { href: "#showcase",  label: "Funzionalità" },
             { href: "#malattie",  label: "Malattie" },
             { href: "#solutions", label: "Soluzioni" }
@@ -394,7 +394,7 @@ export default function Home() {
                 <span>Il nostro prodotto</span>
               </div>
               <h2 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: NAVY }}>
-                Farm 2.0 VRT
+                Taurus Agriculture Solution
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 La piattaforma di gestione aziendale agricola sviluppata da Taurus Agriculture Solution. Mappe di prescrizione, monitoraggio malattie, previsioni meteo e telerilevamento — in un'unica interfaccia integrata.
@@ -434,7 +434,7 @@ export default function Home() {
                 <span>Prescrizione a bordo trattore</span>
               </motion.div>
               <motion.h2 variants={fadeUp} className="text-4xl lg:text-6xl font-bold leading-tight mb-5" style={{ color: NAVY }}>
-                Farm 2.0 VRT.<br />
+                Taurus Agriculture Solution.<br />
                 <span style={{ color: GREEN }}>Guida il campo,<br />non l'istinto.</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-lg mb-8 leading-relaxed" style={{ color: `${NAVY}bb` }}>
@@ -563,7 +563,7 @@ export default function Home() {
                   Richiedi una demo gratuita
                 </h3>
                 <p className="text-muted-foreground text-sm">
-                  Mostriamo Farm 2.0 VRT in diretta sulla tua azienda. Lascia la tua email e ti contatteremo entro 24 ore.
+                  Mostriamo Taurus Agriculture Solution in diretta sulla tua azienda. Lascia la tua email e ti contatteremo entro 24 ore.
                 </p>
               </div>
               <form
