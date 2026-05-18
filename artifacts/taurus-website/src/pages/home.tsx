@@ -35,6 +35,25 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
 };
 
+/* ─── Blur-up placeholder thumbnails (20×15px base64 JPEG) ─── */
+const THUMB: Record<string, string> = {
+  "img-aerial-field":      "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAUGB//EACYQAAEDAwMDBQEAAAAAAAAAAAECAxEABAUSEyEGQVExMmFxkdH/xAAWAQEBAQAAAAAAAAAAAAAAAAABAgP/xAAaEQEAAgMBAAAAAAAAAAAAAAABAAIDEjER/9oADAMBAAIRAxEAPwBH0bkcJjkvOZJnVclUIWqCEpjwe81ROZXp/f3cbYITehwLDm0Bqn3T8R/azSm7jlujEMuNrUXHE7akmenY80ZsK22Hsos+Rrk+sLhq/dbxSG0WyVEAOALJM8wRHH790VKK06jpnTPE+KK3MNA5DZn/2Q==",
+  "img-tractor-tablet":    "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQCAwb/xAAmEAABAwMCBQUAAAAAAAAAAAABAgMRAAQhBRIGExQiUSMxYXHB/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQME/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAERITH/2gAMAwEAAhEDEQA/AH9M1XZbIdB7oyEinW+K0JMO25Wd0dhz9R5rJ2zwwEvAGMjlx+0XTfUoR6oSUKkKCSIPmskr0vHCWpNP3V84+Lhat5nPuPiiqGmb1lJQ1qMIkkAomimNcA//2Q==",
+  "img-tractor-app-botte": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAwb/xAAkEAABBAEFAAEFAAAAAAAAAAABAgMEEQAFEiExQXETIpGxwf/EABUBAQEAAAAAAAAAAAAAAAAAAAIB/8QAGREAAgMBAAAAAAAAAAAAAAAAAAIBAzES/9oADAMBAAIRAxEAPwBXSjp6W3zI0uE8lTm5Ljw6tIsDkCgb+LzfUm4LcN4N6LDbcLZUjag3zYsUfn8Zyjkl2SyefvV2brzv9Y1EmuQoyFoX9RKBwBxXt17hep00K2K2F2GtyNDZajxmVAIG4u1uKvfMMks6200jZIZUV3dg9g8/3DDHZD//2Q==",
+  "img-iot-connect":       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQHBv/EACQQAAIBAwMDBQAAAAAAAAAAAAECAwAEEQYSIgUhMRNxgZGh/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAME/8QAGxEAAgIDAQAAAAAAAAAAAAAAAREAAgQTMmH/2gAMAwEAAhEDEQA/ACPU0qvtiS2de3Iqw/M082prlUZVjtjgECRVOPfuan8t8ofdsCo+SFQnj904er+pYC1jjB5hizDv4waEUNiiYDtVITd2+qbgQIHjidgOTbfJ+DRU9Nwy+MUVDil9zRu8n//Z",
+  "img-agronomist-tablet": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQGAf/EACcQAAIBAwIEBwEAAAAAAAAAAAECAwAEEQUhBhIxQRYiMmGBsdHw/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAME/8QAHhEAAQMEAwAAAAAAAAAAAAAAAAEDEQITITFSYaH/2gAMAwEAAhEDEQA/AGZOJb0yw6kvktI15Gt1YYdiThmJHTb+zTCcdhGxLZou3TnOfqpeHUIlmmtnflZ4t4iuz4ORuOnetXUmkdgCGZVB9O9Za3lTSDEFZ49i7WY+ZD+UVKPqkiNgsV9sUVO+5x9E9n//2Q==",
+  "img-crop-disease":      "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABQACBP/EACYQAAIBAwMDBAMAAAAAAAAAAAECAwAEERIhQRMiMQUUM1FxgZH/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAX/xAAcEQACAQUBAAAAAAAAAAAAAAAAAQIDERIxUfD/2gAMAwEAAhEDEQA/ADLG8VUKv3Ej486ccYp/3okkjKOFUNhyPIOOaImg67JLa6ZOk2mQMuNscZ881hbZy9tBOqrFJKWkIO5+xt/az7KbKdCl56gDcFjaCTUNmAO/G+PxVXZZWVoYmSFpJ4o3Ko57Tj6x+6qZUJeYea4f/9k=",
+  "farm-screen-1":         "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAQf/xAAlEAACAQQBAQkAAAAAAAAAAAABAgMABAURIQYSIjEzQYGSweH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAQP/xAAbEQACAgMBAAAAAAAAAAAAAAAAARNRAhESYv/aAAwDAQACEQMRAD8A6NBBIlqYnlZnO++eTSVw+UgmK28CTprgs+ifYCnbeO5VyZ5UZdcBU19mo/UeTurC5hW2cKGQk7XfrU2B49KjZHzbOSluoB8NP+UVJTqHI9nzV+AopyqjOD0z/9k=",
+  "farm-screen-2":         "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAgb/xAAkEAABAwQCAAcAAAAAAAAAAAACAQMEAAUREgYhEzI1QVFyk//EABcBAAMBAAAAAAAAAAAAAAAAAAACAwT/xAAdEQABBAIDAAAAAAAAAAAAAAASAAECAxFBE4Hw/9oADAMBAAIRAxEAPwDuZorIRtYtzSMiZQtMLtSRW+cXQcheJV9kEaxycosdxjaLvsK+QtKStzkM7o0y3EcAlXovFzjr4xTiMSfax22RaY77VNLTcMetyPzGiqgsiKYEnMfaignVuP2XX//Z",
+  "farm-screen-3":         "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDAQf/xAAiEAACAgECBwEAAAAAAAAAAAABAgARIVFhAxITIiMxQYH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAARAv/aAAwDAQACEQMRAD8A6LwmYrzMnTr4GvH5KCmz7k1HZVCtI60i4pRoBJzqiQ17wmeN8lVJ3EJdD//Z",
+  "farm-screen-4":         "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIGBQf/xAAnEAABAwMDAQkAAAAAAAAAAAABAgMRABITBAUhBhQjMUFCUZGhov/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAESIf/aAAwDAQACEQMRAD8A6INTpy4W+1t5Jiy8TPtFOlvvAu5fPlxA+qndRsMbjmzMpWHVPi1Cr1eJAJmKzOnUbmredNldeLSSS5c7IPBjianVg5VkHHCJyfkUUwaUPQPmiqL/2Q==",
+  "farm-screen-5":         "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAYDBAX/xAAjEAABAwMEAgMAAAAAAAAAAAABAAIDBBExBRITIQbRFEFh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgT/xAAaEQADAAMBAAAAAAAAAAAAAAAAAQIDESGR/9oADAMBAAIRAxEAPwDaGtCS+zXH9GxHCfSn02rnq5opYdTlmj5ACPjOF++/rH6klr4mxbOwHEDcRgJ08Onp6aiLGve4SSkNG3GAjOWm9MnrFK7t+sY3OkDnXlfk4A9IVg08RJJYLlCRQf/Z",
+  "app-vrt-maps":          "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAYDBAX/xAAjEAABAwMEAgMAAAAAAAAAAAABAAIDBBExBRITIQbRFEFh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgT/xAAaEQADAAMBAAAAAAAAAAAAAAAAAQIDESGR/9oADAMBAAIRAxEAPwDaGtCS+zXH9GxHCfSn02rnq5opYdTlmj5ACPjOF++/rH6klr4mxbOwHEDcRgJ08Onp6aiLGve4SSkNG3GAjOWm9MnrFK7t+sY3OkDnXlfk4A9IVg08RJJYLlCRQf/Z",
+  "app-prescrizione":      "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIGBQf/xAAnEAABAwMDAQkAAAAAAAAAAAABAgMRABITBAUhBhQjMUFCUZGhov/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFxEBAQEBAAAAAAAAAAAAAAAAAAESIf/aAAwDAQACEQMRAD8A6INTpy4W+1t5Jiy8TPtFOlvvAu5fPlxA+qndRsMbjmzMpWHVPi1Cr1eJAJmKzOnUbmredNldeLSSS5c7IPBjianVg5VkHHCJyfkUUwaUPQPmiqL/2Q==",
+  "app-malattie":          "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAIDAQf/xAAiEAACAgECBwEAAAAAAAAAAAABAgARIVFhAxITIiMxQYH/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/EABYRAQEBAAAAAAAAAAAAAAAAAAARAv/aAAwDAQACEQMRAD8A6LwmYrzMnTr4GvH5KCmz7k1HZVCtI60i4pRoBJzqiQ17wmeN8lVJ3EJdD//Z",
+  "app-meteo":             "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQFAgb/xAAkEAABAwQCAAcAAAAAAAAAAAACAQMEAAUREgYhEzI1QVFyk//EABcBAAMBAAAAAAAAAAAAAAAAAAACAwT/xAAdEQABBAIDAAAAAAAAAAAAAAASAAECAxFBE4Hw/9oADAMBAAIRAxEAPwDuZorIRtYtzSMiZQtMLtSRW+cXQcheJV9kEaxycosdxjaLvsK+QtKStzkM7o0y3EcAlXovFzjr4xTiMSfax22RaY77VNLTcMetyPzGiqgsiKYEnMfaignVuP2XX//Z",
+};
+
 /* ─── Colors ─── */
 const GREEN  = "#2d9b4e";
 const BLUE   = "#3b82f6";
@@ -46,11 +65,11 @@ const PURPLE = "#8b5cf6";
 
 /* Static (non-translated) properties for appFeatures */
 const APP_FEATURE_STATIC = [
-  { id: "appezzamenti", icon: LayoutDashboard, image: "/farm-screen-1.webp", color: GREEN, imgWidth: 4911, imgHeight: 2824 },
-  { id: "meteo",        icon: Cloud,           image: "/farm-screen-2.webp", color: TEAL,  imgWidth: 4517, imgHeight: 3104 },
-  { id: "malattie",     icon: Bug,             image: "/farm-screen-3.webp", color: AMBER, imgWidth: 4169, imgHeight: 3350 },
-  { id: "prescrizione", icon: FileBarChart2,   image: "/farm-screen-4.webp", color: GREEN, imgWidth: 6156, imgHeight: 3226 },
-  { id: "mappe",        icon: Layers,          image: "/farm-screen-5.webp", color: TEAL,  imgWidth: 6097, imgHeight: 2806 },
+  { id: "appezzamenti", icon: LayoutDashboard, image: "/farm-screen-1.webp", color: GREEN, imgWidth: 4911, imgHeight: 2824, placeholder: THUMB["farm-screen-1"] },
+  { id: "meteo",        icon: Cloud,           image: "/farm-screen-2.webp", color: TEAL,  imgWidth: 4517, imgHeight: 3104, placeholder: THUMB["farm-screen-2"] },
+  { id: "malattie",     icon: Bug,             image: "/farm-screen-3.webp", color: AMBER, imgWidth: 4169, imgHeight: 3350, placeholder: THUMB["farm-screen-3"] },
+  { id: "prescrizione", icon: FileBarChart2,   image: "/farm-screen-4.webp", color: GREEN, imgWidth: 6156, imgHeight: 3226, placeholder: THUMB["farm-screen-4"] },
+  { id: "mappe",        icon: Layers,          image: "/farm-screen-5.webp", color: TEAL,  imgWidth: 6097, imgHeight: 2806, placeholder: THUMB["farm-screen-5"] },
 ];
 
 /* Static crop properties */
@@ -235,7 +254,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-10" />
-            <LazyImage src="/img-aerial-field.webp" alt="Campi agricoli di precisione visti dall'alto" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" loading="eager" dark width={1280} height={1244} data-testid="img-hero-aerial" />
+            <LazyImage src="/img-aerial-field.webp" alt="Campi agricoli di precisione visti dall'alto" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" loading="eager" dark width={1280} height={1244} placeholder={THUMB["img-aerial-field"]} data-testid="img-hero-aerial" />
             <div className="absolute bottom-8 left-8 z-20 hidden lg:flex gap-4">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="bg-white/90 backdrop-blur rounded-xl px-5 py-3 shadow-lg border border-border">
                 <div className="text-2xl font-bold" style={{ color: GREEN }}>{t.hero.stat3Val}</div>
@@ -350,7 +369,7 @@ export default function Home() {
         {/* ─── TRACTOR BANNER ─── */}
         <section className="relative h-[520px] lg:h-[620px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
-            <LazyImage src="/img-tractor-tablet.webp" alt="Trattorista che utilizza il software su tablet in campo" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full overflow-hidden" dark width={1280} height={853} data-testid="img-tractor-banner" />
+            <LazyImage src="/img-tractor-tablet.webp" alt="Trattorista che utilizza il software su tablet in campo" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full overflow-hidden" dark width={1280} height={853} placeholder={THUMB["img-tractor-tablet"]} data-testid="img-tractor-banner" />
             <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent" />
           </div>
@@ -418,13 +437,13 @@ export default function Home() {
                 <div className="absolute inset-0 rounded-3xl blur-2xl opacity-10 pointer-events-none" style={{ backgroundColor: GREEN, top: "2.5rem" }} />
                 <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl">
                   {[
-                    { src: "/app-vrt-maps.webp",     alt: "Schermata VRT 2.0 e Mappe — mappa di prescrizione a zone omogenee",                              width: 6097, height: 2806 },
-                    { src: "/app-prescrizione.webp", alt: "Schermata Calcola Mappa di Prescrizione VRT — clusterizzazione K-means NDVI con dosi kg/ha",      width: 6156, height: 3226 },
-                    { src: "/app-malattie.webp",     alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni",                                width: 4169, height: 3350 },
-                    { src: "/app-meteo.webp",        alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento",                            width: 4517, height: 3104 }
+                    { src: "/app-vrt-maps.webp",     alt: "Schermata VRT 2.0 e Mappe — mappa di prescrizione a zone omogenee",                              width: 6097, height: 2806, placeholder: THUMB["app-vrt-maps"]     },
+                    { src: "/app-prescrizione.webp", alt: "Schermata Calcola Mappa di Prescrizione VRT — clusterizzazione K-means NDVI con dosi kg/ha",      width: 6156, height: 3226, placeholder: THUMB["app-prescrizione"] },
+                    { src: "/app-malattie.webp",     alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni",                                width: 4169, height: 3350, placeholder: THUMB["app-malattie"]     },
+                    { src: "/app-meteo.webp",        alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento",                            width: 4517, height: 3104, placeholder: THUMB["app-meteo"]        }
                   ].map((img, i) => (
                     <div key={i} className="relative" style={{ display: activeScreenshot === i ? "block" : "none" }}>
-                      <LazyImage src={img.src} alt={img.alt} className="w-full h-auto block" containerClassName="relative" width={img.width} height={img.height} data-testid={`screenshot-${i}`} />
+                      <LazyImage src={img.src} alt={img.alt} className="w-full h-auto block" containerClassName="relative" width={img.width} height={img.height} placeholder={img.placeholder} data-testid={`screenshot-${i}`} />
                       {/* Hide "Esegui le tue mappe di prescrizione" text panel in both VRT maps screens */}
                       {(i === 0 || i === 1) && (
                         <div className="absolute bg-white" style={{ top: 0, right: 0, width: "37%", height: "100%" }} />
@@ -464,7 +483,7 @@ export default function Home() {
         <section className="relative overflow-hidden">
           <div className="grid lg:grid-cols-2 min-h-[540px]">
             <div className="relative h-[320px] lg:h-auto overflow-hidden">
-              <LazyImage src="/img-tractor-app-botte.webp" alt="Agricoltore in cabina di trattore con l'app su tablet" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" width={1408} height={768} data-testid="img-tractor-app-botte" />
+              <LazyImage src="/img-tractor-app-botte.webp" alt="Agricoltore in cabina di trattore con l'app su tablet" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" width={1408} height={768} placeholder={THUMB["img-tractor-app-botte"]} data-testid="img-tractor-app-botte" />
               <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(to right, transparent, white)" }} />
               <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(to top, white 30%, transparent)" }} />
             </div>
@@ -499,7 +518,7 @@ export default function Home() {
 
         {/* ─── IoT BANNER ─── */}
         <section className="relative h-[340px] lg:h-[420px] overflow-hidden flex items-center justify-center">
-          <LazyImage src="/img-iot-connect.webp" alt="Rete IoT satellite drone sensori" className="w-full h-full object-cover object-center" containerClassName="absolute inset-0 overflow-hidden" dark width={1408} height={768} data-testid="img-iot-connect" />
+          <LazyImage src="/img-iot-connect.webp" alt="Rete IoT satellite drone sensori" className="w-full h-full object-cover object-center" containerClassName="absolute inset-0 overflow-hidden" dark width={1408} height={768} placeholder={THUMB["img-iot-connect"]} data-testid="img-iot-connect" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(15,30,20,0.65), rgba(15,30,20,0.85))" }} />
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative z-10 text-center px-6 max-w-3xl">
             <p className="text-sm font-mono tracking-widest uppercase mb-3" style={{ color: "#4ade80" }}>{t.iot.overline}</p>
@@ -525,7 +544,7 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-10 items-start mb-12">
               {/* Agronomist photo */}
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative rounded-3xl overflow-hidden shadow-xl border border-border">
-              <LazyImage src="/img-agronomist-tablet.webp" alt="Agronomo in campo con tablet" className="w-full h-[420px] object-cover object-center" containerClassName="relative" dark width={1280} height={896} data-testid="img-agronomist-disease" />
+              <LazyImage src="/img-agronomist-tablet.webp" alt="Agronomo in campo con tablet" className="w-full h-[420px] object-cover object-center" containerClassName="relative" dark width={1280} height={896} placeholder={THUMB["img-agronomist-tablet"]} data-testid="img-agronomist-disease" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,41,59,0.85) 0%, transparent 55%)" }} />
                 <div className="absolute bottom-6 left-6 right-6">
                   <p className="text-sm font-mono mb-2" style={{ color: "#4ade80" }}>{t.disease.riskLabel7d}</p>
@@ -572,7 +591,7 @@ export default function Home() {
 
             {/* Disease banner */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative rounded-3xl overflow-hidden h-[240px] lg:h-[300px] border border-border">
-              <LazyImage src="/img-crop-disease.webp" alt="Foglia con sintomi di malattia fungina" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" dark width={1280} height={853} data-testid="img-crop-disease-closeup" />
+              <LazyImage src="/img-crop-disease.webp" alt="Foglia con sintomi di malattia fungina" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" dark width={1280} height={853} placeholder={THUMB["img-crop-disease"]} data-testid="img-crop-disease-closeup" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(30,41,59,0.88) 40%, transparent)" }} />
               <div className="absolute inset-0 flex items-center px-8 lg:px-14">
                 <div className="max-w-lg">
@@ -647,7 +666,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="relative">
-                      <LazyImage src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" containerClassName="relative" width={appFeatures[activeFeature].imgWidth} height={appFeatures[activeFeature].imgHeight} data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
+                      <LazyImage src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" containerClassName="relative" width={appFeatures[activeFeature].imgWidth} height={appFeatures[activeFeature].imgHeight} placeholder={appFeatures[activeFeature].placeholder} data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
                       {/* Hide side-panel text in Mappa di Prescrizione (3) and VRT 2.0 Mappe (4) */}
                       {(activeFeature === 3 || activeFeature === 4) && (
                         <div className="absolute bg-white" style={{ top: 0, right: 0, width: "37%", height: "100%" }} />

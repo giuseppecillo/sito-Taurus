@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface LazyImageProps {
   src: string;
@@ -10,6 +10,7 @@ interface LazyImageProps {
   dark?: boolean;
   width?: number;
   height?: number;
+  placeholder?: string;
   "data-testid"?: string;
 }
 
@@ -23,22 +24,45 @@ export function LazyImage({
   dark = false,
   width,
   height,
+  placeholder,
   "data-testid": testId,
 }: LazyImageProps) {
   const [loaded, setLoaded] = useState(false);
 
+  useEffect(() => {
+    setLoaded(false);
+  }, [src]);
+
   return (
     <div className={containerClassName}>
-      <div
-        className={[
-          "img-skeleton",
-          dark ? "img-skeleton--dark" : "",
-          loaded ? "img-skeleton--hidden" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        aria-hidden="true"
-      />
+      {placeholder ? (
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `url(${placeholder})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            filter: "blur(12px)",
+            transform: "scale(1.08)",
+            transition: "opacity 0.4s ease",
+            opacity: loaded ? 0 : 1,
+            pointerEvents: "none",
+          }}
+        />
+      ) : (
+        <div
+          className={[
+            "img-skeleton",
+            dark ? "img-skeleton--dark" : "",
+            loaded ? "img-skeleton--hidden" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          aria-hidden="true"
+        />
+      )}
       <img
         src={src}
         alt={alt}
