@@ -30,6 +30,18 @@ uri = "file://artifacts/taurus-website/public/img-tractor-app-botte.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "CKmjKdBcsdBwlFnmaPnJJ"
+uri = "file://artifacts/taurus-website/public/img-drone-tablet-hotspot.png"
+type = "image"
+title = "drone-tablet-hotspot-map"
+
+[[generated]]
+id = "BPNm3cCqu1Y0gWiAu6BA0"
+uri = "file://artifacts/taurus-website/public/img-drone-field-severity.png"
+type = "image"
+title = "field-severity-data-collection"
+
 [[outputs]]
 id = "2GEubUqZzaPpFl631iTUW"
 uri = "file://attached_assets/stock_images/agronomist-disease-monitor.jpg"

@@ -963,7 +963,7 @@ export default function Home() {
                 },
                 {
                   icon: Map, color: BLUE,
-                  title: "Voli Drone",
+                  title: "Drone",
                   desc: "I dati telerilevati da drone — termici, RGB e multispettrali — alimentano applicazioni sito-specifiche lungo tutto il ciclo colturale: dal monitoraggio dello stato vegetativo e dell'uniformità del campo, fino alla generazione di mappe VRT per concimazioni, trattamenti e semine a dose variabile."
                 },
                 {
@@ -988,6 +988,51 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
+
+            {/* ── Drone workflow images ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="mt-16 grid lg:grid-cols-5 gap-6 items-stretch"
+            >
+              {/* Main image – tablet + hotspot map + drone */}
+              <div className="lg:col-span-3 rounded-3xl overflow-hidden relative shadow-lg border border-border">
+                <img
+                  src="/img-drone-tablet-hotspot.png"
+                  alt="Tablet con app Farm 2.0 VRT che mostra mappa di variabilità con zone hotspot cerchiate e drone in volo sul campo"
+                  className="w-full h-full object-cover"
+                  style={{ minHeight: 280 }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 p-5" style={{ background: "linear-gradient(to top, rgba(15,30,20,0.85) 0%, transparent 100%)" }}>
+                  <p className="text-white font-semibold text-sm mb-1">Mappa di variabilità + navigazione GPS in campo</p>
+                  <p className="text-white/70 text-xs">Il drone acquisisce dati multispettrali; l'app individua gli hotspot di bassa vigoria e guida l'operatore verso ogni posizione GPS.</p>
+                </div>
+              </div>
+
+              {/* Secondary image – field severity data entry */}
+              <div className="lg:col-span-2 flex flex-col gap-3">
+                <div className="rounded-3xl overflow-hidden relative shadow-lg border border-border flex-1">
+                  <img
+                    src="/img-drone-field-severity.png"
+                    alt="Agronomo in campo che inserisce parametri biofisici e di severità dell'avversità sullo smartphone"
+                    className="w-full h-full object-cover"
+                    style={{ minHeight: 220 }}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4" style={{ background: "linear-gradient(to top, rgba(15,30,20,0.85) 0%, transparent 100%)" }}>
+                    <p className="text-white font-semibold text-sm mb-1">Rilievo in campo — parametri biofisici & severità</p>
+                    <p className="text-white/70 text-xs">L'operatore quota numericamente vigore, tipo di avversità e severità su ogni hotspot.</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl p-5 border" style={{ backgroundColor: `${TEAL}10`, borderColor: `${TEAL}30` }}>
+                  <p className="text-sm font-semibold mb-1" style={{ color: TEAL }}>Dato drone + rilievo in campo</p>
+                  <p className="text-sm text-muted-foreground">
+                    La combinazione dei dati acquisiti da drone e dei rilievi in campo genera automaticamente una <strong className="text-foreground">mappa di severità dell'avversità</strong>, pronta per guidare i trattamenti a dose variabile.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
 
           </div>
         </section>
