@@ -390,7 +390,13 @@ export default function Home() {
                     { src: "/app-malattie.webp",     alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni" },
                     { src: "/app-meteo.webp",        alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento" }
                   ].map((img, i) => (
-                    <img key={i} src={img.src} alt={img.alt} className="w-full h-auto block transition-opacity duration-300" style={{ display: activeScreenshot === i ? "block" : "none" }} data-testid={`screenshot-${i}`} />
+                    <div key={i} className="relative" style={{ display: activeScreenshot === i ? "block" : "none" }}>
+                      <img src={img.src} alt={img.alt} className="w-full h-auto block" data-testid={`screenshot-${i}`} />
+                      {/* Hide "Esegui le tue mappe di prescrizione" text panel in both VRT maps screens */}
+                      {(i === 0 || i === 1) && (
+                        <div className="absolute bg-white" style={{ top: 0, right: 0, width: "37%", height: "100%" }} />
+                      )}
+                    </div>
                   ))}
                 </div>
               </motion.div>
@@ -607,13 +613,7 @@ export default function Home() {
                         <span className="text-[10px] text-white/60 font-mono">app.farm20vrt.it — {appFeatures[activeFeature].label}</span>
                       </div>
                     </div>
-                    <div className="relative">
-                      <img src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
-                      {/* Cover the "Esegui le tue mappe di prescrizione" text panel in app-vrt-maps.png */}
-                      {activeFeature === 0 && (
-                        <div className="absolute bg-white" style={{ top: "0%", right: "0%", width: "37%", height: "100%" }} />
-                      )}
-                    </div>
+                    <img src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
                   </div>
                 </div>
               </motion.div>
