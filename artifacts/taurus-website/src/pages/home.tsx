@@ -16,7 +16,9 @@ import {
   Radio,
   Thermometer,
   Droplets,
-  Globe
+  Globe,
+  Menu,
+  X
 } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -91,6 +93,7 @@ export default function Home() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [langOpen, setLangOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const appFeatures = t.appFeatures.map((f, i) => ({
     ...APP_FEATURE_STATIC[i],
@@ -110,94 +113,150 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground font-sans">
 
       {/* ─── NAVBAR ─── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 lg:px-12 bg-white/95 backdrop-blur border-b border-border shadow-sm">
-        <Link href="/" className="flex items-center gap-3 group">
-          <img
-            src="/taurus-logo.webp"
-            alt="Taurus Agriculture Solution"
-            className="h-10 w-auto group-hover:opacity-90 transition-opacity"
-            width={1952}
-            height={2166}
-            data-testid="img-navbar-logo"
-          />
-        </Link>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-border shadow-sm">
+        <div className="flex items-center justify-between px-4 py-3 lg:px-12">
+          <Link href="/" className="flex items-center gap-3 group">
+            <img
+              src="/taurus-logo.webp"
+              alt="Taurus Agriculture Solution"
+              className="h-9 w-auto group-hover:opacity-90 transition-opacity"
+              width={1952}
+              height={2166}
+              data-testid="img-navbar-logo"
+            />
+          </Link>
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-          {[
-            { href: "#chi-siamo",  label: t.nav.chiSiamo    },
-            { href: "#farm-vrt",   label: t.nav.ilProdotto  },
-            { href: "#showcase",   label: t.nav.funzionalita },
-            { href: "#malattie",   label: t.nav.malattie    },
-            { href: "#solutions",  label: t.nav.soluzioni   }
-          ].map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
-              className="text-foreground/70 hover:text-primary transition-colors"
-              data-testid={`link-nav-${href.slice(1)}`}
-            >
-              {label}
-            </a>
-          ))}
-        </div>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+            {[
+              { href: "#chi-siamo",  label: t.nav.chiSiamo    },
+              { href: "#farm-vrt",   label: t.nav.ilProdotto  },
+              { href: "#showcase",   label: t.nav.funzionalita },
+              { href: "#malattie",   label: t.nav.malattie    },
+              { href: "#solutions",  label: t.nav.soluzioni   }
+            ].map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                className="text-foreground/70 hover:text-primary transition-colors"
+                data-testid={`link-nav-${href.slice(1)}`}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
 
-        <div className="flex items-center gap-3">
-          {/* Language switcher */}
-          <div className="relative">
+          <div className="flex items-center gap-2">
+            {/* Language switcher */}
+            <div className="relative">
+              <button
+                onClick={() => setLangOpen(o => !o)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-sm font-medium text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-colors"
+                data-testid="btn-lang-switcher"
+                aria-label="Select language"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>{LANG_OPTIONS.find(l => l.code === lang)?.flag}</span>
+                <span className="hidden sm:inline">{lang.toUpperCase()}</span>
+              </button>
+              <AnimatePresence>
+                {langOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 top-full mt-2 w-32 rounded-xl border border-border bg-white shadow-lg overflow-hidden z-50"
+                  >
+                    {LANG_OPTIONS.map(opt => (
+                      <button
+                        key={opt.code}
+                        onClick={() => { setLang(opt.code); setLangOpen(false); }}
+                        className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
+                        style={{ color: lang === opt.code ? GREEN : NAVY, fontWeight: lang === opt.code ? 700 : 500 }}
+                        data-testid={`btn-lang-${opt.code}`}
+                      >
+                        <span>{opt.flag}</span>
+                        <span>{opt.label}</span>
+                        {lang === opt.code && <span className="ml-auto w-1.5 h-1.5 rounded-full" style={{ backgroundColor: GREEN }} />}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Demo button — desktop only shows email below */}
+            <div className="hidden md:flex flex-col items-end gap-0.5">
+              <Button
+                className="text-white rounded-full px-5 font-medium text-sm"
+                style={{ backgroundColor: GREEN }}
+                asChild
+              >
+                <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
+              </Button>
+              <a href="mailto:info@taurusagsolution.com" className="text-[11px]" style={{ color: GREEN }}>info@taurusagsolution.com</a>
+            </div>
+
+            {/* Hamburger — mobile only */}
             <button
-              onClick={() => setLangOpen(o => !o)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-sm font-medium text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-colors"
-              data-testid="btn-lang-switcher"
-              aria-label="Select language"
+              className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              onClick={() => setMenuOpen(o => !o)}
+              aria-label="Menu"
+              data-testid="btn-mobile-menu"
             >
-              <Globe className="w-3.5 h-3.5" />
-              <span>{LANG_OPTIONS.find(l => l.code === lang)?.flag}</span>
-              <span className="hidden sm:inline">{lang.toUpperCase()}</span>
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-            <AnimatePresence>
-              {langOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -8, scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-full mt-2 w-32 rounded-xl border border-border bg-white shadow-lg overflow-hidden z-50"
-                >
-                  {LANG_OPTIONS.map(opt => (
-                    <button
-                      key={opt.code}
-                      onClick={() => { setLang(opt.code); setLangOpen(false); }}
-                      className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
-                      style={{ color: lang === opt.code ? GREEN : NAVY, fontWeight: lang === opt.code ? 700 : 500 }}
-                      data-testid={`btn-lang-${opt.code}`}
-                    >
-                      <span>{opt.flag}</span>
-                      <span>{opt.label}</span>
-                      {lang === opt.code && <span className="ml-auto w-1.5 h-1.5 rounded-full" style={{ backgroundColor: GREEN }} />}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <div className="flex flex-col items-end gap-1">
-            <Button
-              className="text-white rounded-full px-6 font-medium"
-              style={{ backgroundColor: GREEN }}
-              asChild
-            >
-              <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
-            </Button>
-            <a href="mailto:info@taurusagsolution.com" className="text-xs" style={{ color: GREEN }}>info@taurusagsolution.com</a>
           </div>
         </div>
+
+        {/* Mobile menu panel */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.22 }}
+              className="md:hidden overflow-hidden border-t border-border bg-white"
+            >
+              <div className="flex flex-col px-4 py-4 gap-1">
+                {[
+                  { href: "#chi-siamo",  label: t.nav.chiSiamo    },
+                  { href: "#farm-vrt",   label: t.nav.ilProdotto  },
+                  { href: "#showcase",   label: t.nav.funzionalita },
+                  { href: "#malattie",   label: t.nav.malattie    },
+                  { href: "#solutions",  label: t.nav.soluzioni   }
+                ].map(({ href, label }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={() => setMenuOpen(false)}
+                    className="py-3 px-2 text-base font-medium text-foreground/80 hover:text-primary border-b border-border last:border-0 transition-colors"
+                    data-testid={`link-mobile-nav-${href.slice(1)}`}
+                  >
+                    {label}
+                  </a>
+                ))}
+                <div className="pt-3 flex flex-col gap-2">
+                  <Button
+                    className="w-full text-white rounded-full font-medium"
+                    style={{ backgroundColor: GREEN }}
+                    asChild
+                  >
+                    <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} onClick={() => setMenuOpen(false)} data-testid="btn-mobile-demo">{t.nav.richiediDemo}</a>
+                  </Button>
+                  <a href="mailto:info@taurusagsolution.com" className="text-center text-sm font-medium" style={{ color: GREEN }}>info@taurusagsolution.com</a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <main>
         {/* ─── HERO ─── */}
         <section
-          className="relative pt-32 pb-0 lg:pt-44 overflow-hidden"
+          className="relative pt-24 pb-0 lg:pt-44 overflow-hidden"
           style={{ background: `linear-gradient(145deg, #0f1e14 0%, #1a3228 55%, #0f2430 100%)` }}
         >
           <div className="absolute right-0 top-0 w-[700px] h-[700px] rounded-full blur-[130px] opacity-20 translate-x-1/3 -translate-y-1/4" style={{ backgroundColor: GREEN }} />
@@ -214,9 +273,9 @@ export default function Home() {
                 <span>{t.hero.badge}</span>
               </motion.div>
 
-              <motion.div variants={fadeUp} className="flex items-center gap-6 mb-6">
-                <img src="/taurus-logo.webp" alt="Taurus Agriculture Solution logo" className="w-44 lg:w-52 h-auto flex-shrink-0 drop-shadow-xl" width={1952} height={2166} />
-                <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-white">
+              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6">
+                <img src="/taurus-logo.webp" alt="Taurus Agriculture Solution logo" className="w-28 sm:w-44 lg:w-52 h-auto flex-shrink-0 drop-shadow-xl" width={1952} height={2166} />
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-white">
                   {t.hero.h1Line1}<br />
                   <span style={{ color: "#4ade80" }}>{t.hero.h1Line2}</span>
                 </h1>
@@ -257,9 +316,9 @@ export default function Home() {
         </section>
 
         {/* ─── CHI SIAMO ─── */}
-        <section id="chi-siamo" className="py-24 bg-white border-b border-border">
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <section id="chi-siamo" className="py-16 lg:py-24 bg-white border-b border-border">
+          <div className="container mx-auto px-5 lg:px-12">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
                 <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-6 border" style={{ backgroundColor: `${GREEN}12`, borderColor: `${GREEN}35`, color: GREEN }}>
                   <Leaf className="w-4 h-4" />
@@ -289,8 +348,8 @@ export default function Home() {
                 ].map((meta, i) => {
                   const p = t.about.pillars[i];
                   return (
-                    <motion.div key={p.title} variants={fadeUp} className="p-6 rounded-2xl bg-muted border border-border hover:shadow-md transition-shadow" data-testid={`card-pillar-${i}`}>
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4" style={{ backgroundColor: `${meta.color}15` }}>{meta.icon}</div>
+                    <motion.div key={p.title} variants={fadeUp} className="p-4 lg:p-6 rounded-2xl bg-muted border border-border hover:shadow-md transition-shadow" data-testid={`card-pillar-${i}`}>
+                      <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center text-xl mb-3 lg:mb-4" style={{ backgroundColor: `${meta.color}15` }}>{meta.icon}</div>
                       <h3 className="font-bold text-base mb-2" style={{ color: NAVY }}>{p.title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
                     </motion.div>
@@ -333,13 +392,12 @@ export default function Home() {
 
 
         {/* ─── TRACTOR BANNER ─── */}
-        <section className="relative h-[520px] lg:h-[620px] overflow-hidden flex items-center">
+        <section className="relative min-h-[420px] lg:h-[620px] overflow-hidden flex items-center">
           <div className="absolute inset-0">
             <LazyImage src="/img-tractor-tablet.webp" alt="Trattorista che utilizza il software su tablet in campo" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full overflow-hidden" dark width={1280} height={853} placeholder={THUMB["img-tractor-tablet"]} data-testid="img-tractor-banner" />
-            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/75 to-white/90 lg:bg-gradient-to-r lg:from-white/95 lg:via-white/70 lg:to-transparent" />
           </div>
-          <div className="container relative z-10 mx-auto px-6 lg:px-12">
+          <div className="container relative z-10 mx-auto px-6 lg:px-12 py-16 lg:py-0">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-xl">
               <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-5 border" style={{ backgroundColor: `${GREEN}18`, borderColor: `${GREEN}40`, color: GREEN }}>
                 <Tractor className="w-4 h-4" />
@@ -364,9 +422,9 @@ export default function Home() {
         </section>
 
         {/* ─── FEATURES + SCREENSHOTS ─── */}
-        <section className="py-24 bg-muted border-y border-border">
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <section className="py-16 lg:py-24 bg-muted border-y border-border">
+          <div className="container mx-auto px-5 lg:px-12">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
                 <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: NAVY }}>
                   {t.features.h2Line1}<br />{t.features.h2Line2}
@@ -389,12 +447,12 @@ export default function Home() {
 
               <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative">
                 {/* Screenshot tabs */}
-                <div className="flex gap-2 mb-4 flex-wrap">
+                <div className="flex gap-2 mb-4 overflow-x-auto pb-1 scrollbar-hide flex-nowrap lg:flex-wrap">
                   {t.features.tabs.map((label, i) => {
                     const colors = [TEAL, GREEN, RED_, BLUE];
                     const c = colors[i];
                     return (
-                      <button key={i} onClick={() => setActiveScreenshot(i)} className="px-4 py-1.5 rounded-full text-sm font-medium transition-all border" style={activeScreenshot === i ? { backgroundColor: c, color: "white", borderColor: c } : { backgroundColor: "transparent", color: c, borderColor: `${c}60` }} data-testid={`tab-screenshot-${i}`}>
+                      <button key={i} onClick={() => setActiveScreenshot(i)} className="shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all border" style={activeScreenshot === i ? { backgroundColor: c, color: "white", borderColor: c } : { backgroundColor: "transparent", color: c, borderColor: `${c}60` }} data-testid={`tab-screenshot-${i}`}>
                         {label}
                       </button>
                     );
@@ -431,7 +489,7 @@ export default function Home() {
               <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(to right, transparent, white)" }} />
               <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(to top, white 30%, transparent)" }} />
             </div>
-            <div className="bg-white flex items-center px-8 lg:px-16 py-16">
+            <div className="bg-white flex items-center px-6 lg:px-16 py-10 lg:py-16">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-lg">
                 <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-5 border" style={{ backgroundColor: `${TEAL}12`, borderColor: `${TEAL}40`, color: TEAL }}>
                   <Smartphone className="w-4 h-4" />
@@ -474,8 +532,8 @@ export default function Home() {
         </section>
 
         {/* ─── DISEASE MODULE ─── */}
-        <section id="malattie" className="py-24 bg-white">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section id="malattie" className="py-16 lg:py-24 bg-white">
+          <div className="container mx-auto px-5 lg:px-12">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center max-w-3xl mx-auto mb-16">
               <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-5 border" style={{ backgroundColor: `${AMBER}15`, borderColor: `${AMBER}40`, color: AMBER }}>
                 <Bug className="w-4 h-4" />
@@ -550,8 +608,8 @@ export default function Home() {
         </section>
 
         {/* ─── SHOWCASE ─── */}
-        <section id="showcase" className="py-24 bg-muted border-y border-border">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section id="showcase" className="py-16 lg:py-24 bg-muted border-y border-border">
+          <div className="container mx-auto px-5 lg:px-12">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center max-w-3xl mx-auto mb-14">
               <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-5 border" style={{ backgroundColor: `${BLUE}12`, borderColor: `${BLUE}35`, color: BLUE }}>
                 <Layers className="w-4 h-4" />
@@ -564,13 +622,13 @@ export default function Home() {
             </motion.div>
 
             {/* Feature tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mb-10">
+            <div className="flex overflow-x-auto pb-2 scrollbar-hide gap-2 mb-10 justify-start lg:justify-center flex-nowrap lg:flex-wrap">
               {appFeatures.map((f, i) => {
                 const Icon = f.icon;
                 const active = activeFeature === i;
                 return (
                   <button key={f.id} onClick={() => setActiveFeature(i)} data-testid={`btn-feature-tab-${f.id}`}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border"
+                    className="flex shrink-0 items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border"
                     style={{ backgroundColor: active ? `${f.color}18` : "white", borderColor: active ? f.color : "#e5e7eb", color: active ? f.color : "#6b7280" }}
                   >
                     <Icon className="w-4 h-4" />
@@ -624,14 +682,14 @@ export default function Home() {
         </section>
 
         {/* ─── REMOTE SENSING & DRONES ─── */}
-        <section id="solutions" className="py-12 bg-white border-t border-border">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section id="solutions" className="py-12 lg:py-16 bg-white border-t border-border">
+          <div className="container mx-auto px-5 lg:px-12">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl lg:text-5xl font-bold mb-6" style={{ color: NAVY }}>{t.remoteSensing.h2}</h2>
               <p className="text-lg text-muted-foreground">{t.remoteSensing.p}</p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 lg:gap-8">
               {[
                 { icon: Satellite, color: TEAL },
                 { icon: Map,       color: BLUE },
@@ -653,13 +711,13 @@ export default function Home() {
         </section>
 
         {/* ─── CONTACT CTA ─── */}
-        <section id="contact" className="py-28 bg-white">
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="max-w-4xl mx-auto rounded-[2.5rem] p-10 lg:p-16 text-center relative overflow-hidden border" style={{ background: `linear-gradient(135deg, #0f1e14 0%, #1a3228 100%)`, borderColor: `${GREEN}40` }}>
+        <section id="contact" className="py-16 lg:py-28 bg-white">
+          <div className="container mx-auto px-5 lg:px-12">
+            <div className="max-w-4xl mx-auto rounded-3xl lg:rounded-[2.5rem] p-8 lg:p-16 text-center relative overflow-hidden border" style={{ background: `linear-gradient(135deg, #0f1e14 0%, #1a3228 100%)`, borderColor: `${GREEN}40` }}>
               <div className="absolute right-0 top-0 w-[400px] h-[400px] rounded-full blur-[80px] opacity-20 translate-x-1/3 -translate-y-1/3" style={{ backgroundColor: GREEN }} />
               <div className="relative z-10">
-                <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{t.contact.h2}</h2>
-                <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>{t.contact.p}</p>
+                <h2 className="text-2xl lg:text-5xl font-bold mb-4 lg:mb-6 text-white">{t.contact.h2}</h2>
+                <p className="text-base lg:text-xl mb-6 lg:mb-8 max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>{t.contact.p}</p>
                 <a
                   href="mailto:info@taurusagsolution.com"
                   className="inline-block text-xl font-semibold underline underline-offset-4 transition-opacity hover:opacity-80"
