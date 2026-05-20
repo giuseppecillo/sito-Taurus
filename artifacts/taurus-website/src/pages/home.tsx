@@ -185,15 +185,24 @@ export default function Home() {
               </AnimatePresence>
             </div>
 
-            {/* Demo button — desktop only shows email below */}
+            {/* Demo button + App button — desktop only */}
             <div className="hidden md:flex flex-col items-end gap-0.5">
-              <Button
-                className="text-white rounded-full px-5 font-medium text-sm"
-                style={{ backgroundColor: GREEN }}
-                asChild
-              >
-                <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  className="text-white rounded-full px-5 font-medium text-sm"
+                  style={{ backgroundColor: GREEN }}
+                  asChild
+                >
+                  <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
+                </Button>
+                <Button
+                  className="rounded-full px-5 font-medium text-sm border"
+                  variant="outline"
+                  asChild
+                >
+                  <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" data-testid="btn-nav-app">{t.nav.accediApp}</a>
+                </Button>
+              </div>
               <a href="mailto:info@taurusagsolution.com" className="text-[11px]" style={{ color: GREEN }}>info@taurusagsolution.com</a>
             </div>
 
@@ -244,6 +253,13 @@ export default function Home() {
                     asChild
                   >
                     <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} onClick={() => setMenuOpen(false)} data-testid="btn-mobile-demo">{t.nav.richiediDemo}</a>
+                  </Button>
+                  <Button
+                    className="w-full rounded-full font-medium border"
+                    variant="outline"
+                    asChild
+                  >
+                    <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} data-testid="btn-mobile-app">{t.nav.accediApp}</a>
                   </Button>
                   <a href="mailto:info@taurusagsolution.com" className="text-center text-sm font-medium" style={{ color: GREEN }}>info@taurusagsolution.com</a>
                 </div>
