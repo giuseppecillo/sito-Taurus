@@ -190,13 +190,16 @@ export default function Home() {
             </AnimatePresence>
           </div>
 
-          <Button
-            className="text-white rounded-full px-6 font-medium"
-            style={{ backgroundColor: GREEN }}
-            asChild
-          >
-            <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
-          </Button>
+          <div className="flex flex-col items-end gap-1">
+            <Button
+              className="text-white rounded-full px-6 font-medium"
+              style={{ backgroundColor: GREEN }}
+              asChild
+            >
+              <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
+            </Button>
+            <a href="mailto:info@taurusagsolution.com" className="text-xs" style={{ color: GREEN }}>info@taurusagsolution.com</a>
+          </div>
         </div>
       </nav>
 
@@ -232,15 +235,20 @@ export default function Home() {
                 {t.hero.p}
               </motion.p>
 
-              <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4">
-                <Button size="lg" className="text-white rounded-full px-8 h-14 text-base font-medium" style={{ backgroundColor: GREEN, boxShadow: `0 0 24px ${GREEN}55` }} asChild>
-                  <a href="#chi-siamo" data-testid="btn-hero-discover">
-                    {t.hero.btnDiscover} <ArrowRight className="w-5 h-5 ml-2" />
-                  </a>
-                </Button>
-                <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base text-white border-white/30 hover:bg-white/10" asChild>
-                  <a href="#contact" data-testid="btn-hero-contact">{t.hero.btnContact}</a>
-                </Button>
+              <motion.div variants={fadeUp} className="flex flex-col gap-3">
+                <div className="flex flex-wrap items-center gap-4">
+                  <Button size="lg" className="text-white rounded-full px-8 h-14 text-base font-medium" style={{ backgroundColor: GREEN, boxShadow: `0 0 24px ${GREEN}55` }} asChild>
+                    <a href="#chi-siamo" data-testid="btn-hero-discover">
+                      {t.hero.btnDiscover} <ArrowRight className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                  <div className="flex flex-col items-start gap-1">
+                    <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base text-white border-white/30 hover:bg-white/10" asChild>
+                      <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Parla con un esperto — Taurus 2.0 VRT")}`} data-testid="btn-hero-contact">{t.hero.btnContact}</a>
+                    </Button>
+                    <a href="mailto:info@taurusagsolution.com" className="text-xs ml-2" style={{ color: `${GREEN}cc` }}>info@taurusagsolution.com</a>
+                  </div>
+                </div>
               </motion.div>
             </motion.div>
           </div>
@@ -280,10 +288,11 @@ export default function Home() {
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-5 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.about.p1 }} />
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">{t.about.p2}</motion.p>
 
-                <motion.div variants={fadeUp}>
+                <motion.div variants={fadeUp} className="flex flex-col items-start gap-1">
                   <Button size="lg" className="text-white rounded-full px-8 h-12 font-medium" style={{ backgroundColor: GREEN }} asChild>
                     <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Parla con un esperto — Taurus 2.0 VRT")}`} data-testid="btn-about-demo">{t.about.cta}</a>
                   </Button>
+                  <a href="mailto:info@taurusagsolution.com" className="text-xs ml-2" style={{ color: GREEN }}>info@taurusagsolution.com</a>
                 </motion.div>
               </motion.div>
 
