@@ -91,6 +91,15 @@ export default function Home() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [langOpen, setLangOpen] = useState(false);
+  const [demoEmail, setDemoEmail] = useState("");
+  const [ctaEmail, setCtaEmail] = useState("");
+
+  const CONTACT_EMAIL = "info@taurusagsolution.com";
+
+  function openMailto(userEmail: string, subject: string) {
+    const body = userEmail ? `Email: ${userEmail}` : "";
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
 
   const appFeatures = t.appFeatures.map((f, i) => ({
     ...APP_FEATURE_STATIC[i],
@@ -186,7 +195,7 @@ export default function Home() {
             style={{ backgroundColor: GREEN }}
             asChild
           >
-            <a href="#contact" data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
+            <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
           </Button>
         </div>
       </nav>
@@ -273,7 +282,7 @@ export default function Home() {
 
                 <motion.div variants={fadeUp}>
                   <Button size="lg" className="text-white rounded-full px-8 h-12 font-medium" style={{ backgroundColor: GREEN }} asChild>
-                    <a href="#contact" data-testid="btn-about-demo">{t.about.cta}</a>
+                    <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Parla con un esperto — Taurus 2.0 VRT")}`} data-testid="btn-about-demo">{t.about.cta}</a>
                   </Button>
                 </motion.div>
               </motion.div>
@@ -429,12 +438,14 @@ export default function Home() {
                 <h3 className="text-xl font-bold mb-1" style={{ color: NAVY }}>{t.features.demoBox.h3}</h3>
                 <p className="text-muted-foreground text-sm">{t.features.demoBox.p}</p>
               </div>
-              <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto" onSubmit={(e) => e.preventDefault()}>
+              <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto" onSubmit={(e) => { e.preventDefault(); openMailto(demoEmail, "Richiedi Demo — Taurus 2.0 VRT"); }}>
                 <input
                   type="email"
                   placeholder={t.features.demoBox.placeholder}
                   className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus:outline-none focus:ring-2"
                   data-testid="input-demo-email-inline"
+                  value={demoEmail}
+                  onChange={(e) => setDemoEmail(e.target.value)}
                 />
                 <Button type="submit" className="text-white rounded-xl px-6 py-2.5 h-auto text-sm font-medium whitespace-nowrap" style={{ backgroundColor: GREEN }} data-testid="btn-demo-inline">
                   {t.features.demoBox.btn}
@@ -681,8 +692,8 @@ export default function Home() {
               <div className="relative z-10">
                 <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{t.contact.h2}</h2>
                 <p className="text-xl mb-10 max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>{t.contact.p}</p>
-                <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4" onSubmit={(e) => e.preventDefault()}>
-                  <Input type="email" placeholder={t.contact.placeholder} className="h-14 bg-white/10 border-white/20 text-white placeholder:text-white/40 text-base rounded-full px-6" data-testid="input-email-cta" />
+                <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4" onSubmit={(e) => { e.preventDefault(); openMailto(ctaEmail, "Richiedi Contatto — Taurus 2.0 VRT"); }}>
+                  <Input type="email" placeholder={t.contact.placeholder} className="h-14 bg-white/10 border-white/20 text-white placeholder:text-white/40 text-base rounded-full px-6" data-testid="input-email-cta" value={ctaEmail} onChange={(e) => setCtaEmail(e.target.value)} />
                   <Button type="submit" className="h-14 text-white rounded-full px-8 text-base font-medium whitespace-nowrap" style={{ backgroundColor: GREEN }} data-testid="btn-submit-cta">
                     {t.contact.btn}
                   </Button>
