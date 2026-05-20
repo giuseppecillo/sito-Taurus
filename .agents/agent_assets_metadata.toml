@@ -42,6 +42,12 @@ uri = "file://artifacts/taurus-website/public/img-drone-field-severity.png"
 type = "image"
 title = "field-severity-data-collection"
 
+[[generated]]
+id = "2VaPKwpTo0_ncZuBsouHb"
+uri = "file://artifacts/taurus-mobile/assets/images/icon.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "2GEubUqZzaPpFl631iTUW"
 uri = "file://attached_assets/stock_images/agronomist-disease-monitor.jpg"
