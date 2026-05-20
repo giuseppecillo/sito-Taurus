@@ -92,7 +92,6 @@ export default function Home() {
   const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [langOpen, setLangOpen] = useState(false);
   const [demoEmail, setDemoEmail] = useState("");
-  const [ctaEmail, setCtaEmail] = useState("");
 
   const CONTACT_EMAIL = "info@taurusagsolution.com";
 
@@ -700,13 +699,15 @@ export default function Home() {
               <div className="absolute right-0 top-0 w-[400px] h-[400px] rounded-full blur-[80px] opacity-20 translate-x-1/3 -translate-y-1/3" style={{ backgroundColor: GREEN }} />
               <div className="relative z-10">
                 <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white">{t.contact.h2}</h2>
-                <p className="text-xl mb-10 max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>{t.contact.p}</p>
-                <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4" onSubmit={(e) => { e.preventDefault(); openMailto(ctaEmail, "Richiedi Contatto — Taurus 2.0 VRT"); }}>
-                  <Input type="email" placeholder={t.contact.placeholder} className="h-14 bg-white/10 border-white/20 text-white placeholder:text-white/40 text-base rounded-full px-6" data-testid="input-email-cta" value={ctaEmail} onChange={(e) => setCtaEmail(e.target.value)} />
-                  <Button type="submit" className="h-14 text-white rounded-full px-8 text-base font-medium whitespace-nowrap" style={{ backgroundColor: GREEN }} data-testid="btn-submit-cta">
-                    {t.contact.btn}
-                  </Button>
-                </form>
+                <p className="text-xl mb-8 max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>{t.contact.p}</p>
+                <a
+                  href="mailto:info@taurusagsolution.com"
+                  className="inline-block text-xl font-semibold underline underline-offset-4 transition-opacity hover:opacity-80"
+                  style={{ color: GREEN }}
+                  data-testid="link-contact-email"
+                >
+                  info@taurusagsolution.com
+                </a>
               </div>
             </div>
           </div>
