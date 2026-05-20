@@ -292,7 +292,6 @@ export default function Home() {
                       {t.hero.btnDiscover} <ArrowRight className="w-5 h-5 ml-2" />
                     </a>
                   </Button>
-                  <span className="text-base font-medium text-white/70" data-testid="btn-hero-contact">{t.hero.btnContact}</span>
                 </div>
               </motion.div>
             </motion.div>
