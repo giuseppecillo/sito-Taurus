@@ -91,14 +91,6 @@ export default function Home() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [langOpen, setLangOpen] = useState(false);
-  const [demoEmail, setDemoEmail] = useState("");
-
-  const CONTACT_EMAIL = "info@taurusagsolution.com";
-
-  function openMailto(userEmail: string, subject: string) {
-    const body = userEmail ? `Email: ${userEmail}` : "";
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }
 
   const appFeatures = t.appFeatures.map((f, i) => ({
     ...APP_FEATURE_STATIC[i],
@@ -241,12 +233,7 @@ export default function Home() {
                       {t.hero.btnDiscover} <ArrowRight className="w-5 h-5 ml-2" />
                     </a>
                   </Button>
-                  <div className="flex flex-col items-start gap-1">
-                    <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base text-white border-white/30 hover:bg-white/10" asChild>
-                      <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Parla con un esperto — Taurus 2.0 VRT")}`} data-testid="btn-hero-contact">{t.hero.btnContact}</a>
-                    </Button>
-                    <a href="mailto:info@taurusagsolution.com" className="text-xs ml-2" style={{ color: `${GREEN}cc` }}>info@taurusagsolution.com</a>
-                  </div>
+                  <span className="text-base font-medium text-white/70" data-testid="btn-hero-contact">{t.hero.btnContact}</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -287,11 +274,8 @@ export default function Home() {
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-5 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.about.p1 }} />
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">{t.about.p2}</motion.p>
 
-                <motion.div variants={fadeUp} className="flex flex-col items-start gap-1">
-                  <Button size="lg" className="text-white rounded-full px-8 h-12 font-medium" style={{ backgroundColor: GREEN }} asChild>
-                    <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Parla con un esperto — Taurus 2.0 VRT")}`} data-testid="btn-about-demo">{t.about.cta}</a>
-                  </Button>
-                  <a href="mailto:info@taurusagsolution.com" className="text-xs ml-2" style={{ color: GREEN }}>info@taurusagsolution.com</a>
+                <motion.div variants={fadeUp}>
+                  <span className="text-base font-medium" style={{ color: GREEN }} data-testid="btn-about-demo">{t.about.cta}</span>
                 </motion.div>
               </motion.div>
 
@@ -436,30 +420,6 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Demo request box */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.15 }}
-              className="mt-14 rounded-2xl border p-8 flex flex-col lg:flex-row items-center justify-between gap-6"
-              style={{ backgroundColor: `${GREEN}0e`, borderColor: `${GREEN}35` }}
-            >
-              <div className="lg:max-w-md">
-                <h3 className="text-xl font-bold mb-1" style={{ color: NAVY }}>{t.features.demoBox.h3}</h3>
-                <p className="text-muted-foreground text-sm">{t.features.demoBox.p}</p>
-              </div>
-              <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto" onSubmit={(e) => { e.preventDefault(); openMailto(demoEmail, "Richiedi Demo — Taurus 2.0 VRT"); }}>
-                <input
-                  type="email"
-                  placeholder={t.features.demoBox.placeholder}
-                  className="flex-1 lg:w-64 px-4 py-2.5 rounded-xl border border-border bg-white text-sm focus:outline-none focus:ring-2"
-                  data-testid="input-demo-email-inline"
-                  value={demoEmail}
-                  onChange={(e) => setDemoEmail(e.target.value)}
-                />
-                <Button type="submit" className="text-white rounded-xl px-6 py-2.5 h-auto text-sm font-medium whitespace-nowrap" style={{ backgroundColor: GREEN }} data-testid="btn-demo-inline">
-                  {t.features.demoBox.btn}
-                </Button>
-              </form>
-            </motion.div>
           </div>
         </section>
 
