@@ -9,7 +9,7 @@ export const translations = {
       malattie: "Malattie",
       soluzioni: "Soluzioni",
       richiediDemo: "Richiedi Demo",
-      accediApp: "Accedi all'app",
+      accediApp: "Accedi a Taurus 2.0 VRT",
     },
     hero: {
       badge: "Taurus Agriculture Solution",
@@ -149,7 +149,7 @@ export const translations = {
       malattie: "Diseases",
       soluzioni: "Solutions",
       richiediDemo: "Request Demo",
-      accediApp: "Open app",
+      accediApp: "Open Taurus 2.0 VRT",
     },
     hero: {
       badge: "Taurus Agriculture Solution",
@@ -289,7 +289,7 @@ export const translations = {
       malattie: "Enfermedades",
       soluzioni: "Soluciones",
       richiediDemo: "Solicitar demo",
-      accediApp: "Abrir app",
+      accediApp: "Abrir Taurus 2.0 VRT",
     },
     hero: {
       badge: "Taurus Agriculture Solution",
