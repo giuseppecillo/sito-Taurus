@@ -279,38 +279,70 @@ export default function Home() {
           <div className="absolute left-0 bottom-0 w-[500px] h-[500px] rounded-full blur-[100px] opacity-15 -translate-x-1/3" style={{ backgroundColor: TEAL }} />
 
           <div className="container relative z-10 mx-auto px-6 lg:px-12 pb-20">
-            <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-4xl">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+              {/* ── Left: text ── */}
+              <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+                <motion.div
+                  variants={fadeUp}
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-6 border"
+                  style={{ backgroundColor: `${GREEN}22`, borderColor: `${GREEN}55`, color: "#4ade80" }}
+                >
+                  <Leaf className="w-4 h-4" />
+                  <span>{t.hero.badge}</span>
+                </motion.div>
+
+                <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 mb-6">
+                  <img src="/taurus-logo.webp" alt="Taurus Agriculture Solution logo" className="w-16 sm:w-20 lg:w-24 h-auto flex-shrink-0 drop-shadow-xl" width={1952} height={2166} />
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white">
+                    {t.hero.h1Line1}<br />
+                    <span style={{ color: "#4ade80" }}>{t.hero.h1Line2}</span>
+                  </h1>
+                </motion.div>
+
+                <motion.p variants={fadeUp} className="text-lg lg:text-xl mb-10 max-w-xl leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
+                  {t.hero.p}
+                </motion.p>
+
+                <motion.div variants={fadeUp} className="flex flex-col gap-3">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <Button size="lg" className="text-white rounded-full px-8 h-14 text-base font-medium" style={{ backgroundColor: GREEN, boxShadow: `0 0 24px ${GREEN}55` }} asChild>
+                      <a href="#chi-siamo" data-testid="btn-hero-discover">
+                        {t.hero.btnDiscover} <ArrowRight className="w-5 h-5 ml-2" />
+                      </a>
+                    </Button>
+                  </div>
+                </motion.div>
+
+                {/* Images row — mobile only */}
+                <motion.div variants={fadeUp} className="lg:hidden mt-8 grid grid-cols-2 gap-3">
+                  <img src="/img-tractor-tablet.webp" alt="Agricoltore su trattore con tablet Taurus 2.0 VRT" className="w-full h-40 object-cover rounded-2xl shadow-xl" width={800} height={533} />
+                  <img src="/img-tractor-sprayer.webp" alt="Trattore in campo con sistema VRT" className="w-full h-40 object-cover rounded-2xl shadow-xl" width={800} height={533} />
+                </motion.div>
+              </motion.div>
+
+              {/* ── Right: images — desktop only ── */}
               <motion.div
-                variants={fadeUp}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-6 border"
-                style={{ backgroundColor: `${GREEN}22`, borderColor: `${GREEN}55`, color: "#4ade80" }}
+                initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
+                className="hidden lg:flex flex-col gap-4"
               >
-                <Leaf className="w-4 h-4" />
-                <span>{t.hero.badge}</span>
+                <img
+                  src="/img-tractor-tablet.webp"
+                  alt="Agricoltore su trattore con tablet Taurus 2.0 VRT"
+                  className="w-full h-[240px] object-cover rounded-2xl shadow-2xl"
+                  style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+                  width={800} height={533}
+                />
+                <img
+                  src="/img-tractor-sprayer.webp"
+                  alt="Trattore in campo con sistema VRT"
+                  className="w-full h-[200px] object-cover rounded-2xl shadow-2xl"
+                  style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+                  width={800} height={533}
+                />
               </motion.div>
 
-              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6">
-                <img src="/taurus-logo.webp" alt="Taurus Agriculture Solution logo" className="w-28 sm:w-44 lg:w-52 h-auto flex-shrink-0 drop-shadow-xl" width={1952} height={2166} />
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-white">
-                  {t.hero.h1Line1}<br />
-                  <span style={{ color: "#4ade80" }}>{t.hero.h1Line2}</span>
-                </h1>
-              </motion.div>
-
-              <motion.p variants={fadeUp} className="text-lg lg:text-xl mb-10 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {t.hero.p}
-              </motion.p>
-
-              <motion.div variants={fadeUp} className="flex flex-col gap-3">
-                <div className="flex flex-wrap items-center gap-4">
-                  <Button size="lg" className="text-white rounded-full px-8 h-14 text-base font-medium" style={{ backgroundColor: GREEN, boxShadow: `0 0 24px ${GREEN}55` }} asChild>
-                    <a href="#chi-siamo" data-testid="btn-hero-discover">
-                      {t.hero.btnDiscover} <ArrowRight className="w-5 h-5 ml-2" />
-                    </a>
-                  </Button>
-                </div>
-              </motion.div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Aerial field strip */}
