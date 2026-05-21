@@ -287,32 +287,44 @@ export default function Home() {
                   </div>
                 </motion.div>
 
-                {/* Images row — mobile only */}
-                <motion.div variants={fadeUp} className="lg:hidden mt-8 grid grid-cols-2 gap-3">
-                  <img src="/img-tractor-tablet.webp" alt="Agricoltore su trattore con tablet Taurus 2.0 VRT" className="w-full h-40 object-cover rounded-2xl shadow-xl" width={800} height={533} />
-                  <img src="/img-tractor-sprayer.webp" alt="Trattore in campo con sistema VRT" className="w-full h-40 object-cover rounded-2xl shadow-xl" width={800} height={533} />
+                {/* Images grid — mobile only */}
+                <motion.div variants={fadeUp} className="lg:hidden mt-8 flex flex-col gap-3">
+                  <img src="/img-tractor-tablet.webp" alt="Agricoltore su trattore con tablet Taurus 2.0 VRT" className="w-full h-44 object-cover rounded-2xl shadow-xl" width={800} height={533} />
+                  <div className="grid grid-cols-2 gap-3">
+                    <img src="/img-tractor-app-botte.webp" alt="App Taurus nel palmo della mano" className="w-full h-32 object-cover rounded-2xl shadow-xl" width={1408} height={768} />
+                    <img src="/img-tractor-sprayer.webp" alt="Trattore in campo con sistema VRT" className="w-full h-32 object-cover rounded-2xl shadow-xl" width={800} height={533} />
+                  </div>
                 </motion.div>
               </motion.div>
 
               {/* ── Right: images — desktop only ── */}
               <motion.div
                 initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}
-                className="hidden lg:flex flex-col gap-4"
+                className="hidden lg:flex flex-col gap-3"
               >
                 <img
                   src="/img-tractor-tablet.webp"
                   alt="Agricoltore su trattore con tablet Taurus 2.0 VRT"
-                  className="w-full h-[240px] object-cover rounded-2xl shadow-2xl"
+                  className="w-full h-[220px] object-cover rounded-2xl shadow-2xl"
                   style={{ border: "1px solid rgba(255,255,255,0.1)" }}
                   width={800} height={533}
                 />
-                <img
-                  src="/img-tractor-sprayer.webp"
-                  alt="Trattore in campo con sistema VRT"
-                  className="w-full h-[200px] object-cover rounded-2xl shadow-2xl"
-                  style={{ border: "1px solid rgba(255,255,255,0.1)" }}
-                  width={800} height={533}
-                />
+                <div className="grid grid-cols-2 gap-3">
+                  <img
+                    src="/img-tractor-app-botte.webp"
+                    alt="App Taurus nel palmo della mano"
+                    className="w-full h-[170px] object-cover rounded-2xl shadow-2xl"
+                    style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+                    width={1408} height={768}
+                  />
+                  <img
+                    src="/img-tractor-sprayer.webp"
+                    alt="Trattore in campo con sistema VRT"
+                    className="w-full h-[170px] object-cover rounded-2xl shadow-2xl"
+                    style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+                    width={800} height={533}
+                  />
+                </div>
               </motion.div>
 
             </div>
