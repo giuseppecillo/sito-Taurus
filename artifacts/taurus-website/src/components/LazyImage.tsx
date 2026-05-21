@@ -7,6 +7,7 @@ interface LazyImageProps {
   containerClassName?: string;
   style?: React.CSSProperties;
   loading?: "lazy" | "eager";
+  fetchPriority?: "high" | "low" | "auto";
   dark?: boolean;
   width?: number;
   height?: number;
@@ -21,6 +22,7 @@ export function LazyImage({
   containerClassName = "relative overflow-hidden",
   style,
   loading = "lazy",
+  fetchPriority,
   dark = false,
   width,
   height,
@@ -73,6 +75,7 @@ export function LazyImage({
           opacity: loaded ? 1 : 0,
         }}
         loading={loading}
+        fetchPriority={fetchPriority}
         width={width}
         height={height}
         onLoad={() => setLoaded(true)}

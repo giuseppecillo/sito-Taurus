@@ -352,7 +352,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-10" />
-            <LazyImage src="/img-aerial-field.webp" alt="Campi agricoli di precisione visti dall'alto" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" loading="eager" dark width={1280} height={1244} placeholder={THUMB["img-aerial-field"]} data-testid="img-hero-aerial" />
+            <LazyImage src="/img-aerial-field.webp" alt="Campi agricoli di precisione visti dall'alto" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" loading="eager" fetchPriority="high" dark width={1280} height={1244} placeholder={THUMB["img-aerial-field"]} data-testid="img-hero-aerial" />
             <div className="absolute bottom-8 left-8 z-20 hidden lg:flex gap-4">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }} className="bg-white/90 backdrop-blur rounded-xl px-5 py-3 shadow-lg border border-border">
                 <div className="text-2xl font-bold" style={{ color: GREEN }}>{t.hero.stat3Val}</div>
