@@ -168,25 +168,19 @@ export default function Home() {
               </AnimatePresence>
             </div>
 
-            {/* Demo button + App button — desktop only */}
-            <div className="hidden md:flex flex-col items-end gap-0.5">
-              <div className="flex items-center gap-2">
-                <Button
-                  className="text-white rounded-full px-5 font-medium text-sm"
-                  style={{ backgroundColor: GREEN }}
-                  asChild
-                >
-                  <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} data-testid="btn-nav-demo">{t.nav.richiediDemo}</a>
-                </Button>
-                <Button
-                  className="rounded-full px-5 font-medium text-sm border"
-                  variant="outline"
-                  asChild
-                >
-                  <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" data-testid="btn-nav-app">{t.nav.accediApp}</a>
-                </Button>
+            {/* Demo text + App button — desktop only */}
+            <div className="hidden md:flex items-center gap-4">
+              <div className="flex flex-col items-start leading-tight">
+                <span className="text-sm font-semibold" style={{ color: GREEN }} data-testid="btn-nav-demo">{t.nav.richiediDemo}</span>
+                <a href="mailto:info@taurusagsolution.com" className="text-[11px] hover:underline" style={{ color: GREEN }}>info@taurusagsolution.com</a>
               </div>
-              <a href="mailto:info@taurusagsolution.com" className="text-[11px]" style={{ color: GREEN }}>info@taurusagsolution.com</a>
+              <Button
+                className="rounded-full px-5 font-medium text-sm border"
+                variant="outline"
+                asChild
+              >
+                <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" data-testid="btn-nav-app">{t.nav.accediApp}</a>
+              </Button>
             </div>
 
             {/* Hamburger — mobile only */}
@@ -230,13 +224,10 @@ export default function Home() {
                   </a>
                 ))}
                 <div className="pt-3 flex flex-col gap-2">
-                  <Button
-                    className="w-full text-white rounded-full font-medium"
-                    style={{ backgroundColor: GREEN }}
-                    asChild
-                  >
-                    <a href={`mailto:info@taurusagsolution.com?subject=${encodeURIComponent("Richiedi Demo — Taurus 2.0 VRT")}`} onClick={() => setMenuOpen(false)} data-testid="btn-mobile-demo">{t.nav.richiediDemo}</a>
-                  </Button>
+                  <div className="flex flex-col items-start leading-tight py-1" data-testid="btn-mobile-demo">
+                    <span className="text-sm font-semibold" style={{ color: GREEN }}>{t.nav.richiediDemo}</span>
+                    <a href="mailto:info@taurusagsolution.com" onClick={() => setMenuOpen(false)} className="text-[12px] hover:underline" style={{ color: GREEN }}>info@taurusagsolution.com</a>
+                  </div>
                   <Button
                     className="w-full rounded-full font-medium border"
                     variant="outline"
@@ -244,7 +235,6 @@ export default function Home() {
                   >
                     <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} data-testid="btn-mobile-app">{t.nav.accediApp}</a>
                   </Button>
-                  <a href="mailto:info@taurusagsolution.com" className="text-center text-sm font-medium" style={{ color: GREEN }}>info@taurusagsolution.com</a>
                 </div>
               </div>
             </motion.div>
