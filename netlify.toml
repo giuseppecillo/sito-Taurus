@@ -4,10 +4,11 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  PNPM_VERSION = "9"
   PORT         = "3000"
   BASE_PATH    = "/"
 
-# Cache-busting headers for static assets
+# Long-lived cache for static assets
 [[headers]]
   for = "/*.webp"
   [headers.values]
