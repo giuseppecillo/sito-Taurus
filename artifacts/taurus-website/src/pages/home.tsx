@@ -420,8 +420,8 @@ export default function Home() {
               <h2 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: NAVY }}>{t.productBridge.h2}</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">{t.productBridge.p}</p>
               <Button
-                className="rounded-full px-8 h-12 font-medium text-sm border"
-                variant="outline"
+                className="rounded-full px-8 h-12 font-medium text-sm text-white"
+                style={{ backgroundColor: GREEN }}
                 asChild
               >
                 <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" data-testid="btn-product-app">{t.nav.accediApp}</a>
