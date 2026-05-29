@@ -25,7 +25,6 @@ export const translations = {
       aerialStats: [
         { val: "Ogni 24h",   label: "Aggiornamento rischio" },
         { val: "Immagini satellitari NDVI", label: "ogni 5 giorni" },
-        { val: "1 click",    label: "Modelli agronomici ottimizzati" },
         { val: "Ovunque",    label: "Gestione a Rateo Variabile" },
         { val: "+30%",       label: "Efficienza azotata" },
         { val: "+60%",       label: "Protezione delle colture" },
@@ -173,7 +172,6 @@ export const translations = {
       aerialStats: [
         { val: "Every 24h", label: "Risk update" },
         { val: "NDVI satellite imagery", label: "every 5 days" },
-        { val: "1 click",   label: "Optimised agronomic models" },
         { val: "Anywhere",  label: "Variable Rate management" },
         { val: "+30%",      label: "Nitrogen efficiency" },
         { val: "+60%",      label: "Crop protection" },
@@ -321,7 +319,6 @@ export const translations = {
       aerialStats: [
         { val: "Cada 24h",  label: "Actualización de riesgo" },
         { val: "Imágenes satelitales NDVI", label: "cada 5 días" },
-        { val: "1 click",   label: "Modelos agronómicos optimizados" },
         { val: "En cualquier lugar", label: "Gestión a Tasa Variable" },
         { val: "+30%",      label: "Eficiencia nitrogenada" },
         { val: "+60%",      label: "Protección de cultivos" },
