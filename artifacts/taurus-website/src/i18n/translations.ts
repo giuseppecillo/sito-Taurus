@@ -40,7 +40,7 @@ export const translations = {
       pillars: [
         { title: "Produttività", desc: "Ottimizza risorse, input e tempistiche operative su ogni appezzamento." },
         { title: "Scalabilità", desc: "Da una singola azienda a reti di consulenza multi-cliente, senza compromessi." },
-        { title: "Tracciabilità", desc: "Ogni operazione registrata, ogni trattamento documentato. Conformità garantita." },
+        { title: "Il digitale semplice ed efficace", desc: "Intercettiamo ogni tua esigenza costruendo come un vestito la soluzione di cui hai bisogno." },
         { title: "Sostenibilità", desc: "Agricoltura consapevole: meno sprechi, meno chimica, più valore per ettaro." },
       ],
       stats: [
@@ -187,7 +187,7 @@ export const translations = {
       pillars: [
         { title: "Productivity",   desc: "Optimise resources, inputs and operational timing for every plot." },
         { title: "Scalability",    desc: "From a single farm to multi-client advisory networks, without compromise." },
-        { title: "Traceability",   desc: "Every operation recorded, every treatment documented. Compliance guaranteed." },
+        { title: "Simple, effective digital", desc: "We intercept your every need, tailoring the solution that fits you perfectly." },
         { title: "Sustainability", desc: "Conscious farming: less waste, less chemistry, more value per hectare." },
       ],
       stats: [
@@ -334,7 +334,7 @@ export const translations = {
       pillars: [
         { title: "Productividad",  desc: "Optimiza recursos, insumos y tiempos operativos en cada parcela." },
         { title: "Escalabilidad",  desc: "Desde una sola explotación hasta redes de asesoría multicliente, sin compromisos." },
-        { title: "Trazabilidad",   desc: "Cada operación registrada, cada tratamiento documentado. Conformidad garantizada." },
+        { title: "Lo digital simple y eficaz", desc: "Detectamos cada necesidad y construimos, como un traje a medida, la solución que necesitas." },
         { title: "Sostenibilidad", desc: "Agricultura consciente: menos desperdicio, menos química, más valor por hectárea." },
       ],
       stats: [
