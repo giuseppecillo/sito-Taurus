@@ -365,8 +365,9 @@ export default function Home() {
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-5 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.about.p1 }} />
                 <motion.p variants={fadeUp} className="text-lg text-muted-foreground mb-8 leading-relaxed">{t.about.p2}</motion.p>
 
-                <motion.div variants={fadeUp}>
-                  <span className="text-base font-medium" style={{ color: GREEN }} data-testid="btn-about-demo">{t.about.cta}</span>
+                <motion.div variants={fadeUp} className="flex flex-col items-start gap-0.5">
+                  <span className="text-base font-semibold" style={{ color: GREEN }}>{t.about.cta}</span>
+                  <a href="mailto:info@taurusagsolution.com" className="text-sm hover:underline" style={{ color: GREEN }} data-testid="btn-about-demo">info@taurusagsolution.com</a>
                 </motion.div>
               </motion.div>
 
@@ -417,7 +418,14 @@ export default function Home() {
                 <span>{t.productBridge.badge}</span>
               </div>
               <h2 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: NAVY }}>{t.productBridge.h2}</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t.productBridge.p}</p>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">{t.productBridge.p}</p>
+              <Button
+                className="rounded-full px-8 h-12 font-medium text-sm border"
+                variant="outline"
+                asChild
+              >
+                <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" data-testid="btn-product-app">{t.nav.accediApp}</a>
+              </Button>
             </motion.div>
           </div>
         </div>
