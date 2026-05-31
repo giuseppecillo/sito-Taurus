@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface LazyImageProps {
   src: string;
@@ -30,9 +30,14 @@ export function LazyImage({
   "data-testid": testId,
 }: LazyImageProps) {
   const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     setLoaded(false);
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth > 0) {
+      setLoaded(true);
+    }
   }, [src]);
 
   return (
@@ -66,6 +71,7 @@ export function LazyImage({
         />
       )}
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
         className={className}
