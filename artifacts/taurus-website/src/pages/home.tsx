@@ -50,13 +50,50 @@ const PURPLE = "#8b5cf6";
 
 /* Static (non-translated) properties for appFeatures */
 const APP_FEATURE_STATIC = [
-  { id: "appezzamenti", icon: LayoutDashboard, image: "/farm-screen-1.webp", color: GREEN, imgWidth: 4911, imgHeight: 2824, placeholder: THUMBNAILS["farm-screen-1"] },
-  { id: "meteo",        icon: Cloud,           image: "/farm-screen-2.webp", color: TEAL,  imgWidth: 4517, imgHeight: 3104, placeholder: THUMBNAILS["farm-screen-2"] },
-  { id: "malattie",     icon: Bug,             image: "/farm-screen-3.webp", color: AMBER, imgWidth: 4169, imgHeight: 3350, placeholder: THUMBNAILS["farm-screen-3"] },
-  { id: "prescrizione", icon: FileBarChart2,   image: "/farm-screen-4.webp", color: GREEN, imgWidth: 6156, imgHeight: 3226, placeholder: THUMBNAILS["farm-screen-4"] },
-  { id: "mappe",        icon: Layers,          image: "/farm-screen-5.webp", color: TEAL,  imgWidth: 6097, imgHeight: 2806, placeholder: THUMBNAILS["farm-screen-5"] },
-  { id: "irrigazione",  icon: Droplets,        image: "/app-irrigazione.webp", color: BLUE, imgWidth: 2488, imgHeight: 2725, placeholder: "data:image/webp;base64,UklGRkQBAABXRUJQVlA4WAoAAAAQAAAAEwAAFQAAQUxQSFQAAAANYFNt2477+5kZjbpI4Ogig1UTVcTQwOR7xvfxJYiICRDGA6e68SaLLPWCtAyBZwOdc+DOtPoRLJCacuAFTYngDowlsgJSDvyo5Eg4lRyJHhMyCCdWUDggygAAAPAEAJ0BKhQAFgA+kTaVSCWioiEwGAwAsBIJYwC/7A3C3uLnQWAFjYNiym1Ap3skAAD++taANHU77dKRO7z+/OyCRpIQnXZB2ysoaJ1Gp1o9YT7qm87MXX+Z1P8spm34T796J/z/5aXLAZU2nhHklcHFeueW65ESnpQ6iK3+Dcg8ThTE9Pf73hhzOCT+dQZm/d6KUKA5x/fWZ8mHjkXaE3M1dhQZW1oWoL7hCC3r/RkBYPBs3ZkoHn9bXSJgqIeyTHNTP4halb8AAAA=" },
+  { id: "appezzamenti", icon: LayoutDashboard, color: GREEN, imgWidth: { it: 4911, en: 1408, es: 1408 }, imgHeight: { it: 2824, en: 768, es: 768 } },
+  { id: "meteo",        icon: Cloud,           color: TEAL,  imgWidth: { it: 4517, en: 1408, es: 1408 }, imgHeight: { it: 3104, en: 768, es: 768 } },
+  { id: "malattie",     icon: Bug,             color: AMBER, imgWidth: { it: 4169, en: 1408, es: 1408 }, imgHeight: { it: 3350, en: 768, es: 768 } },
+  { id: "prescrizione", icon: FileBarChart2,   color: GREEN, imgWidth: { it: 6156, en: 1408, es: 1408 }, imgHeight: { it: 3226, en: 768, es: 768 } },
+  { id: "mappe",        icon: Layers,          color: TEAL,  imgWidth: { it: 6097, en: 1408, es: 1408 }, imgHeight: { it: 2806, en: 768, es: 768 } },
+  { id: "irrigazione",  icon: Droplets,        color: BLUE,  imgWidth: { it: 2488, en: 1408, es: 1408 }, imgHeight: { it: 2725, en: 768, es: 768 } },
 ];
+
+const APP_FEATURE_IMAGES: Record<string, string[]> = {
+  it: ["/farm-screen-1.webp", "/farm-screen-2.webp", "/farm-screen-3.webp", "/farm-screen-4.webp", "/farm-screen-5.webp", "/app-irrigazione.webp"],
+  en: ["/screen-en-plots.webp", "/screen-en-weather.webp", "/screen-en-diseases.webp", "/screen-en-prescription.webp", "/screen-en-maps.webp", "/screen-en-irrigation.webp"],
+  es: ["/screen-es-plots.webp", "/screen-es-weather.webp", "/screen-es-diseases.webp", "/screen-es-prescription.webp", "/screen-es-maps.webp", "/screen-es-irrigation.webp"],
+};
+
+const APP_FEATURE_THUMBS: Record<string, (string | undefined)[]> = {
+  it: [THUMBNAILS["farm-screen-1"], THUMBNAILS["farm-screen-2"], THUMBNAILS["farm-screen-3"], THUMBNAILS["farm-screen-4"], THUMBNAILS["farm-screen-5"], THUMBNAILS["app-irrigazione"]],
+  en: [THUMBNAILS["screen-en-plots"], THUMBNAILS["screen-en-weather"], THUMBNAILS["screen-en-diseases"], THUMBNAILS["screen-en-prescription"], THUMBNAILS["screen-en-maps"], THUMBNAILS["screen-en-irrigation"]],
+  es: [THUMBNAILS["screen-es-plots"], THUMBNAILS["screen-es-weather"], THUMBNAILS["screen-es-diseases"], THUMBNAILS["screen-es-prescription"], THUMBNAILS["screen-es-maps"], THUMBNAILS["screen-es-irrigation"]],
+};
+
+/* Language-specific screenshots for features tabs */
+const FEATURE_TAB_IMGS: Record<string, { src: string; width: number; height: number; placeholder: string | undefined }[]> = {
+  it: [
+    { src: "/app-vrt-maps.webp",     width: 6097, height: 2806, placeholder: THUMBNAILS["app-vrt-maps"]     },
+    { src: "/app-prescrizione.webp", width: 6156, height: 3226, placeholder: THUMBNAILS["app-prescrizione"] },
+    { src: "/app-malattie.webp",     width: 4169, height: 3350, placeholder: THUMBNAILS["app-malattie"]     },
+    { src: "/app-meteo.webp",        width: 4517, height: 3104, placeholder: THUMBNAILS["app-meteo"]        },
+    { src: "/app-irrigazione.webp",  width: 2488, height: 2725, placeholder: THUMBNAILS["app-irrigazione"]  },
+  ],
+  en: [
+    { src: "/screen-en-maps.webp",         width: 1408, height: 768, placeholder: THUMBNAILS["screen-en-maps"]         },
+    { src: "/screen-en-prescription.webp", width: 1408, height: 768, placeholder: THUMBNAILS["screen-en-prescription"] },
+    { src: "/screen-en-diseases.webp",     width: 1408, height: 768, placeholder: THUMBNAILS["screen-en-diseases"]     },
+    { src: "/screen-en-weather.webp",      width: 1408, height: 768, placeholder: THUMBNAILS["screen-en-weather"]      },
+    { src: "/screen-en-irrigation.webp",   width: 1408, height: 768, placeholder: THUMBNAILS["screen-en-irrigation"]   },
+  ],
+  es: [
+    { src: "/screen-es-maps.webp",         width: 1408, height: 768, placeholder: THUMBNAILS["screen-es-maps"]         },
+    { src: "/screen-es-prescription.webp", width: 1408, height: 768, placeholder: THUMBNAILS["screen-es-prescription"] },
+    { src: "/screen-es-diseases.webp",     width: 1408, height: 768, placeholder: THUMBNAILS["screen-es-diseases"]     },
+    { src: "/screen-es-weather.webp",      width: 1408, height: 768, placeholder: THUMBNAILS["screen-es-weather"]      },
+    { src: "/screen-es-irrigation.webp",   width: 1408, height: 768, placeholder: THUMBNAILS["screen-es-irrigation"]   },
+  ],
+};
 
 /* Static crop properties */
 const CROP_STATIC = [
@@ -81,6 +118,10 @@ export default function Home() {
 
   const appFeatures = t.appFeatures.map((f, i) => ({
     ...APP_FEATURE_STATIC[i],
+    image: APP_FEATURE_IMAGES[lang][i],
+    placeholder: APP_FEATURE_THUMBS[lang][i],
+    imgWidth: APP_FEATURE_STATIC[i].imgWidth[lang],
+    imgHeight: APP_FEATURE_STATIC[i].imgHeight[lang],
     label: f.label,
     title: f.title,
     description: f.description,
@@ -509,17 +550,11 @@ export default function Home() {
                 </div>
                 <div className="absolute inset-0 rounded-3xl blur-2xl opacity-10 pointer-events-none" style={{ backgroundColor: GREEN, top: "2.5rem" }} />
                 <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl">
-                  {[
-                    { src: "/app-vrt-maps.webp",     alt: "Schermata VRT 2.0 e Mappe — mappa di prescrizione a zone omogenee",                              width: 6097, height: 2806, placeholder: THUMBNAILS["app-vrt-maps"]     },
-                    { src: "/app-prescrizione.webp", alt: "Schermata Calcola Mappa di Prescrizione VRT — clusterizzazione K-means NDVI con dosi kg/ha",      width: 6156, height: 3226, placeholder: THUMBNAILS["app-prescrizione"] },
-                    { src: "/app-malattie.webp",     alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni",                                width: 4169, height: 3350, placeholder: THUMBNAILS["app-malattie"]     },
-                    { src: "/app-meteo.webp",        alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento",                            width: 4517, height: 3104, placeholder: THUMBNAILS["app-meteo"]        },
-                    { src: "/app-irrigazione.png",  alt: "Schermata Irrigazione — bilancio idrico e piano di irrigazione per appezzamento",                  width: 2488, height: 2725, placeholder: undefined                        }
-                  ].map((img, i) => (
-                    <div key={i} className="relative" style={{ display: activeScreenshot === i ? "block" : "none" }}>
-                      <LazyImage src={img.src} alt={img.alt} className="w-full h-auto block" containerClassName="relative" width={img.width} height={img.height} placeholder={img.placeholder} data-testid={`screenshot-${i}`} />
-                      {/* Hide "Esegui le tue mappe di prescrizione" text panel in both VRT maps screens */}
-                      {(i === 0 || i === 1) && (
+                  {FEATURE_TAB_IMGS[lang].map((img, i) => (
+                    <div key={`${lang}-${i}`} className="relative" style={{ display: activeScreenshot === i ? "block" : "none" }}>
+                      <LazyImage src={img.src} alt={t.features.tabs[i]} className="w-full h-auto block" containerClassName="relative" width={img.width} height={img.height} placeholder={img.placeholder} data-testid={`screenshot-${i}`} />
+                      {/* Hide side panel text in VRT maps screens (IT only) */}
+                      {lang === "it" && (i === 0 || i === 1) && (
                         <div className="absolute bg-white" style={{ top: 0, right: 0, width: "37%", height: "100%" }} />
                       )}
                     </div>
@@ -706,7 +741,7 @@ export default function Home() {
                   {/* Farmer photo — shown only for Irrigazione module */}
                   {activeFeature === 5 && (
                     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }} className="rounded-xl overflow-hidden shadow-lg border border-border w-full">
-                      <LazyImage src="/farmer-soil-moisture.webp" alt="Agricoltore in campo che misura l'umidità del suolo e inserisce il valore nell'app Taurus 2.0 VRT" className="w-full h-full object-cover object-center" containerClassName="relative w-full aspect-[4/3]" width={512} height={683} placeholder="data:image/webp;base64,UklGRkIBAABXRUJQVlA4IDYBAACQBgCdASoUAB0APpE+mkkloyKhKAqosBIJYgCdMuz6YQU56oWvgcxiqXc4npELagT7nFj8Mjq+GriSdV20AP6YS5pO7OgKh2j5hvGK3jjN+PcvLNslIK/+vxFH6plCBpw6sVlROKw64aWbmAKAC5YSL3CWhY9CipjhWEe7XzuwW7X7blj489vKgnG2O30d0TZsUyh0wd044uaEu/fv+ue+bsHHu7lsVuge+bZBEeytrsj2zMSVmsEPpz6oZwD/vnnqE9Xxxf0JM1Rqztrqfrxuu+MiKs+EJTPD2HaHm63M799gsLidTxzhSIG1/gqaY1ofobMt/Kp9KwvQMl7Xph5j6/sFgyT5o30q9SxL6b8LMIl0c2fBPdiI2lT/VgfT6O36BmJ1JuOyGgHbm5FQBAY44eVx0gAA" />
+                      <LazyImage src="/farmer-soil-moisture-v2.webp" alt="Agricoltore in campo che misura l'umidità del suolo e inserisce il valore nell'app Taurus 2.0 VRT" className="w-full h-full object-cover object-center" containerClassName="relative w-full aspect-[4/3]" width={512} height={683} placeholder={THUMBNAILS["farmer-soil-moisture-v2"]} />
                     </motion.div>
                   )}
                 </div>
