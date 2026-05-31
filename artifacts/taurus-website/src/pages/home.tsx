@@ -690,28 +690,28 @@ export default function Home() {
 
             <AnimatePresence mode="wait">
               <motion.div key={`${activeFeature}-${lang}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.35, ease: "easeOut" }} className="grid lg:grid-cols-5 gap-8 items-center">
-                <div className="lg:col-span-2 space-y-5">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium border" style={{ backgroundColor: `${appFeatures[activeFeature].color}12`, borderColor: `${appFeatures[activeFeature].color}35`, color: appFeatures[activeFeature].color }}>
+                <div className="lg:col-span-2 flex flex-col gap-5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium border self-start" style={{ backgroundColor: `${appFeatures[activeFeature].color}12`, borderColor: `${appFeatures[activeFeature].color}35`, color: appFeatures[activeFeature].color }}>
                     {appFeatures[activeFeature].badge}
                   </div>
                   <h3 className="text-2xl lg:text-3xl font-bold leading-snug" style={{ color: NAVY }}>{appFeatures[activeFeature].title}</h3>
                   <p className="text-muted-foreground text-base leading-relaxed">{appFeatures[activeFeature].description}</p>
-                  <div className="flex gap-3 pt-2">
+                  <div className="flex gap-3">
                     {appFeatures.map((_, i) => (
                       <button key={i} onClick={() => setActiveFeature(i)} data-testid={`btn-feature-dot-${i}`} className="w-2.5 h-2.5 rounded-full transition-all duration-300"
                         style={{ backgroundColor: activeFeature === i ? appFeatures[i].color : "#d1d5db", transform: activeFeature === i ? "scale(1.35)" : "scale(1)" }}
                       />
                     ))}
                   </div>
+                  {/* Farmer photo — shown only for Irrigazione module */}
+                  {activeFeature === 5 && (
+                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }} className="rounded-xl overflow-hidden shadow-lg border border-border w-full">
+                      <LazyImage src="/farmer-soil-moisture.webp" alt="Agricoltore in campo che misura l'umidità del suolo e inserisce il valore nell'app Taurus 2.0 VRT" className="w-full h-full object-cover object-center" containerClassName="relative w-full aspect-[4/3]" width={512} height={683} placeholder="data:image/webp;base64,UklGRkoBAABXRUJQVlA4ID4BAACwBgCdASoUAB0APpFAmkmlo6IhKAqosBIJZACxHuIxj8W/o0iA5TI/x/Dq9VZ0+uEWmCTuWoeOr4ap+C1kEAD+6vP0ukf0qfztox4QVl0/9mhBiFixCv45cOh8oUHsl4rw9tS/tKq+FdUE+BSqSWy7CNqhFPNkMAOAbtwK5D8gMnY/d0PuWlSL+dBBbo5A7e0G9s1in+LxX49UPc6uAxptynY2Pl+sgR6UDc3YdTTQkQR7zebpmLotJaQ+AsUo/YM4ycj1+0c789talm+h/y+CIl7Mw/JgQKXwh+fV4fgURHbc6lMPr7+pSnDQ/OukqG6fMPAdpoNjj8LKSL8Niq2RlpZhFicjT5JNSMKnjKnfdlkjik9KwuxjuRPOECwQVZu8mJayiGS8NTXrndTYgW1tvUKd6m+3FVNwq9wAAAA=" />
+                    </motion.div>
+                  )}
                 </div>
                 <div className="lg:col-span-3 relative">
                   <div className="absolute -inset-4 rounded-3xl blur-3xl opacity-10" style={{ backgroundColor: appFeatures[activeFeature].color }} />
-                  {/* Farmer photo — shown only for Irrigazione module */}
-                  {activeFeature === 5 && (
-                    <motion.div initial={{ opacity: 0, scale: 0.9, y: 12 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.25, ease: "easeOut" }} className="absolute -bottom-5 -right-4 z-10 w-36 lg:w-44 rounded-xl overflow-hidden border-2 border-white shadow-xl">
-                      <LazyImage src="/farmer-soil-moisture.webp" alt="Agricoltore in campo che misura l'umidità del suolo e inserisce il valore nell'app Taurus 2.0 VRT" className="w-full h-auto block" containerClassName="relative" width={512} height={683} placeholder="data:image/webp;base64,UklGRkoBAABXRUJQVlA4ID4BAACwBgCdASoUAB0APpFAmkmlo6IhKAqosBIJZACxHuIxj8W/o0iA5TI/x/Dq9VZ0+uEWmCTuWoeOr4ap+C1kEAD+6vP0ukf0qfztox4QVl0/9mhBiFixCv45cOh8oUHsl4rw9tS/tKq+FdUE+BSqSWy7CNqhFPNkMAOAbtwK5D8gMnY/d0PuWlSL+dBBbo5A7e0G9s1in+LxX49UPc6uAxptynY2Pl+sgR6UDc3YdTTQkQR7zebpmLotJaQ+AsUo/YM4ycj1+0c789talm+h/y+CIl7Mw/JgQKXwh+fV4fgURHbc6lMPr7+pSnDQ/OukqG6fMPAdpoNjj8LKSL8Niq2RlpZhFicjT5JNSMKnjKnfdlkjik9KwuxjuRPOECwQVZu8mJayiGS8NTXrndTYgW1tvUKd6m+3FVNwq9wAAAA=" />
-                    </motion.div>
-                  )}
                   <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl bg-white">
                     <div className="h-9 flex items-center px-4 gap-2" style={{ backgroundColor: GREEN }}>
                       <div className="flex gap-1.5">
