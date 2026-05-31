@@ -71,8 +71,9 @@ export const translations = {
         { title: "Mappe di Prescrizione VRT",      desc: "Zone omogenee NDVI — export compatibile con Topcon e Trimble." },
         { title: "Previsione Malattie",            desc: "Monitora rischio per Grano, Vite, Tabacco e Pomodoro." },
         { title: "Verifica Copertura Fitofarmaco", desc: "Traccia la durata protettiva degli agrofarmaci applicati." },
+        { title: "Gestione Irrigazione",           desc: "Bilancio idrico, piano irriguo e modello di evapotraspirazione per appezzamento." },
       ],
-      tabs: ["Mappe VRT", "Mappa di Prescrizione", "Monitoraggio Malattie", "Previsioni Meteo"],
+      tabs: ["Mappe VRT", "Mappa di Prescrizione", "Monitoraggio Malattie", "Previsioni Meteo", "Irrigazione"],
       demoBox: {
         h3: "Richiedi una demo gratuita",
         p: "Mostriamo Taurus 2.0 VRT in diretta sulla tua azienda. Lascia la tua email e ti contatteremo entro 24 ore.",
@@ -219,8 +220,9 @@ export const translations = {
         { title: "VRT Prescription Maps",        desc: "Homogeneous NDVI zones — export compatible with Topcon and Trimble." },
         { title: "Disease Forecasting",          desc: "Monitor risk for Wheat, Grapevine, Tobacco and Tomato." },
         { title: "Agrochemical Coverage Check",  desc: "Track the protective duration of applied agrochemicals." },
+        { title: "Irrigation Management",        desc: "Water balance, irrigation scheduling and evapotranspiration model per plot." },
       ],
-      tabs: ["VRT Maps", "Prescription Map", "Disease Monitoring", "Weather Forecasts"],
+      tabs: ["VRT Maps", "Prescription Map", "Disease Monitoring", "Weather Forecasts", "Irrigation"],
       demoBox: {
         h3: "Request a free demo",
         p: "We show Taurus 2.0 VRT live on your farm. Leave your email and we'll contact you within 24 hours.",
@@ -367,8 +369,9 @@ export const translations = {
         { title: "Mapas de prescripción VRT",             desc: "Zonas homogéneas NDVI — exportación compatible con Topcon y Trimble." },
         { title: "Previsión de enfermedades",             desc: "Monitorea el riesgo para Trigo, Vid, Tabaco y Tomate." },
         { title: "Verificación de cobertura fitosanitaria", desc: "Rastrea la duración protectora de los agroquímicos aplicados." },
+        { title: "Gestión del Riego",                      desc: "Balance hídrico, turnos de riego y modelo de evapotranspiración por parcela." },
       ],
-      tabs: ["Mapas VRT", "Mapa de prescripción", "Monitoreo de enfermedades", "Previsiones meteorológicas"],
+      tabs: ["Mapas VRT", "Mapa de prescripción", "Monitoreo de enfermedades", "Previsiones meteorológicas", "Riego"],
       demoBox: {
         h3: "Solicita una demo gratuita",
         p: "Te mostramos Taurus 2.0 VRT en directo en tu empresa. Deja tu email y te contactaremos en 24 horas.",
