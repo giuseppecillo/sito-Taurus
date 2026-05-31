@@ -55,7 +55,7 @@ const APP_FEATURE_STATIC = [
   { id: "malattie",     icon: Bug,             image: "/farm-screen-3.webp", color: AMBER, imgWidth: 4169, imgHeight: 3350, placeholder: THUMBNAILS["farm-screen-3"] },
   { id: "prescrizione", icon: FileBarChart2,   image: "/farm-screen-4.webp", color: GREEN, imgWidth: 6156, imgHeight: 3226, placeholder: THUMBNAILS["farm-screen-4"] },
   { id: "mappe",        icon: Layers,          image: "/farm-screen-5.webp", color: TEAL,  imgWidth: 6097, imgHeight: 2806, placeholder: THUMBNAILS["farm-screen-5"] },
-  { id: "irrigazione",  icon: Droplets,        image: "/app-irrigazione.png", color: BLUE, imgWidth: 2488, imgHeight: 2725, placeholder: undefined },
+  { id: "irrigazione",  icon: Droplets,        image: "/app-irrigazione.webp", color: BLUE, imgWidth: 2488, imgHeight: 2725, placeholder: "data:image/webp;base64,UklGRkQBAABXRUJQVlA4WAoAAAAQAAAAEwAAFQAAQUxQSFQAAAANYFNt2477+5kZjbpI4Ogig1UTVcTQwOR7xvfxJYiICRDGA6e68SaLLPWCtAyBZwOdc+DOtPoRLJCacuAFTYngDowlsgJSDvyo5Eg4lRyJHhMyCCdWUDggygAAAPAEAJ0BKhQAFgA+kTaVSCWioiEwGAwAsBIJYwC/7A3C3uLnQWAFjYNiym1Ap3skAAD++taANHU77dKRO7z+/OyCRpIQnXZB2ysoaJ1Gp1o9YT7qm87MXX+Z1P8spm34T796J/z/5aXLAZU2nhHklcHFeueW65ESnpQ6iK3+Dcg8ThTE9Pf73hhzOCT+dQZm/d6KUKA5x/fWZ8mHjkXaE3M1dhQZW1oWoL7hCC3r/RkBYPBs3ZkoHn9bXSJgqIeyTHNTP4halb8AAAA=" },
 ];
 
 /* Static crop properties */
