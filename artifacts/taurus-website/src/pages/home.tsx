@@ -55,6 +55,7 @@ const APP_FEATURE_STATIC = [
   { id: "malattie",     icon: Bug,             image: "/farm-screen-3.webp", color: AMBER, imgWidth: 4169, imgHeight: 3350, placeholder: THUMBNAILS["farm-screen-3"] },
   { id: "prescrizione", icon: FileBarChart2,   image: "/farm-screen-4.webp", color: GREEN, imgWidth: 6156, imgHeight: 3226, placeholder: THUMBNAILS["farm-screen-4"] },
   { id: "mappe",        icon: Layers,          image: "/farm-screen-5.webp", color: TEAL,  imgWidth: 6097, imgHeight: 2806, placeholder: THUMBNAILS["farm-screen-5"] },
+  { id: "irrigazione",  icon: Droplets,        image: "/app-irrigazione.png", color: BLUE, imgWidth: 2488, imgHeight: 2725, placeholder: undefined },
 ];
 
 /* Static crop properties */
