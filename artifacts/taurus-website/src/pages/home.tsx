@@ -498,7 +498,7 @@ export default function Home() {
                 {/* Screenshot tabs */}
                 <div className="flex gap-2 mb-4 overflow-x-auto pb-1 scrollbar-hide flex-nowrap lg:flex-wrap">
                   {t.features.tabs.map((label, i) => {
-                    const colors = [TEAL, GREEN, RED_, BLUE];
+                    const colors = [TEAL, GREEN, RED_, BLUE, "#0ea5e9"];
                     const c = colors[i];
                     return (
                       <button key={i} onClick={() => setActiveScreenshot(i)} className="shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-all border" style={activeScreenshot === i ? { backgroundColor: c, color: "white", borderColor: c } : { backgroundColor: "transparent", color: c, borderColor: `${c}60` }} data-testid={`tab-screenshot-${i}`}>
@@ -513,7 +513,8 @@ export default function Home() {
                     { src: "/app-vrt-maps.webp",     alt: "Schermata VRT 2.0 e Mappe — mappa di prescrizione a zone omogenee",                              width: 6097, height: 2806, placeholder: THUMBNAILS["app-vrt-maps"]     },
                     { src: "/app-prescrizione.webp", alt: "Schermata Calcola Mappa di Prescrizione VRT — clusterizzazione K-means NDVI con dosi kg/ha",      width: 6156, height: 3226, placeholder: THUMBNAILS["app-prescrizione"] },
                     { src: "/app-malattie.webp",     alt: "Schermata Malattie — previsione rischio fitosanitario a 7 giorni",                                width: 4169, height: 3350, placeholder: THUMBNAILS["app-malattie"]     },
-                    { src: "/app-meteo.webp",        alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento",                            width: 4517, height: 3104, placeholder: THUMBNAILS["app-meteo"]        }
+                    { src: "/app-meteo.webp",        alt: "Schermata Previsioni Meteo — dati agrometeorologici per appezzamento",                            width: 4517, height: 3104, placeholder: THUMBNAILS["app-meteo"]        },
+                    { src: "/app-irrigazione.png",  alt: "Schermata Irrigazione — bilancio idrico e piano di irrigazione per appezzamento",                  width: 2488, height: 2725, placeholder: undefined                        }
                   ].map((img, i) => (
                     <div key={i} className="relative" style={{ display: activeScreenshot === i ? "block" : "none" }}>
                       <LazyImage src={img.src} alt={img.alt} className="w-full h-auto block" containerClassName="relative" width={img.width} height={img.height} placeholder={img.placeholder} data-testid={`screenshot-${i}`} />
