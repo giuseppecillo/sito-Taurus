@@ -741,7 +741,7 @@ export default function Home() {
                   {/* Farmer photo — shown only for Irrigazione module */}
                   {activeFeature === 5 && (
                     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }} className="rounded-xl overflow-hidden shadow-lg border border-border w-full">
-                      <LazyImage src="/farmer-soil-moisture-v3.webp" alt="Agricoltore inginocchiato in campo che misura l'umidità del suolo con sensore a forchetta e inserisce il dato nell'app Taurus 2.0 VRT" className="w-full h-full object-cover object-center" containerClassName="relative w-full aspect-[3/4]" width={896} height={1280} placeholder={THUMBNAILS["farmer-soil-moisture-v3"]} />
+                      <LazyImage src="/farmer-soil-moisture-v4.webp" alt="Agricoltore inginocchiato in campo che misura l'umidità del suolo con sensore a forchetta e inserisce il dato nel modulo Irrigazione di Taurus 2.0 VRT" className="w-full h-full object-cover object-center" containerClassName="relative w-full aspect-[3/4]" width={896} height={1280} placeholder={THUMBNAILS["farmer-soil-moisture-v4"]} />
                     </motion.div>
                   )}
                 </div>
