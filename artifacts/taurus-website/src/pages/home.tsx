@@ -706,6 +706,12 @@ export default function Home() {
                 </div>
                 <div className="lg:col-span-3 relative">
                   <div className="absolute -inset-4 rounded-3xl blur-3xl opacity-10" style={{ backgroundColor: appFeatures[activeFeature].color }} />
+                  {/* Farmer photo — shown only for Irrigazione module */}
+                  {activeFeature === 5 && (
+                    <motion.div initial={{ opacity: 0, scale: 0.9, y: 12 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.45, delay: 0.25, ease: "easeOut" }} className="absolute -bottom-5 -right-4 z-10 w-36 lg:w-44 rounded-xl overflow-hidden border-2 border-white shadow-xl">
+                      <LazyImage src="/farmer-soil-moisture.webp" alt="Agricoltore in campo che misura l'umidità del suolo e inserisce il valore nell'app Taurus 2.0 VRT" className="w-full h-auto block" containerClassName="relative" width={512} height={683} placeholder="data:image/webp;base64,UklGRkoBAABXRUJQVlA4ID4BAACwBgCdASoUAB0APpFAmkmlo6IhKAqosBIJZACxHuIxj8W/o0iA5TI/x/Dq9VZ0+uEWmCTuWoeOr4ap+C1kEAD+6vP0ukf0qfztox4QVl0/9mhBiFixCv45cOh8oUHsl4rw9tS/tKq+FdUE+BSqSWy7CNqhFPNkMAOAbtwK5D8gMnY/d0PuWlSL+dBBbo5A7e0G9s1in+LxX49UPc6uAxptynY2Pl+sgR6UDc3YdTTQkQR7zebpmLotJaQ+AsUo/YM4ycj1+0c789talm+h/y+CIl7Mw/JgQKXwh+fV4fgURHbc6lMPr7+pSnDQ/OukqG6fMPAdpoNjj8LKSL8Niq2RlpZhFicjT5JNSMKnjKnfdlkjik9KwuxjuRPOECwQVZu8mJayiGS8NTXrndTYgW1tvUKd6m+3FVNwq9wAAAA=" />
+                    </motion.div>
+                  )}
                   <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl bg-white">
                     <div className="h-9 flex items-center px-4 gap-2" style={{ backgroundColor: GREEN }}>
                       <div className="flex gap-1.5">
