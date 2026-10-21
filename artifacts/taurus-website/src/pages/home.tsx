@@ -603,6 +603,72 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── MACHINERY, CONNECTIONS & FARM ACTIVITIES ─── */}
+        <section id="macchine" className="relative overflow-hidden border-y border-border bg-[#f3faf5] py-16 lg:py-24">
+          <div className="pointer-events-none absolute -right-24 -top-28 h-80 w-80 rounded-full opacity-30 blur-3xl" style={{ backgroundColor: `${GREEN}30` }} />
+          <div className="container relative mx-auto px-5 lg:px-12">
+            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+              <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer}>
+                <motion.div variants={fadeUp} className="mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium" style={{ backgroundColor: `${GREEN}12`, borderColor: `${GREEN}35`, color: GREEN }}>
+                  <Tractor className="h-4 w-4" />
+                  <span>{t.machinery.badge}</span>
+                </motion.div>
+                <motion.h2 variants={fadeUp} className="mb-5 text-3xl font-bold leading-tight lg:text-5xl" style={{ color: NAVY }}>
+                  {t.machinery.h2Line1}<br />
+                  <span style={{ color: GREEN }}>{t.machinery.h2Line2}</span>
+                </motion.h2>
+                <motion.p variants={fadeUp} className="mb-8 text-lg leading-relaxed text-muted-foreground">{t.machinery.p}</motion.p>
+
+                <motion.div variants={staggerContainer} className="space-y-4">
+                  {t.machinery.features.map((feature, i) => {
+                    const Icon = [Tractor, Cloud, FileBarChart2][i];
+                    return (
+                      <motion.div key={feature.title} variants={fadeUp} className="flex gap-4 rounded-2xl border border-white/80 bg-white/80 p-4 shadow-sm">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: `${[GREEN, TEAL, BLUE][i]}15` }}>
+                          <Icon className="h-5 w-5" style={{ color: [GREEN, TEAL, BLUE][i] }} />
+                        </div>
+                        <div>
+                          <h3 className="mb-1 font-semibold" style={{ color: NAVY }}>{feature.title}</h3>
+                          <p className="text-sm leading-relaxed text-muted-foreground">{feature.desc}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </motion.div>
+
+                <motion.div variants={fadeUp} className="mt-6 rounded-2xl border border-white/80 bg-white/70 p-4">
+                  <p className="mb-3 text-sm font-semibold" style={{ color: NAVY }}>{t.machinery.activityTitle}</p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {t.machinery.activityStatuses.map((status, i) => (
+                      <div key={status} className="flex min-h-11 items-center justify-center gap-2 rounded-xl px-2 py-2 text-center text-xs font-medium sm:text-sm" style={{ backgroundColor: `${[BLUE, AMBER, GREEN][i]}12`, color: [BLUE, "#b7791f", GREEN][i] }}>
+                        {i === 2 ? <CheckCircle2 className="h-4 w-4 shrink-0" /> : <Radio className="h-4 w-4 shrink-0" />}
+                        <span>{status}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              <motion.figure initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.7 }} className="relative">
+                <div className="absolute -inset-5 rounded-[2rem] opacity-20 blur-2xl" style={{ backgroundColor: GREEN }} />
+                <div className="relative overflow-hidden rounded-3xl border border-white bg-white p-3 shadow-xl sm:p-5">
+                  <LazyImage
+                    src="/farm-machinery-activities.webp"
+                    alt={t.machinery.imageAlt}
+                    className="block h-auto w-full"
+                    containerClassName="relative"
+                    width={1800}
+                    height={1657}
+                    placeholder={THUMBNAILS["farm-machinery-activities"]}
+                    data-testid="img-farm-machinery-activities"
+                  />
+                </div>
+                <figcaption className="relative mt-4 text-center text-sm text-muted-foreground">{t.machinery.imageCaption}</figcaption>
+              </motion.figure>
+            </div>
+          </div>
+        </section>
+
         {/* ─── IoT BANNER ─── */}
         <section className="relative h-[340px] lg:h-[420px] overflow-hidden flex items-center justify-center">
           <LazyImage src="/img-iot-connect.webp" alt="Rete IoT satellite drone sensori" className="w-full h-full object-cover object-center" containerClassName="absolute inset-0 overflow-hidden" dark width={1408} height={768} placeholder={THUMBNAILS["img-iot-connect"]} data-testid="img-iot-connect" />
