@@ -669,6 +669,87 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── PLANS ─── */}
+        <section id="plans" className="bg-white py-16 lg:py-24">
+          <div className="container mx-auto px-5 lg:px-12">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={staggerContainer}
+              className="mx-auto mb-12 max-w-3xl text-center lg:mb-16"
+            >
+              <motion.div variants={fadeUp} className="mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium" style={{ backgroundColor: `${GREEN}12`, borderColor: `${GREEN}35`, color: GREEN }}>
+                <Layers className="h-4 w-4" />
+                <span>{t.plans.modulesLabel}</span>
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="mb-4 text-3xl font-bold lg:text-5xl" style={{ color: NAVY }}>{t.plans.h2}</motion.h2>
+              <motion.p variants={fadeUp} className="text-lg text-muted-foreground">{t.plans.p}</motion.p>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={staggerContainer}
+              className="grid items-stretch gap-5 lg:grid-cols-3 lg:gap-6"
+            >
+              {t.plans.plans.map((plan, i) => {
+                const PlanIcon = [Leaf, Layers, Tractor][i];
+                const color = [TEAL, BLUE, GREEN][i];
+                return (
+                  <motion.article
+                    key={plan.name}
+                    variants={fadeUp}
+                    whileHover={{ y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className={`relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-6 shadow-sm transition-shadow hover:shadow-xl lg:p-7 ${i === 2 ? "lg:-translate-y-2" : ""}`}
+                    style={{ borderColor: i === 2 ? `${GREEN}70` : "#e2e8f0" }}
+                    data-testid={`plan-card-${plan.name.toLowerCase()}`}
+                  >
+                    <div className="absolute inset-x-0 top-0 h-1.5" style={{ backgroundColor: color }} />
+                    <div className="mb-5 flex items-center justify-between gap-3 pt-1">
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ backgroundColor: `${color}15`, color }}>
+                          <PlanIcon className="h-5 w-5" />
+                        </span>
+                        <h3 className="text-2xl font-bold" style={{ color: NAVY }}>{plan.name}</h3>
+                      </div>
+                      <span className="text-xs font-semibold uppercase tracking-wide" style={{ color }}>{plan.modules.length} {t.plans.modulesLabel}</span>
+                    </div>
+
+                    <p className="mb-5 min-h-12 text-sm leading-relaxed text-muted-foreground">{plan.description}</p>
+                    {plan.inheritance && (
+                      <div className="mb-4 rounded-xl px-3 py-2 text-xs font-semibold" style={{ backgroundColor: `${color}10`, color }}>
+                        {plan.inheritance}
+                      </div>
+                    )}
+
+                    <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t.plans.modulesLabel}</div>
+                    <ul className="mb-7 flex-1 space-y-3">
+                      {plan.modules.map((module) => (
+                        <li key={module} className="flex items-start gap-2.5 text-sm leading-snug" style={{ color: NAVY }}>
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color }} />
+                          <span>{module}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="h-1 rounded-full" style={{ background: `linear-gradient(to right, ${color}, ${color}20)` }} />
+                  </motion.article>
+                );
+              })}
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }} className="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
+              <span className="text-base font-medium text-muted-foreground">{t.plans.emailCta}</span>
+              <a href="mailto:info@taurusagsolution.com" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg" style={{ backgroundColor: GREEN }}>
+                info@taurusagsolution.com
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </motion.div>
+          </div>
+        </section>
+
         {/* ─── IoT BANNER ─── */}
         <section className="relative h-[340px] lg:h-[420px] overflow-hidden flex items-center justify-center">
           <LazyImage src="/img-iot-connect.webp" alt="Rete IoT satellite drone sensori" className="w-full h-full object-cover object-center" containerClassName="absolute inset-0 overflow-hidden" dark width={1408} height={768} placeholder={THUMBNAILS["img-iot-connect"]} data-testid="img-iot-connect" />
