@@ -103,6 +103,32 @@ export const translations = {
       imageAlt: "Interfaccia Taurus 2.0 VRT per la gestione di macchine, magazzino, attività e tracciabilità dei prodotti raccolti",
       imageCaption: "Macchine, attrezzature, magazzino, registro attività e tracciabilità.",
     },
+    plans: {
+      h2: "Scegli il tuo piano",
+      p: "Soluzioni modulari per accompagnare ogni fase della gestione agricola.",
+      modulesLabel: "Moduli inclusi",
+      emailCta: "Contattaci per scegliere il piano più adatto alla tua azienda",
+      plans: [
+        {
+          name: "Lite",
+          description: "Le funzioni essenziali per pianificare il lavoro in campo.",
+          inheritance: "",
+          modules: ["Appezzamenti", "Mappe di Prescrizione", "Meteo Previsionale"],
+        },
+        {
+          name: "Standard",
+          description: "Tutto il piano Lite, con più strumenti per la precisione e la protezione delle colture.",
+          inheritance: "Include tutti i moduli Lite",
+          modules: ["Appezzamenti", "Mappe di Prescrizione", "Meteo Previsionale", "VRT 2.0 e Mappe", "Irrigazione", "Malattie"],
+        },
+        {
+          name: "Pro",
+          description: "Tutto il piano Standard, con la gestione integrata di macchine e attività.",
+          inheritance: "Include tutti i moduli Standard",
+          modules: ["Appezzamenti", "Mappe di Prescrizione", "Meteo Previsionale", "VRT 2.0 e Mappe", "Irrigazione", "Malattie", "Macchine, connessioni, attività"],
+        },
+      ],
+    },
     iot: {
       overline: "Ecosistema integrato",
       h2Line1: "Satellite, Drone, IoT.",
@@ -267,6 +293,32 @@ export const translations = {
       imageAlt: "Taurus 2.0 VRT interface for managing machinery, inventory, activities and harvested product traceability",
       imageCaption: "Machinery, equipment, inventory, activity log and traceability.",
     },
+    plans: {
+      h2: "Choose your plan",
+      p: "Modular solutions to support every stage of farm management.",
+      modulesLabel: "modules included",
+      emailCta: "Contact us to choose the right plan for your farm",
+      plans: [
+        {
+          name: "Lite",
+          description: "The essentials for planning field work.",
+          inheritance: "",
+          modules: ["Plots", "Prescription Maps", "Weather Forecasts"],
+        },
+        {
+          name: "Standard",
+          description: "Everything in Lite, with more tools for precision farming and crop protection.",
+          inheritance: "Includes all Lite modules",
+          modules: ["Plots", "Prescription Maps", "Weather Forecasts", "VRT 2.0 and Maps", "Irrigation", "Diseases"],
+        },
+        {
+          name: "Pro",
+          description: "Everything in Standard, with integrated machinery and activity management.",
+          inheritance: "Includes all Standard modules",
+          modules: ["Plots", "Prescription Maps", "Weather Forecasts", "VRT 2.0 and Maps", "Irrigation", "Diseases", "Machines, connections, activities"],
+        },
+      ],
+    },
     iot: {
       overline: "Integrated ecosystem",
       h2Line1: "Satellite, Drone, IoT.",
@@ -420,9 +472,9 @@ export const translations = {
       badge: "Máquinas, conexiones y actividades",
       h2Line1: "La gestión agrícola",
       h2Line2: "en la palma de tu mano.",
-      p: "Gestiona la trazabilidad de la cadena de suministro y el cuaderno de campo con el módulo «Máquinas, conexiones y actividades», estés donde estés. Conecta maquinaria agrícola y servicios cloud Machinery, organiza el almacén y mantén cada actividad bajo control.",
+      p: "Gestiona la trazabilidad de la cadena de suministro y el cuaderno de campo con el módulo «Máquinas, conexiones y actividades», estés donde estés. Conecta maquinaria agrícola y los servicios en la nube de Machinery, organiza el almacén y mantén cada actividad bajo control.",
       features: [
-        { title: "Maquinaria y conexiones", desc: "Conecta y gestiona la maquinaria agrícola y los servicios cloud Machinery desde un único lugar." },
+        { title: "Maquinaria y conexiones", desc: "Conecta y gestiona la maquinaria agrícola y los servicios en la nube de Machinery desde un único lugar." },
         { title: "Almacén y cadena de suministro", desc: "Controla existencias y movimientos y conserva la trazabilidad de los productos cosechados en toda la cadena." },
         { title: "Cuaderno de campo", desc: "Consulta y actualiza los registros de campo estés donde estés." },
       ],
@@ -430,6 +482,32 @@ export const translations = {
       activityStatuses: ["Programada", "En curso", "Completada"],
       imageAlt: "Interfaz Taurus 2.0 VRT para gestionar maquinaria, almacén, actividades y trazabilidad de productos cosechados",
       imageCaption: "Maquinaria, equipos, almacén, registro de actividades y trazabilidad.",
+    },
+    plans: {
+      h2: "Elige tu plan",
+      p: "Soluciones modulares para acompañar cada etapa de la gestión agrícola.",
+      modulesLabel: "Módulos incluidos",
+      emailCta: "Contáctanos para elegir el plan más adecuado para tu explotación",
+      plans: [
+        {
+          name: "Lite",
+          description: "Las funciones esenciales para planificar el trabajo en el campo.",
+          inheritance: "",
+          modules: ["Parcelas", "Mapas de prescripción", "Previsión meteorológica"],
+        },
+        {
+          name: "Standard",
+          description: "Todo lo incluido en Lite, con más herramientas para la agricultura de precisión y la protección de cultivos.",
+          inheritance: "Incluye todos los módulos Lite",
+          modules: ["Parcelas", "Mapas de prescripción", "Previsión meteorológica", "VRT 2.0 y Mapas", "Riego", "Enfermedades"],
+        },
+        {
+          name: "Pro",
+          description: "Todo lo incluido en Standard, con gestión integrada de maquinaria y actividades.",
+          inheritance: "Incluye todos los módulos Standard",
+          modules: ["Parcelas", "Mapas de prescripción", "Previsión meteorológica", "VRT 2.0 y Mapas", "Riego", "Enfermedades", "Máquinas, conexiones y actividades"],
+        },
+      ],
     },
     iot: {
       overline: "Ecosistema integrado",
