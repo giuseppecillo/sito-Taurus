@@ -1,0 +1,5 @@
+- [Language-aware screenshots](lang-screenshots.md) — le schermate dei moduli seguono la lingua; dichiarare la lingua delle fonti originali non localizzate.
+- [Farmer image cache bust](farmer-image.md) — immagini con header immutable vanno rinominate (-v2, -v3…) per bust cache browser CDN Netlify
+- [LazyImage race condition](lazyimage-race.md) — img.complete check nel useEffect dopo setLoaded(false) risolve immagini cached invisibili
+- [GitHub push method](github-push.md) — usare sempre GitHub Contents API PUT sequenziale, mai git push diretto
+- [NitroCrop positioning](nitrocrop-positioning.md) — slogan e caratteristiche del prodotto forniti dall'utente; distinguere il supporto agronomico dalla gestione aziendale.

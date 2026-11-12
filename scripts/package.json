@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "hello": "tsx ./src/hello.ts",
+    "gen-nitrocrop-illustrations": "tsx ./src/gen-nitrocrop-illustrations.ts",
     "gen-thumbnails": "tsx ./src/gen-thumbnails.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
