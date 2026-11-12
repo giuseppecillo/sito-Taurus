@@ -48,50 +48,216 @@ uri = "file://artifacts/taurus-mobile/assets/images/icon.png"
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "UCdoDOllGPuxjZxSQqxJ9"
+uri = "file://artifacts/taurus-website/public/farmer-soil-moisture.png"
+type = "image"
+title = "farmer fork sensor irrigation app"
+
+[[generated]]
+id = "ON27FgJV507pZrO-Emm4q"
+uri = "file://artifacts/taurus-website/public/screen-en-plots.png"
+type = "image"
+title = "en plots dashboard screenshot"
+
+[[generated]]
+id = "NwxYn2o3YbZo6AWaayWzi"
+uri = "file://artifacts/taurus-website/public/screen-en-weather.png"
+type = "image"
+title = "en weather forecast screenshot"
+
+[[generated]]
+id = "LfRBBjqnNFyFoZXE3KbU5"
+uri = "file://artifacts/taurus-website/public/screen-en-diseases.png"
+type = "image"
+title = "en disease monitoring screenshot"
+
+[[generated]]
+id = "AWn2FvAXswovn5TTP1-lG"
+uri = "file://artifacts/taurus-website/public/screen-en-prescription.png"
+type = "image"
+title = "en prescription map screenshot"
+
+[[generated]]
+id = "XQBUguvdbys_zZ_Nzgfo-"
+uri = "file://artifacts/taurus-website/public/screen-en-maps.png"
+type = "image"
+title = "en vrt maps screenshot"
+
+[[generated]]
+id = "UjLnEFhzxTNsB6IEfdGu5"
+uri = "file://artifacts/taurus-website/public/screen-en-irrigation.png"
+type = "image"
+title = "en irrigation module screenshot"
+
+[[generated]]
+id = "0D6Xsv_6iSNtFA3m8E-8X"
+uri = "file://artifacts/taurus-website/public/screen-es-plots.png"
+type = "image"
+title = "es plots dashboard screenshot"
+
+[[generated]]
+id = "yriQWuGZcJG1qjOMOAmZo"
+uri = "file://artifacts/taurus-website/public/screen-es-weather.png"
+type = "image"
+title = "es weather forecast screenshot"
+
+[[generated]]
+id = "Dx97JhNs_MlTl8zpDV2Ir"
+uri = "file://artifacts/taurus-website/public/screen-es-diseases.png"
+type = "image"
+title = "es disease monitoring screenshot"
+
+[[generated]]
+id = "M7DFRHPQUlkdkxeiqb694"
+uri = "file://artifacts/taurus-website/public/screen-es-prescription.png"
+type = "image"
+title = "es prescription map screenshot"
+
+[[generated]]
+id = "p0-OqkxtkQMcwPkKwZw5u"
+uri = "file://artifacts/taurus-website/public/screen-es-maps.png"
+type = "image"
+title = "es vrt maps screenshot"
+
+[[generated]]
+id = "hSNvM15-HPBkbSayMZepW"
+uri = "file://artifacts/taurus-website/public/screen-es-irrigation.png"
+type = "image"
+title = "es irrigation module screenshot"
+
+[[generated]]
+id = "He6OMJ5BFf3m4b989bNIT"
+uri = "file://artifacts/taurus-website/public/farmer-soil-moisture-v3.png"
+type = "image"
+title = "farmer with fork sensor and smartphone"
+
+[[generated]]
+id = "Usbxze8mzgoEE8Qdo4zko"
+uri = "file://artifacts/taurus-website/public/farmer-base-v5.png"
+type = "image"
+title = "farmer base image with open hand holding phone position"
+
+[[generated]]
+id = "XOB36pPIVTta8QkYZ-dK6"
+uri = "file://artifacts/taurus-website/public/farmer-base-v6.png"
+type = "image"
+title = "farmer bending with fork sensor in left hand, dark-screen phone in right hand"
+
+[[generated]]
+id = "KIL-o_m8snjpPS9IbWypj"
+uri = "file://artifacts/taurus-website/public/farmer-base-v6b.png"
+type = "image"
+title = "farmer bending base image (clean dark phone screen)"
+
+[[generated]]
+id = "H0LLMB5NBzFnl1KwvUUso"
+uri = "file://artifacts/taurus-website/public/farmer-base-v7.png"
+type = "image"
+title = "farmer bending with vertical portrait phone facing camera"
+
+[[generated]]
+id = "AKv_QMkQPFJX85ZJQq9hY"
+uri = "file://artifacts/taurus-website/public/farmer-base-v8.png"
+type = "image"
+title = "farmer with vertical portrait phone facing camera v8"
+
+[[generated]]
+id = "KqSbPl_AN8a4hpQeckXua"
+uri = "file://artifacts/taurus-website/public/farmer-base-v9.png"
+type = "image"
+title = "farmer bending with empty open right hand"
+
+[[generated]]
+id = "Iwg-NVpLPU5oxG_9CbDlA"
+uri = "file://artifacts/taurus-website/public/farmer-base-v10.png"
+type = "image"
+title = "farmer hand extended to camera with portrait phone screen facing viewer"
+
+[[generated]]
+id = "yUdstIo2Wl3uWxCWQOA-Q"
+uri = "file://artifacts/taurus-website/public/farmer-v8-a.png"
+type = "image"
+title = "farmer bent measuring soil moisture and reading phone (back of phone)"
+
+[[generated]]
+id = "l80E4yMFNVJ5GBjBXzfbp"
+uri = "file://artifacts/taurus-website/public/farmer-v8-b.png"
+type = "image"
+title = "farmer variant B: reading phone back toward camera while measuring"
+
+[[generated]]
+id = "wnAcb9MpVLflc2ZzkeWYc"
+uri = "file://artifacts/taurus-website/public/farmer-v8-c.png"
+type = "image"
+title = "farmer variant C: sideways phone while measuring soil"
+
 [[outputs]]
 id = "2GEubUqZzaPpFl631iTUW"
 uri = "file://attached_assets/stock_images/agronomist-disease-monitor.jpg"
 type = "image"
 title = "agronomist technician laptop tablet disease monitoring wheat vineyard crop protection"
+logical_id = "66f28754-dae9-4cfa-a2ce-2559ec127b26"
 
 [[outputs]]
 id = "0ZoJ1N5tYz8k-xZkJJPiO"
 uri = "file://attached_assets/stock_images/farmer-smartphone-field.jpg"
 type = "image"
 title = "farmer agronomist smartphone field crop health monitoring precision agriculture remote sensing"
+logical_id = "17849e87-fda7-4b74-8e68-3ba7bc207ed1"
 
 [[outputs]]
 id = "QcJ_X9iaORakrWzCLdvxE"
 uri = "file://attached_assets/stock_images/crop-disease-closeup.jpg"
 type = "image"
 title = "close up plant leaf disease detection tomato wheat vine tobacco crop protection agriculture"
+logical_id = "f92042c7-c9c5-4bfe-8a01-77ba83526dbf"
 
 [[outputs]]
 id = "9Ift-TNaRhbfMQiHIJrGQ"
 uri = "file://attached_assets/stock_images/aerial-field-precision.jpg"
 type = "image"
 title = "precision agriculture satellite drone aerial field map zones variable rate technology Italy"
+logical_id = "59f057d6-cb8f-4fe0-ac10-854356be2451"
 
 [[outputs]]
 id = "hLFgaVfQ84tV5Q-MajhqO"
 uri = "file://attached_assets/stock_images/tractor-tablet.jpg"
 type = "image"
 title = "farmer driving tractor field looking tablet computer GPS navigation agriculture"
+logical_id = "4490b394-a72f-4f9c-91dd-545c31196e88"
 
 [[outputs]]
 id = "SqZHl6orhHoJtEu9a-JSm"
 uri = "file://attached_assets/stock_images/agronomist-tablet-field_1.jpg"
 type = "image"
 title = "agronomist farmer field monitoring tablet precision agriculture crop inspection technology"
+logical_id = "47f67cbd-9dfc-438b-8c35-02e4c6116901"
 
 [[outputs]]
 id = "QhGCU0uISrA8fraT5AklB"
 uri = "file://attached_assets/stock_images/agronomist-tablet-field_2.jpg"
 type = "image"
 title = "agronomist farmer field monitoring tablet precision agriculture crop inspection technology"
+logical_id = "3636eff0-b901-4f19-863c-78262eea33d4"
 
 [[outputs]]
 id = "GTdHkQwzlrsEJLNT8E2N2"
 uri = "file://attached_assets/stock_images/agronomist-tablet-field_3.jpg"
 type = "image"
 title = "agronomist farmer field monitoring tablet precision agriculture crop inspection technology"
+logical_id = "8d20e166-e391-4338-bf38-1b66dd06267c"
+
+[[outputs]]
+id = "tzwPvl6EUe8VTbAVTxn9Q"
+uri = "file://qr-taurusagsolution.png"
+type = "image"
+title = "QR code Taurus AgriTech Solutions"
+description = "QR code ad alta risoluzione che apre https://taurusagsolution.com/."
+logical_id = "6b0ce15b-8ea9-44a9-a3ad-8c95998f6a71"
+content_hash = "sha256:33f9eb6ac0b0ea735fda9eb4e47e3f4b8c26c531431c6f55d1d05400c5681785"
+size = 602
+mtime_ms = 1792575771185
+storage_uri = "gcs://replit-rams-assets-worf/rams/assets/repl:f15ae956-8bea-4077-b5a3-fce20c747152/6b0ce15b-8ea9-44a9-a3ad-8c95998f6a71/9313b676-f72a-4b59-a57c-b0dbee53f8e3"
+storage_version_token = "1792575775135249"
+content_type = "image/png"

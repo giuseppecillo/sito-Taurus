@@ -4,7 +4,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import Funzionalita from "@/pages/funzionalita";
+import Malattie from "@/pages/malattie";
+import Soluzioni from "@/pages/soluzioni";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { MotionConfig } from "framer-motion";
 
 const queryClient = new QueryClient();
 
@@ -12,6 +16,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/funzionalita" component={Funzionalita} />
+      <Route path="/malattie" component={Malattie} />
+      <Route path="/soluzioni" component={Soluzioni} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -19,6 +26,7 @@ function Router() {
 
 function App() {
   return (
+    <MotionConfig reducedMotion="user">
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <LanguageProvider>
@@ -29,6 +37,7 @@ function App() {
         </LanguageProvider>
       </TooltipProvider>
     </QueryClientProvider>
+    </MotionConfig>
   );
 }
 
