@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import {
   ArrowRight,
@@ -7,7 +7,6 @@ import {
   Tractor,
   Satellite,
   CheckCircle2,
-  LayoutDashboard,
   Cloud,
   Bug,
   FileBarChart2,
@@ -27,6 +26,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import type { Lang } from "@/i18n/translations";
 import { LazyImage } from "@/components/LazyImage";
 import { THUMBNAILS } from "@/generated/thumbnails";
+import { nitrocropImageInfo } from "@/lib/nitrocrop-images";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -46,29 +46,7 @@ const TEAL   = "#0d9488";
 const NAVY   = "#1e293b";
 const AMBER  = "#f59e0b";
 const RED_   = "#ef4444";
-const PURPLE = "#8b5cf6";
 
-/* Static (non-translated) properties for appFeatures */
-const APP_FEATURE_STATIC = [
-  { id: "appezzamenti", icon: LayoutDashboard, color: GREEN, imgWidth: { it: 4911, en: 1408, es: 1408 }, imgHeight: { it: 2824, en: 768, es: 768 } },
-  { id: "meteo",        icon: Cloud,           color: TEAL,  imgWidth: { it: 4517, en: 1408, es: 1408 }, imgHeight: { it: 3104, en: 768, es: 768 } },
-  { id: "malattie",     icon: Bug,             color: AMBER, imgWidth: { it: 4169, en: 1408, es: 1408 }, imgHeight: { it: 3350, en: 768, es: 768 } },
-  { id: "prescrizione", icon: FileBarChart2,   color: GREEN, imgWidth: { it: 6156, en: 1408, es: 1408 }, imgHeight: { it: 3226, en: 768, es: 768 } },
-  { id: "mappe",        icon: Layers,          color: TEAL,  imgWidth: { it: 6097, en: 1408, es: 1408 }, imgHeight: { it: 2806, en: 768, es: 768 } },
-  { id: "irrigazione",  icon: Droplets,        color: BLUE,  imgWidth: { it: 2488, en: 1408, es: 1408 }, imgHeight: { it: 2725, en: 768, es: 768 } },
-];
-
-const APP_FEATURE_IMAGES: Record<string, string[]> = {
-  it: ["/farm-screen-1.webp", "/farm-screen-2.webp", "/farm-screen-3.webp", "/farm-screen-4.webp", "/farm-screen-5.webp", "/app-irrigazione.webp"],
-  en: ["/screen-en-plots.webp", "/screen-en-weather.webp", "/screen-en-diseases.webp", "/screen-en-prescription.webp", "/screen-en-maps.webp", "/screen-en-irrigation.webp"],
-  es: ["/screen-es-plots.webp", "/screen-es-weather.webp", "/screen-es-diseases.webp", "/screen-es-prescription.webp", "/screen-es-maps.webp", "/screen-es-irrigation.webp"],
-};
-
-const APP_FEATURE_THUMBS: Record<string, (string | undefined)[]> = {
-  it: [THUMBNAILS["farm-screen-1"], THUMBNAILS["farm-screen-2"], THUMBNAILS["farm-screen-3"], THUMBNAILS["farm-screen-4"], THUMBNAILS["farm-screen-5"], THUMBNAILS["app-irrigazione"]],
-  en: [THUMBNAILS["screen-en-plots"], THUMBNAILS["screen-en-weather"], THUMBNAILS["screen-en-diseases"], THUMBNAILS["screen-en-prescription"], THUMBNAILS["screen-en-maps"], THUMBNAILS["screen-en-irrigation"]],
-  es: [THUMBNAILS["screen-es-plots"], THUMBNAILS["screen-es-weather"], THUMBNAILS["screen-es-diseases"], THUMBNAILS["screen-es-prescription"], THUMBNAILS["screen-es-maps"], THUMBNAILS["screen-es-irrigation"]],
-};
 
 /* Language-specific screenshots for features tabs */
 const FEATURE_TAB_IMGS: Record<string, { src: string; width: number; height: number; placeholder: string | undefined }[]> = {
@@ -95,51 +73,32 @@ const FEATURE_TAB_IMGS: Record<string, { src: string; width: number; height: num
   ],
 };
 
-/* Static crop properties */
-const CROP_STATIC = [
-  { icon: "🌾", risk: 72, color: AMBER  },
-  { icon: "🍇", risk: 38, color: PURPLE },
-  { icon: "🌿", risk: 55, color: GREEN  },
-  { icon: "🍅", risk: 61, color: RED_   },
-];
-
-const LANG_OPTIONS: { code: Lang; flag: string; label: string }[] = [
-  { code: "it", flag: "🇮🇹", label: "IT" },
-  { code: "en", flag: "🇬🇧", label: "EN" },
-  { code: "es", flag: "🇪🇸", label: "ES" },
+const LANG_OPTIONS: { code: Lang; label: string }[] = [
+  { code: "it", label: "IT" },
+  { code: "en", label: "EN" },
+  { code: "es", label: "ES" },
 ];
 
 export default function Home() {
   const { lang, setLang, t } = useLanguage();
-  const [activeFeature, setActiveFeature] = useState(0);
   const [activeScreenshot, setActiveScreenshot] = useState(0);
   const [langOpen, setLangOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const appFeatures = t.appFeatures.map((f, i) => ({
-    ...APP_FEATURE_STATIC[i],
-    image: APP_FEATURE_IMAGES[lang][i],
-    placeholder: APP_FEATURE_THUMBS[lang][i],
-    imgWidth: APP_FEATURE_STATIC[i].imgWidth[lang],
-    imgHeight: APP_FEATURE_STATIC[i].imgHeight[lang],
-    label: f.label,
-    title: f.title,
-    description: f.description,
-    badge: f.badge,
-  }));
-
-  const crops = t.crops.map((c, i) => ({
-    ...CROP_STATIC[i],
-    name: c.name,
-    tag: c.tag,
-  }));
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const target = document.getElementById(window.location.hash.slice(1));
+      target?.scrollIntoView({ behavior: "instant" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-[100dvh] overflow-x-clip bg-background text-foreground font-sans">
 
       {/* ─── NAVBAR ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-border shadow-sm">
-        <div className="flex items-center justify-between px-4 py-3 lg:px-12">
+        <div className="flex items-center justify-between gap-3 px-4 py-3 lg:px-12">
           <Link href="/" className="flex items-center gap-3 group">
             <img
               src="/taurus-logo.webp"
@@ -151,14 +110,19 @@ export default function Home() {
             />
           </Link>
 
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <div className="hidden 2xl:flex min-w-0 items-center gap-5 text-sm font-medium whitespace-nowrap">
             {[
               { href: "#chi-siamo",  label: t.nav.chiSiamo    },
               { href: "#farm-vrt",   label: t.nav.ilProdotto  },
-              { href: "#showcase",   label: t.nav.funzionalita },
-              { href: "#malattie",   label: t.nav.malattie    },
-              { href: "#solutions",  label: t.nav.soluzioni   }
+              { href: "/funzionalita", label: t.nav.funzionalita },
+              { href: "/malattie",   label: t.nav.malattie    },
+              { href: "/soluzioni",  label: t.nav.soluzioni   }
             ].map(({ href, label }) => (
+              href.startsWith("/") ? (
+                <Link key={href} href={href} className="text-foreground/70 hover:text-primary transition-colors" data-testid={`link-nav-${href.slice(1)}`}>
+                  {label}
+                </Link>
+              ) : (
               <a
                 key={href}
                 href={href}
@@ -167,6 +131,7 @@ export default function Home() {
               >
                 {label}
               </a>
+              )
             ))}
           </div>
 
@@ -175,12 +140,12 @@ export default function Home() {
             <div className="relative">
               <button
                 onClick={() => setLangOpen(o => !o)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-sm font-medium text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-colors"
+                className="flex min-h-[44px] min-w-[44px] items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-sm font-medium text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-colors"
                 data-testid="btn-lang-switcher"
                 aria-label="Select language"
+                aria-expanded={langOpen}
               >
                 <Globe className="w-3.5 h-3.5" />
-                <span>{LANG_OPTIONS.find(l => l.code === lang)?.flag}</span>
                 <span className="hidden sm:inline">{lang.toUpperCase()}</span>
               </button>
               <AnimatePresence>
@@ -200,7 +165,6 @@ export default function Home() {
                         style={{ color: lang === opt.code ? GREEN : NAVY, fontWeight: lang === opt.code ? 700 : 500 }}
                         data-testid={`btn-lang-${opt.code}`}
                       >
-                        <span>{opt.flag}</span>
                         <span>{opt.label}</span>
                         {lang === opt.code && <span className="ml-auto w-1.5 h-1.5 rounded-full" style={{ backgroundColor: GREEN }} />}
                       </button>
@@ -211,25 +175,30 @@ export default function Home() {
             </div>
 
             {/* Demo text + App button — desktop only */}
-            <div className="hidden md:flex items-center gap-4">
-              <div className="flex flex-col items-start leading-tight">
+            <div className="hidden lg:flex items-center gap-3">
+              <div className="hidden 2xl:flex flex-col items-start leading-tight">
                 <span className="text-sm font-semibold" style={{ color: GREEN }} data-testid="btn-nav-demo">{t.nav.richiediDemo}</span>
                 <a href="mailto:info@taurusagsolution.com" className="text-[11px] hover:underline" style={{ color: GREEN }}>info@taurusagsolution.com</a>
               </div>
               <Button
-                className="rounded-full px-5 font-medium text-sm border"
+                className="min-h-11 rounded-full px-5 font-medium text-sm border"
                 variant="outline"
                 asChild
               >
                 <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" data-testid="btn-nav-app">{t.nav.accediApp}</a>
               </Button>
+              <Button className="min-h-11 rounded-full px-5 font-medium text-sm border" variant="outline" asChild>
+                <a href="https://nitrocrop.taurusagsolution.com/" target="_blank" rel="noopener noreferrer" data-testid="btn-nav-nitrocrop">{t.nav.accediNitro}</a>
+              </Button>
             </div>
 
             {/* Hamburger — mobile only */}
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              className="2xl:hidden inline-flex h-11 w-11 items-center justify-center rounded-lg hover:bg-muted transition-colors"
               onClick={() => setMenuOpen(o => !o)}
               aria-label="Menu"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
               data-testid="btn-mobile-menu"
             >
               {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -245,16 +214,22 @@ export default function Home() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.22 }}
-              className="md:hidden overflow-hidden border-t border-border bg-white"
+              id="mobile-navigation"
+              className="2xl:hidden max-h-[calc(100dvh-76px)] overflow-x-hidden overflow-y-auto border-t border-border bg-white"
             >
               <div className="flex flex-col px-4 py-4 gap-1">
                 {[
                   { href: "#chi-siamo",  label: t.nav.chiSiamo    },
                   { href: "#farm-vrt",   label: t.nav.ilProdotto  },
-                  { href: "#showcase",   label: t.nav.funzionalita },
-                  { href: "#malattie",   label: t.nav.malattie    },
-                  { href: "#solutions",  label: t.nav.soluzioni   }
+                  { href: "/funzionalita", label: t.nav.funzionalita },
+                  { href: "/malattie",   label: t.nav.malattie    },
+                  { href: "/soluzioni",  label: t.nav.soluzioni   }
                 ].map(({ href, label }) => (
+                  href.startsWith("/") ? (
+                    <Link key={href} href={href} onClick={() => setMenuOpen(false)} className="py-3 px-2 text-base font-medium text-foreground/80 hover:text-primary border-b border-border last:border-0 transition-colors" data-testid={`link-mobile-nav-${href.slice(1)}`}>
+                      {label}
+                    </Link>
+                  ) : (
                   <a
                     key={href}
                     href={href}
@@ -264,6 +239,7 @@ export default function Home() {
                   >
                     {label}
                   </a>
+                  )
                 ))}
                 <div className="pt-3 flex flex-col gap-2">
                   <div className="flex flex-col items-start leading-tight py-1" data-testid="btn-mobile-demo">
@@ -271,11 +247,14 @@ export default function Home() {
                     <a href="mailto:info@taurusagsolution.com" onClick={() => setMenuOpen(false)} className="text-[12px] hover:underline" style={{ color: GREEN }}>info@taurusagsolution.com</a>
                   </div>
                   <Button
-                    className="w-full rounded-full font-medium border"
+                    className="min-h-11 w-full rounded-full font-medium border"
                     variant="outline"
                     asChild
                   >
                     <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} data-testid="btn-mobile-app">{t.nav.accediApp}</a>
+                  </Button>
+                  <Button className="min-h-11 w-full rounded-full font-medium border" variant="outline" asChild>
+                    <a href="https://nitrocrop.taurusagsolution.com/" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} data-testid="btn-mobile-nitrocrop">{t.nav.accediNitro}</a>
                   </Button>
                 </div>
               </div>
@@ -308,8 +287,8 @@ export default function Home() {
                 </motion.div>
 
                 <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 mb-6">
-                  <img src="/taurus-logo.webp" alt="Taurus Agriculture Solution logo" className="w-16 sm:w-20 lg:w-24 h-auto flex-shrink-0 drop-shadow-xl" width={1952} height={2166} />
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white">
+                  <img src="/taurus-logo.webp" alt="Taurus Agriculture Solution logo" className="w-16 sm:w-20 xl:w-24 h-auto flex-shrink-0 drop-shadow-xl" width={1952} height={2166} />
+                  <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold tracking-tight leading-tight text-white">
                     {t.hero.h1Line1}<br />
                     <span style={{ color: "#4ade80" }}>{t.hero.h1Line2}</span>
                   </h1>
@@ -390,7 +369,7 @@ export default function Home() {
                   className="bg-white/90 backdrop-blur rounded-xl px-4 py-2.5 shadow-lg border border-border"
                 >
                   <div className="text-lg font-bold leading-tight" style={{ color: GREEN }}>{s.val}</div>
-                  <div className="text-[11px] text-foreground/60 leading-tight">{s.label}</div>
+                  <div className="text-xs text-foreground/70 leading-tight">{s.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -424,15 +403,15 @@ export default function Home() {
               {/* Pillars grid */}
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="grid grid-cols-2 gap-4">
                 {[
-                  { color: GREEN, icon: "📈" },
-                  { color: BLUE,  icon: "🔗" },
-                  { color: TEAL,  icon: "🔍" },
-                  { color: AMBER, icon: "🌱" },
+                  { color: GREEN },
+                  { color: BLUE },
+                  { color: TEAL },
+                  { color: AMBER },
                 ].map((meta, i) => {
                   const p = t.about.pillars[i];
                   return (
                     <motion.div key={p.title} variants={fadeUp} className="p-4 lg:p-6 rounded-2xl bg-muted border border-border hover:shadow-md transition-shadow" data-testid={`card-pillar-${i}`}>
-                      <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center text-xl mb-3 lg:mb-4" style={{ backgroundColor: `${meta.color}15` }}>{meta.icon}</div>
+                      <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center text-sm font-bold tracking-wide mb-3 lg:mb-4" style={{ backgroundColor: `${meta.color}15`, color: meta.color }}>{String(i + 1).padStart(2, "0")}</div>
                       <h3 className="font-bold text-base mb-2" style={{ color: NAVY }}>{p.title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
                     </motion.div>
@@ -459,26 +438,178 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── PRODUCT BRIDGE ─── */}
-        <div id="farm-vrt" className="bg-white py-16 border-b border-border">
-          <div className="container mx-auto px-6 lg:px-12 text-center">
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-5 border" style={{ backgroundColor: `${GREEN}12`, borderColor: `${GREEN}40`, color: GREEN }}>
-                <Leaf className="w-4 h-4" />
+        {/* ─── PRODUCT OVERVIEW ─── */}
+        <section id="farm-vrt" aria-labelledby="products-heading" className="bg-white py-16 lg:py-24 border-b border-border scroll-mt-20">
+          <div className="container mx-auto px-5 lg:px-12">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="max-w-3xl mx-auto text-center mb-10 lg:mb-14">
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-5 border" style={{ backgroundColor: `${GREEN}12`, borderColor: `${GREEN}40`, color: GREEN }}>
+                <Leaf className="w-4 h-4" aria-hidden="true" />
                 <span>{t.productBridge.badge}</span>
-              </div>
-              <h2 className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: NAVY }}>{t.productBridge.h2}</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">{t.productBridge.p}</p>
-              <Button
-                className="rounded-full px-8 h-12 font-medium text-sm text-white"
-                style={{ backgroundColor: GREEN }}
-                asChild
-              >
-                <a href="https://vrt.taurusagsolution.com" target="_blank" rel="noopener noreferrer" data-testid="btn-product-app">{t.nav.accediApp}</a>
-              </Button>
+              </motion.div>
+              <motion.h2 id="products-heading" variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-4" style={{ color: NAVY }}>{t.productBridge.h2}</motion.h2>
+              <motion.p variants={fadeUp} className="text-lg text-muted-foreground max-w-2xl mx-auto">{t.productBridge.p}</motion.p>
             </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-5 lg:gap-7 max-w-5xl mx-auto">
+              <motion.a
+                href="https://vrt.taurusagsolution.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.35 }}
+                className="group flex min-h-[270px] flex-col rounded-3xl border border-border bg-muted/70 p-6 lg:p-8 text-left shadow-sm transition-shadow hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-primary"
+                data-testid="card-product-farm"
+              >
+                <div className="mb-8 flex items-start justify-between gap-4">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl" style={{ backgroundColor: `${GREEN}18`, color: GREEN }}>
+                    <Tractor className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <span className="rounded-full border border-border bg-white/80 px-3 py-1 text-xs font-semibold tracking-wide text-muted-foreground">FARM 2.0 VRT</span>
+                </div>
+                <h3 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: NAVY }}>{t.productBridge.farmTitle}</h3>
+                <p className="text-base leading-relaxed text-muted-foreground mb-7 max-w-md">{t.productBridge.farmDescription}</p>
+                <span className="mt-auto inline-flex min-h-11 w-fit items-center gap-2 rounded-full border px-4 py-2 font-semibold" style={{ color: GREEN, borderColor: GREEN }}>
+                  {t.productBridge.farmCta}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </motion.a>
+
+              <motion.a
+                href="https://nitrocrop.taurusagsolution.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.35, delay: 0.08 }}
+                className="group relative flex min-h-[270px] flex-col overflow-hidden rounded-3xl border p-6 lg:p-8 text-left shadow-sm transition-shadow hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-primary"
+                style={{ borderColor: `${TEAL}45`, background: `linear-gradient(135deg, ${TEAL}0c, ${GREEN}13)` }}
+                data-testid="card-product-nitrocrop"
+              >
+                <div className="absolute -right-8 -top-10 h-40 w-40 rounded-full opacity-10 blur-3xl" style={{ backgroundColor: TEAL }} aria-hidden="true" />
+                <div className="relative mb-8 flex items-start justify-between gap-4">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl" style={{ backgroundColor: `${TEAL}18`, color: TEAL }}>
+                    <Satellite className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <span className="rounded-full border px-3 py-1 text-xs font-semibold tracking-wide" style={{ color: TEAL, borderColor: `${TEAL}40`, backgroundColor: "rgba(255,255,255,.75)" }}>NDVI</span>
+                </div>
+                <h3 className="relative text-2xl lg:text-3xl font-bold mb-3" style={{ color: NAVY }}>{t.productBridge.nitroTitle}</h3>
+                <p className="relative text-base leading-relaxed text-muted-foreground mb-7 max-w-md">{t.productBridge.nitroDescription}</p>
+                <span className="relative mt-auto inline-flex min-h-11 w-fit items-center gap-2 rounded-full border px-4 py-2 font-semibold" style={{ color: TEAL, borderColor: TEAL }}>
+                  {t.productBridge.nitroCta}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </motion.a>
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* ─── NITROCROP NDVI ─── */}
+        <section id="nitrocrop-ndvi" aria-labelledby="nitrocrop-heading" className="scroll-mt-20 overflow-hidden border-b border-border bg-[#f4f8f4] py-16 lg:py-24">
+          <div className="container mx-auto px-5 lg:px-12">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="mx-auto mb-12 max-w-3xl text-center lg:mb-16">
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-semibold mb-5" style={{ backgroundColor: `${TEAL}10`, borderColor: `${TEAL}35`, color: TEAL }}>
+                <Satellite className="h-4 w-4" aria-hidden="true" />
+                <span>{t.nitrocrop.badge}</span>
+              </motion.div>
+              <motion.h2 id="nitrocrop-heading" variants={fadeUp} className="text-4xl font-bold tracking-tight lg:text-6xl mb-4" style={{ color: NAVY }}>{t.nitrocrop.title}</motion.h2>
+              <motion.p variants={fadeUp} className="text-xl font-semibold mb-4" style={{ color: TEAL }}>{t.nitrocrop.slogan}</motion.p>
+              <motion.p variants={fadeUp} className="mx-auto max-w-2xl text-base lg:text-lg leading-relaxed text-muted-foreground">{t.nitrocrop.intro}</motion.p>
+            </motion.div>
+
+            <div className="mx-auto max-w-6xl">
+              <div className="mb-8 flex items-end justify-between gap-4 border-b border-border pb-4">
+                <h3 className="text-2xl lg:text-3xl font-bold" style={{ color: NAVY }}>{t.nitrocrop.featuresHeading}</h3>
+                <span className="hidden sm:block text-xs font-mono tracking-[0.18em] text-muted-foreground">NDVI</span>
+              </div>
+              <figure className="mb-8 overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
+                <LazyImage
+                  src={lang === "it" ? "/nitrocrop-field-sensors.webp" : t.nitrocrop.features[1].image}
+                  alt={lang === "it" ? t.nitrocrop.fieldImageAlt : t.nitrocrop.features[1].alt}
+                  className="block h-auto w-full"
+                  containerClassName="relative"
+                  width={lang === "it" ? 1397 : 1000}
+                  height={lang === "it" ? 1103 : 660}
+                  placeholder={THUMBNAILS[lang === "it" ? "nitrocrop-field-sensors" : nitrocropImageInfo(t.nitrocrop.features[1].image).key]}
+                  data-testid="img-nitrocrop-field-sensors"
+                />
+                <figcaption className="px-6 py-5 text-sm leading-relaxed text-muted-foreground">{t.nitrocrop.features[1].description}</figcaption>
+              </figure>
+              <div className="space-y-6 lg:space-y-8">
+                {[t.nitrocrop.features[0], t.nitrocrop.features[3]].map((feature, i) => {
+                  const { key: imageKey, ...size } = nitrocropImageInfo(feature.image);
+                  return (
+                    <motion.article
+                      key={feature.image}
+                      id={i === 1 ? "nitrocrop-maps" : undefined}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{ duration: 0.5 }}
+                      className={`grid scroll-mt-24 overflow-hidden rounded-3xl border border-border bg-white shadow-sm lg:grid-cols-2 ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
+                    >
+                      <figure className="flex min-h-[250px] flex-col items-center justify-center gap-5 bg-[#eef4ef] p-4 sm:p-6 lg:p-8">
+                        <LazyImage
+                          src={feature.image}
+                          alt={feature.alt}
+                          className="block h-auto max-h-[440px] w-full object-contain"
+                          containerClassName="relative flex w-full items-center justify-center"
+                          width={size.width}
+                          height={size.height}
+                          placeholder={THUMBNAILS[imageKey]}
+                          data-testid={`img-nitrocrop-${imageKey}`}
+                        />
+                        {i === 1 && (
+                          <>
+                            <LazyImage
+                              src={t.nitrocrop.features[4].image}
+                              alt={t.nitrocrop.features[4].alt}
+                              className="block h-auto w-full object-contain"
+                              containerClassName="relative mx-auto w-full max-w-[340px] sm:max-w-[400px] overflow-hidden rounded-xl border border-border bg-white shadow-sm"
+                              width={nitrocropImageInfo(t.nitrocrop.features[4].image).width}
+                              height={nitrocropImageInfo(t.nitrocrop.features[4].image).height}
+                              placeholder={THUMBNAILS[nitrocropImageInfo(t.nitrocrop.features[4].image).key]}
+                              data-testid="img-nitrocrop-map-doses"
+                            />
+                            <p className="text-center text-xs leading-relaxed text-muted-foreground">{t.nitrocrop.features[4].caption}</p>
+                          </>
+                        )}
+                        <figcaption className="sr-only">{feature.caption}</figcaption>
+                      </figure>
+                      <div className="flex flex-col justify-center px-6 py-7 sm:px-8 lg:px-10 lg:py-10">
+                        <h4 className="text-2xl font-bold mb-3" style={{ color: NAVY }}>{feature.title}</h4>
+                        <p className="text-base leading-relaxed text-muted-foreground mb-5">{feature.description}</p>
+                        <p className="border-l-2 pl-4 text-sm leading-relaxed text-foreground/70" style={{ borderColor: TEAL }}>{feature.caption}</p>
+                      </div>
+                    </motion.article>
+                  );
+                })}
+              </div>
+              <p className="mt-5 text-right text-xs text-muted-foreground">{t.nitrocrop.screenshotNote}</p>
+            </div>
+
+            <div className="mx-auto mt-14 max-w-6xl lg:mt-20">
+              <div className="rounded-3xl p-7 lg:p-9" style={{ backgroundColor: NAVY }}>
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl" style={{ backgroundColor: `${GREEN}30`, color: "#7ed89a" }}>
+                  <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="text-2xl font-bold mb-5 text-white">{t.nitrocrop.benefitsHeading}</h3>
+                <ul className="space-y-4">
+                  {t.nitrocrop.benefits.map((benefit, i) => (
+                    <li key={i} className="flex gap-3 text-sm leading-relaxed text-white/75">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "#7ed89a" }} aria-hidden="true" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
         {/* ─── TRACTOR BANNER ─── */}
@@ -669,87 +800,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─── PLANS ─── */}
-        <section id="plans" className="bg-white py-16 lg:py-24">
-          <div className="container mx-auto px-5 lg:px-12">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={staggerContainer}
-              className="mx-auto mb-12 max-w-3xl text-center lg:mb-16"
-            >
-              <motion.div variants={fadeUp} className="mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium" style={{ backgroundColor: `${GREEN}12`, borderColor: `${GREEN}35`, color: GREEN }}>
-                <Layers className="h-4 w-4" />
-                <span>{t.plans.modulesLabel}</span>
-              </motion.div>
-              <motion.h2 variants={fadeUp} className="mb-4 text-3xl font-bold lg:text-5xl" style={{ color: NAVY }}>{t.plans.h2}</motion.h2>
-              <motion.p variants={fadeUp} className="text-lg text-muted-foreground">{t.plans.p}</motion.p>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-60px" }}
-              variants={staggerContainer}
-              className="grid items-stretch gap-5 lg:grid-cols-3 lg:gap-6"
-            >
-              {t.plans.plans.map((plan, i) => {
-                const PlanIcon = [Leaf, Layers, Tractor][i];
-                const color = [TEAL, BLUE, GREEN][i];
-                return (
-                  <motion.article
-                    key={plan.name}
-                    variants={fadeUp}
-                    whileHover={{ y: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className={`relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white p-6 shadow-sm transition-shadow hover:shadow-xl lg:p-7 ${i === 2 ? "lg:-translate-y-2" : ""}`}
-                    style={{ borderColor: i === 2 ? `${GREEN}70` : "#e2e8f0" }}
-                    data-testid={`plan-card-${plan.name.toLowerCase()}`}
-                  >
-                    <div className="absolute inset-x-0 top-0 h-1.5" style={{ backgroundColor: color }} />
-                    <div className="mb-5 flex items-center justify-between gap-3 pt-1">
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ backgroundColor: `${color}15`, color }}>
-                          <PlanIcon className="h-5 w-5" />
-                        </span>
-                        <h3 className="text-2xl font-bold" style={{ color: NAVY }}>{plan.name}</h3>
-                      </div>
-                      <span className="text-xs font-semibold uppercase tracking-wide" style={{ color }}>{plan.modules.length} {t.plans.modulesLabel}</span>
-                    </div>
-
-                    <p className="mb-5 min-h-12 text-sm leading-relaxed text-muted-foreground">{plan.description}</p>
-                    {plan.inheritance && (
-                      <div className="mb-4 rounded-xl px-3 py-2 text-xs font-semibold" style={{ backgroundColor: `${color}10`, color }}>
-                        {plan.inheritance}
-                      </div>
-                    )}
-
-                    <div className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t.plans.modulesLabel}</div>
-                    <ul className="mb-7 flex-1 space-y-3">
-                      {plan.modules.map((module) => (
-                        <li key={module} className="flex items-start gap-2.5 text-sm leading-snug" style={{ color: NAVY }}>
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color }} />
-                          <span>{module}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="h-1 rounded-full" style={{ background: `linear-gradient(to right, ${color}, ${color}20)` }} />
-                  </motion.article>
-                );
-              })}
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.15 }} className="mt-10 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
-              <span className="text-base font-medium text-muted-foreground">{t.plans.emailCta}</span>
-              <a href="mailto:info@taurusagsolution.com" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg" style={{ backgroundColor: GREEN }}>
-                info@taurusagsolution.com
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </motion.div>
-          </div>
-        </section>
-
         {/* ─── IoT BANNER ─── */}
         <section className="relative h-[340px] lg:h-[420px] overflow-hidden flex items-center justify-center">
           <LazyImage src="/img-iot-connect.webp" alt="Rete IoT satellite drone sensori" className="w-full h-full object-cover object-center" containerClassName="absolute inset-0 overflow-hidden" dark width={1408} height={768} placeholder={THUMBNAILS["img-iot-connect"]} data-testid="img-iot-connect" />
@@ -763,164 +813,8 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* ─── DISEASE MODULE ─── */}
-        <section id="malattie" className="py-16 lg:py-24 bg-white">
-          <div className="container mx-auto px-5 lg:px-12">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center max-w-3xl mx-auto mb-16">
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-5 border" style={{ backgroundColor: `${AMBER}15`, borderColor: `${AMBER}40`, color: AMBER }}>
-                <Bug className="w-4 h-4" />
-                <span>{t.disease.badge}</span>
-              </motion.div>
-              <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-5" style={{ color: NAVY }}>{t.disease.h2}</motion.h2>
-              <motion.p variants={fadeUp} className="text-lg text-muted-foreground">{t.disease.p}</motion.p>
-            </motion.div>
-
-            <div className="grid lg:grid-cols-2 gap-10 items-start mb-12">
-              {/* Agronomist photo */}
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="relative rounded-3xl overflow-hidden shadow-xl border border-border">
-              <LazyImage src="/img-agronomist-tablet.webp" alt="Agronomo in campo con tablet" className="w-full h-[420px] object-cover object-center" containerClassName="relative" dark width={1280} height={896} placeholder={THUMBNAILS["img-agronomist-tablet"]} data-testid="img-agronomist-disease" />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(30,41,59,0.85) 0%, transparent 55%)" }} />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-sm font-mono mb-2" style={{ color: "#4ade80" }}>{t.disease.riskLabel7d}</p>
-                  <div className="flex gap-3">
-                    <div className="flex-1 rounded-xl p-3 border border-white/20 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.12)" }}>
-                      <div className="text-2xl font-bold" style={{ color: AMBER }}>32%</div>
-                      <div className="text-xs text-white/70">{t.disease.riskProtected}</div>
-                    </div>
-                    <div className="flex-1 rounded-xl p-3 border border-white/20 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.12)" }}>
-                      <div className="text-2xl font-bold" style={{ color: RED_ }}>38%</div>
-                      <div className="text-xs text-white/70">{t.disease.riskMax}</div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Crop risk cards */}
-              <div className="space-y-4">
-                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-4">
-                  {crops.map((crop, i) => (
-                    <motion.div key={crop.name} variants={fadeUp} className="flex items-center gap-5 p-5 rounded-2xl border bg-white shadow-sm hover:shadow-md transition-shadow" style={{ borderColor: `${crop.color}30` }} data-testid={`card-crop-${i}`}>
-                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0" style={{ backgroundColor: `${crop.color}15` }}>{crop.icon}</div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1">
-                          <h4 className="font-bold text-lg" style={{ color: NAVY }}>{crop.name}</h4>
-                          <span className="text-sm font-mono font-bold" style={{ color: crop.color }}>{crop.risk}%</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground mb-2">{crop.tag}</p>
-                        <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }} whileInView={{ width: `${crop.risk}%` }} viewport={{ once: true }} transition={{ duration: 1, delay: i * 0.1, ease: "easeOut" }}
-                            className="h-full rounded-full" style={{ backgroundColor: crop.color }}
-                          />
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-                <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="p-4 rounded-xl border text-sm" style={{ backgroundColor: `${AMBER}10`, borderColor: `${AMBER}30`, color: "#92400e" }}>
-                  {t.disease.phytoAlert}
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Disease banner */}
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="relative rounded-3xl overflow-hidden h-[240px] lg:h-[300px] border border-border">
-              <LazyImage src="/img-crop-disease.webp" alt="Foglia con sintomi di malattia fungina" className="w-full h-full object-cover object-center" containerClassName="relative w-full h-full" dark width={1280} height={853} placeholder={THUMBNAILS["img-crop-disease"]} data-testid="img-crop-disease-closeup" />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(30,41,59,0.88) 40%, transparent)" }} />
-              <div className="absolute inset-0 flex items-center px-8 lg:px-14">
-                <div className="max-w-lg">
-                  <p className="text-sm font-mono mb-2 tracking-wide uppercase" style={{ color: AMBER }}>{t.disease.earlyDetection}</p>
-                  <h3 className="text-2xl lg:text-4xl font-bold text-white leading-tight">
-                    {t.disease.bannerH3Line1}<br />{t.disease.bannerH3Line2}
-                  </h3>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ─── SHOWCASE ─── */}
-        <section id="showcase" className="py-16 lg:py-24 bg-muted border-y border-border">
-          <div className="container mx-auto px-5 lg:px-12">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="text-center max-w-3xl mx-auto mb-14">
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mb-5 border" style={{ backgroundColor: `${BLUE}12`, borderColor: `${BLUE}35`, color: BLUE }}>
-                <Layers className="w-4 h-4" />
-                <span>{t.showcase.badge}</span>
-              </motion.div>
-              <motion.h2 variants={fadeUp} className="text-3xl lg:text-5xl font-bold mb-5" style={{ color: NAVY }}>
-                {t.showcase.h2Line1}<br />{t.showcase.h2Line2}
-              </motion.h2>
-              <motion.p variants={fadeUp} className="text-lg text-muted-foreground">{t.showcase.p}</motion.p>
-            </motion.div>
-
-            {/* Feature tabs */}
-            <div className="flex overflow-x-auto pb-2 scrollbar-hide gap-2 mb-10 justify-start lg:justify-center flex-nowrap lg:flex-wrap">
-              {appFeatures.map((f, i) => {
-                const Icon = f.icon;
-                const active = activeFeature === i;
-                return (
-                  <button key={f.id} onClick={() => setActiveFeature(i)} data-testid={`btn-feature-tab-${f.id}`}
-                    className="flex shrink-0 items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border"
-                    style={{ backgroundColor: active ? `${f.color}18` : "white", borderColor: active ? f.color : "#e5e7eb", color: active ? f.color : "#6b7280" }}
-                  >
-                    <Icon className="w-4 h-4" />
-                    {f.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div key={`${activeFeature}-${lang}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.35, ease: "easeOut" }} className="grid lg:grid-cols-5 gap-8 items-center">
-                <div className="lg:col-span-2 flex flex-col gap-5">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium border self-start" style={{ backgroundColor: `${appFeatures[activeFeature].color}12`, borderColor: `${appFeatures[activeFeature].color}35`, color: appFeatures[activeFeature].color }}>
-                    {appFeatures[activeFeature].badge}
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold leading-snug" style={{ color: NAVY }}>{appFeatures[activeFeature].title}</h3>
-                  <p className="text-muted-foreground text-base leading-relaxed">{appFeatures[activeFeature].description}</p>
-                  <div className="flex gap-3">
-                    {appFeatures.map((_, i) => (
-                      <button key={i} onClick={() => setActiveFeature(i)} data-testid={`btn-feature-dot-${i}`} className="w-2.5 h-2.5 rounded-full transition-all duration-300"
-                        style={{ backgroundColor: activeFeature === i ? appFeatures[i].color : "#d1d5db", transform: activeFeature === i ? "scale(1.35)" : "scale(1)" }}
-                      />
-                    ))}
-                  </div>
-                  {/* Farmer photo — shown only for Irrigazione module */}
-                  {activeFeature === 5 && (
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }} className="rounded-xl overflow-hidden shadow-lg border border-border w-full">
-                      <LazyImage src="/farmer-soil-moisture-v8.webp" alt="Agricoltore chino in campo che misura l'umidità del suolo con sensore a forchetta e legge i dati su smartphone — Taurus 2.0 VRT" className="w-full h-full object-cover object-center" containerClassName="relative w-full aspect-[3/4]" width={896} height={1280} placeholder={THUMBNAILS["farmer-soil-moisture-v8"]} />
-                    </motion.div>
-                  )}
-                </div>
-                <div className="lg:col-span-3 relative">
-                  <div className="absolute -inset-4 rounded-3xl blur-3xl opacity-10" style={{ backgroundColor: appFeatures[activeFeature].color }} />
-                  <div className="relative rounded-2xl overflow-hidden border border-border shadow-xl bg-white">
-                    <div className="h-9 flex items-center px-4 gap-2" style={{ backgroundColor: GREEN }}>
-                      <div className="flex gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-300/80" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-green-300/80" />
-                      </div>
-                      <div className="ml-2 flex-1 h-5 rounded px-3 flex items-center" style={{ backgroundColor: "rgba(255,255,255,0.15)" }}>
-                        <span className="text-[10px] text-white/60 font-mono">Taurus Ag Solution — {appFeatures[activeFeature].label}</span>
-                      </div>
-                    </div>
-                    <div className="relative">
-                      <LazyImage src={appFeatures[activeFeature].image} alt={appFeatures[activeFeature].label} className="w-full h-auto object-cover object-top" containerClassName="relative" width={appFeatures[activeFeature].imgWidth} height={appFeatures[activeFeature].imgHeight} placeholder={appFeatures[activeFeature].placeholder} data-testid={`img-feature-screenshot-${appFeatures[activeFeature].id}`} />
-                      {/* Hide side-panel text in Mappa di Prescrizione (3) and VRT 2.0 Mappe (4) */}
-                      {(activeFeature === 3 || activeFeature === 4) && (
-                        <div className="absolute bg-white" style={{ top: 0, right: 0, width: "37%", height: "100%" }} />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </section>
-
         {/* ─── REMOTE SENSING & DRONES ─── */}
-        <section id="solutions" className="py-12 lg:py-16 bg-white border-t border-border">
+        <section id="telerilevamento" className="py-12 lg:py-16 bg-white border-t border-border">
           <div className="container mx-auto px-5 lg:px-12">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl lg:text-5xl font-bold mb-6" style={{ color: NAVY }}>{t.remoteSensing.h2}</h2>
