@@ -5,6 +5,12 @@ description: Slogan e fatti di prodotto forniti dall'utente per NitroCrop NDVI
 
 NitroCrop NDVI è distinto dalla piattaforma di gestione agricola Farm 2.0 VRT. Lo slogan dell'utente è: «Supporto operativo alla fertilizzazione azotata nel palmo della tua mano».
 
+NitroCrop NDVI e Farm 2.0 VRT sono collegati: le mappe prodotte in NitroCrop NDVI sono gestibili in Farm 2.0 VRT.
+
+**Why:** l'utente ha specificato esplicitamente il collegamento fra i due software.
+
+**How to apply:** esplicitarlo nella presentazione dei prodotti e nei contenuti sulle mappe, anche nelle traduzioni. Non dedurre sincronizzazione automatica o trasferimenti bidirezionali.
+
 Il nome del software è Farm 2.0 VRT, non Taurus 2.0 VRT.
 
 **Why:** l'utente ha corretto esplicitamente il nome del software.

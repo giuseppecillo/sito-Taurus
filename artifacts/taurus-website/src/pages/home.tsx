@@ -505,6 +505,10 @@ export default function Home() {
                 </span>
               </motion.a>
             </div>
+            <aside id="connected-products" className="mx-auto mt-6 max-w-5xl scroll-mt-24 rounded-2xl border border-primary/20 bg-[#f3faf5] p-5 sm:p-6" aria-labelledby="connected-products-heading">
+              <h3 id="connected-products-heading" className="mb-2 text-xl font-bold" style={{ color: NAVY }}>{t.productBridge.integrationTitle}</h3>
+              <p className="text-base leading-relaxed text-muted-foreground">{t.productBridge.integrationText}</p>
+            </aside>
           </div>
         </section>
 
